@@ -30,7 +30,7 @@ class ApplicationMain {
 		var types = [];
 		
 		
-		urls.push ("img/img.png");
+		urls.push ("img/openfl.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
@@ -95,8 +95,8 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "14",
-			company: "Tad",
+			build: "85",
+			company: "TTGTeam",
 			file: "WebGame",
 			fps: 60,
 			name: "WebGame",
@@ -113,13 +113,13 @@ class ApplicationMain {
 					display: 0,
 					fullscreen: false,
 					hardware: false,
-					height: 480,
+					height: 720,
 					parameters: "{}",
 					resizable: true,
 					stencilBuffer: true,
 					title: "WebGame",
 					vsync: false,
-					width: 800,
+					width: 1280,
 					x: null,
 					y: null
 				},
@@ -137,7 +137,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 800, 480, "000000");
+		openfl.Lib.embed (null, 1280, 720, "000000");
 		#end
 		#else
 		create ();

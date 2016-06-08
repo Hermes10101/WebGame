@@ -3,13 +3,13 @@
 	<!-- NMML reference: https://gist.github.com/1763850 -->
 	
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
-	<meta title="WebGame" package="ttg.game.WebGame" version="1.0.0" company="Tad" />
+	<meta title="WebGame" package="ttg.game.WebGame" version="1.0.0" company="TTGTeam" />
 	
 	<!-- output -->
 	<app main="ttg.game.Main" file="WebGame" path="bin" />
 	
 	<window background="#000000" fps="60" />
-	<window width="800" height="480" unless="mobile" />
+	<window width="1280" height="720" unless="mobile" />
 	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
 	
 	<!-- classpath, haxe libs -->
