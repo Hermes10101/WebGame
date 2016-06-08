@@ -57,14 +57,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		className.set ("img/openfl.png", __ASSET__img_openfl_png);
-		type.set ("img/openfl.png", AssetType.IMAGE);
+		className.set ("img/img.png", __ASSET__img_img_png);
+		type.set ("img/img.png", AssetType.IMAGE);
 		
 		
 		#elseif html5
 		
 		var id;
-		id = "img/openfl.png";
+		id = "img/img.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -86,8 +86,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		var useManifest = false;
 		
-		className.set ("img/openfl.png", __ASSET__img_openfl_png);
-		type.set ("img/openfl.png", AssetType.IMAGE);
+		className.set ("img/img.png", __ASSET__img_img_png);
+		type.set ("img/img.png", AssetType.IMAGE);
 		
 		
 		if (useManifest) {
@@ -733,7 +733,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if !display
 #if flash
 
-@:keep @:bind #if display private #end class __ASSET__img_openfl_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_img_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 
 
 #elseif html5
@@ -748,7 +748,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if (windows || mac || linux || cpp)
 
 
-@:image("assets/img/openfl.png") #if display private #end class __ASSET__img_openfl_png extends lime.graphics.Image {}
+@:image("assets/img/img.png") #if display private #end class __ASSET__img_img_png extends lime.graphics.Image {}
 
 
 

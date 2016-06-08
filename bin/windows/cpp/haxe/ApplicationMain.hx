@@ -91,8 +91,8 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "84",
-			company: "TTGTeam",
+			build: "10",
+			company: "Tad",
 			file: "WebGame",
 			fps: 60,
 			name: "WebGame",
@@ -109,13 +109,13 @@ class ApplicationMain {
 					display: 0,
 					fullscreen: false,
 					hardware: true,
-					height: 720,
+					height: 480,
 					parameters: "{}",
 					resizable: true,
 					stencilBuffer: true,
 					title: "WebGame",
 					vsync: false,
-					width: 1280,
+					width: 800,
 					x: null,
 					y: null
 				},
@@ -133,7 +133,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 1280, 720, "null");
+		openfl.Lib.embed (null, 800, 480, "null");
 		#end
 		#else
 		create ();

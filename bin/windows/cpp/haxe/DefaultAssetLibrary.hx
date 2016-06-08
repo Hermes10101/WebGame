@@ -57,14 +57,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		path.set ("img/openfl.png", "img/openfl.png");
-		type.set ("img/openfl.png", AssetType.IMAGE);
+		path.set ("img/img.png", "img/img.png");
+		type.set ("img/img.png", AssetType.IMAGE);
 		
 		
 		#elseif html5
 		
 		var id;
-		id = "img/openfl.png";
+		id = "img/img.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		
