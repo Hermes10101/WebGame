@@ -4,3 +4,4 @@ Gatunek-Horro+RPG.
 Pegi 16.
 Pikselowa grafika.
 Lokacje.
+Rumcajs.
