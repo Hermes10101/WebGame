@@ -30,10 +30,6 @@ class ApplicationMain {
 		var types = [];
 		
 		
-		urls.push ("img/openfl.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
 		
 		if (config.assetsPrefix != null) {
 			
@@ -95,7 +91,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "85",
+			build: "1",
 			company: "TTGTeam",
 			file: "WebGame",
 			fps: 60,
