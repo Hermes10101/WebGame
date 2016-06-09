@@ -82,6 +82,10 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
+		urls.push ("img/lokalizacje/las/rowprawakoncowca.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("img/lokalizacje/las/rowprawakoncowka.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
@@ -171,7 +175,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "4",
+			build: "16",
 			company: "TTGTeam",
 			file: "WebGame",
 			fps: 60,

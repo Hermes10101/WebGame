@@ -49,6 +49,8 @@ ApplicationMain.create = function() {
 	types.push("IMAGE");
 	urls.push("img/lokalizacje/las/rowprawaczesc.png");
 	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowprawakoncowca.png");
+	types.push("IMAGE");
 	urls.push("img/lokalizacje/las/rowprawakoncowka.png");
 	types.push("IMAGE");
 	urls.push("img/lokalizacje/las/sciezka.png");
@@ -85,7 +87,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "4", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
+	ApplicationMain.config = { build : "16", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -1548,6 +1550,9 @@ var DefaultAssetLibrary = function() {
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
 	id = "img/lokalizacje/las/rowprawaczesc.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowprawakoncowca.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
 	id = "img/lokalizacje/las/rowprawakoncowka.png";
@@ -25093,6 +25098,971 @@ openfl_display_DirectRenderer.prototype = $extend(openfl_display_DisplayObject.p
 	,__class__: openfl_display_DirectRenderer
 	,__properties__: $extend(openfl_display_DisplayObject.prototype.__properties__,{set_render:"set_render",get_render:"get_render"})
 });
+var openfl_text_TextField = function() {
+	openfl_display_InteractiveObject.call(this);
+	this.__caretIndex = -1;
+	this.__graphics = new openfl_display_Graphics();
+	this.__textEngine = new openfl__$internal_text_TextEngine(this);
+	this.__layoutDirty = true;
+	this.__tabEnabled = true;
+	if(openfl_text_TextField.__defaultTextFormat == null) {
+		openfl_text_TextField.__defaultTextFormat = new openfl_text_TextFormat("Times New Roman",12,0,false,false,false,"","",3,0,0,0,0);
+		openfl_text_TextField.__defaultTextFormat.blockIndent = 0;
+		openfl_text_TextField.__defaultTextFormat.bullet = false;
+		openfl_text_TextField.__defaultTextFormat.letterSpacing = 0;
+		openfl_text_TextField.__defaultTextFormat.kerning = false;
+	}
+	this.__textFormat = openfl_text_TextField.__defaultTextFormat.clone();
+	this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(this.__textFormat,0,0));
+	this.addEventListener("mouseDown",$bind(this,this.this_onMouseDown));
+};
+$hxClasses["openfl.text.TextField"] = openfl_text_TextField;
+openfl_text_TextField.__name__ = ["openfl","text","TextField"];
+openfl_text_TextField.__defaultTextFormat = null;
+openfl_text_TextField.__super__ = openfl_display_InteractiveObject;
+openfl_text_TextField.prototype = $extend(openfl_display_InteractiveObject.prototype,{
+	appendText: function(text) {
+		this.__textEngine.text += text;
+		this.__textEngine.textFormatRanges[this.__textEngine.textFormatRanges.length - 1].end = this.__textEngine.text.length;
+		this.__dirty = true;
+		this.__layoutDirty = true;
+	}
+	,getCharBoundaries: function(charIndex) {
+		if(charIndex < 0 || charIndex > this.__textEngine.text.length - 1) return null;
+		this.__updateLayout();
+		var _g = 0;
+		var _g1 = this.__textEngine.layoutGroups;
+		while(_g < _g1.length) {
+			var group = _g1[_g];
+			++_g;
+			if(charIndex >= group.startIndex && charIndex <= group.endIndex) {
+				var x = group.offsetX;
+				var _g3 = 0;
+				var _g2 = charIndex - group.startIndex;
+				while(_g3 < _g2) {
+					var i = _g3++;
+					x += group.advances[i];
+				}
+				return new openfl_geom_Rectangle(x,group.offsetY,group.advances[charIndex - group.startIndex],group.ascent + group.descent);
+			}
+		}
+		return null;
+	}
+	,getCharIndexAtPoint: function(x,y) {
+		if(x <= 2 || x > this.get_width() + 4 || y <= 0 || y > this.get_height() + 4) return -1;
+		this.__updateLayout();
+		x += this.get_scrollH();
+		var _g1 = 0;
+		var _g = this.get_scrollV() - 1;
+		while(_g1 < _g) {
+			var i = _g1++;
+			y += this.__textEngine.lineHeights[i];
+		}
+		var _g2 = 0;
+		var _g11 = this.__textEngine.layoutGroups;
+		while(_g2 < _g11.length) {
+			var group = _g11[_g2];
+			++_g2;
+			if(y >= group.offsetY && y <= group.offsetY + group.height) {
+				if(x >= group.offsetX && x <= group.offsetX + group.width) {
+					var advance = 0.0;
+					var _g3 = 0;
+					var _g21 = group.advances.length;
+					while(_g3 < _g21) {
+						var i1 = _g3++;
+						advance += group.advances[i1];
+						if(x <= group.offsetX + advance) return group.startIndex + i1;
+					}
+					return group.endIndex;
+				}
+			}
+		}
+		return -1;
+	}
+	,getFirstCharInParagraph: function(charIndex) {
+		if(charIndex < 0 || charIndex > this.__textEngine.text.length - 1) return 0;
+		var index = this.__textEngine.text.indexOf("\n");
+		var startIndex = 0;
+		while(index > -1) {
+			if(index <= charIndex) startIndex = index + 1; else if(index > charIndex) break;
+			index = this.__textEngine.text.indexOf("\n",index + 1);
+		}
+		return startIndex;
+	}
+	,getLineIndexAtPoint: function(x,y) {
+		this.__updateLayout();
+		if(x <= 2 || x > this.get_width() + 4 || y <= 0 || y > this.get_height() + 4) return -1;
+		var _g1 = 0;
+		var _g = this.get_scrollV() - 1;
+		while(_g1 < _g) {
+			var i = _g1++;
+			y += this.__textEngine.lineHeights[i];
+		}
+		var _g2 = 0;
+		var _g11 = this.__textEngine.layoutGroups;
+		while(_g2 < _g11.length) {
+			var group = _g11[_g2];
+			++_g2;
+			if(y >= group.offsetY && y <= group.offsetY + group.height) return group.lineIndex;
+		}
+		return -1;
+	}
+	,getLineIndexOfChar: function(charIndex) {
+		if(charIndex < 0 || charIndex > this.__textEngine.text.length - 1) return -1;
+		this.__updateLayout();
+		var _g = 0;
+		var _g1 = this.__textEngine.layoutGroups;
+		while(_g < _g1.length) {
+			var group = _g1[_g];
+			++_g;
+			if(group.startIndex <= charIndex && group.endIndex >= charIndex) return group.lineIndex;
+		}
+		return -1;
+	}
+	,getLineLength: function(lineIndex) {
+		this.__updateLayout();
+		if(lineIndex < 0 || lineIndex > this.__textEngine.numLines - 1) return 0;
+		var startIndex = -1;
+		var endIndex = -1;
+		var _g = 0;
+		var _g1 = this.__textEngine.layoutGroups;
+		while(_g < _g1.length) {
+			var group = _g1[_g];
+			++_g;
+			if(group.lineIndex == lineIndex) {
+				if(startIndex == -1) startIndex = group.startIndex;
+			} else if(group.lineIndex == lineIndex + 1) {
+				endIndex = group.startIndex;
+				break;
+			}
+		}
+		if(endIndex == -1) endIndex = this.__textEngine.text.length;
+		return endIndex - startIndex;
+	}
+	,getLineMetrics: function(lineIndex) {
+		this.__updateLayout();
+		var ascender = this.__textEngine.lineAscents[lineIndex];
+		var descender = this.__textEngine.lineDescents[lineIndex];
+		var leading = this.__textEngine.lineLeadings[lineIndex];
+		var lineHeight = this.__textEngine.lineHeights[lineIndex];
+		var lineWidth = this.__textEngine.lineWidths[lineIndex];
+		var margin;
+		var _g = this.__textFormat.align;
+		switch(_g) {
+		case 3:case 2:case 5:
+			margin = 2;
+			break;
+		case 4:case 1:
+			margin = this.__textEngine.width - lineWidth - 2;
+			break;
+		case 0:
+			margin = (this.__textEngine.width - lineWidth) / 2;
+			break;
+		}
+		return new openfl_text_TextLineMetrics(margin,lineWidth,lineHeight,ascender,descender,leading);
+	}
+	,getLineOffset: function(lineIndex) {
+		this.__updateLayout();
+		if(lineIndex < 0 || lineIndex > this.__textEngine.numLines - 1) return -1;
+		var _g = 0;
+		var _g1 = this.__textEngine.layoutGroups;
+		while(_g < _g1.length) {
+			var group = _g1[_g];
+			++_g;
+			if(group.lineIndex == lineIndex) return group.startIndex;
+		}
+		return 0;
+	}
+	,getLineText: function(lineIndex) {
+		this.__updateLayout();
+		if(lineIndex < 0 || lineIndex > this.__textEngine.numLines - 1) return null;
+		var startIndex = -1;
+		var endIndex = -1;
+		var _g = 0;
+		var _g1 = this.__textEngine.layoutGroups;
+		while(_g < _g1.length) {
+			var group = _g1[_g];
+			++_g;
+			if(group.lineIndex == lineIndex) {
+				if(startIndex == -1) startIndex = group.startIndex;
+			} else if(group.lineIndex == lineIndex + 1) {
+				endIndex = group.startIndex;
+				break;
+			}
+		}
+		if(endIndex == -1) endIndex = this.__textEngine.text.length;
+		return this.__textEngine.text.substring(startIndex,endIndex);
+	}
+	,getParagraphLength: function(charIndex) {
+		if(charIndex < 0 || charIndex > this.__textEngine.text.length - 1) return 0;
+		var startIndex = this.getFirstCharInParagraph(charIndex);
+		var endIndex = this.__textEngine.text.indexOf("\n",charIndex) + 1;
+		if(endIndex == 0) endIndex = this.__textEngine.text.length;
+		return endIndex - startIndex;
+	}
+	,getTextFormat: function(beginIndex,endIndex) {
+		if(endIndex == null) endIndex = 0;
+		if(beginIndex == null) beginIndex = 0;
+		var format = null;
+		var _g = 0;
+		var _g1 = this.__textEngine.textFormatRanges;
+		while(_g < _g1.length) {
+			var group = _g1[_g];
+			++_g;
+			if(group.start <= beginIndex && group.end >= beginIndex || group.start <= endIndex && group.end >= endIndex) {
+				if(format == null) format = group.format.clone(); else {
+					if(group.format.font != format.font) format.font = null;
+					if(group.format.size != format.size) format.size = null;
+					if(group.format.color != format.color) format.color = null;
+					if(group.format.bold != format.bold) format.bold = null;
+					if(group.format.italic != format.italic) format.italic = null;
+					if(group.format.underline != format.underline) format.underline = null;
+					if(group.format.url != format.url) format.url = null;
+					if(group.format.target != format.target) format.target = null;
+					if(group.format.align != format.align) format.align = null;
+					if(group.format.leftMargin != format.leftMargin) format.leftMargin = null;
+					if(group.format.rightMargin != format.rightMargin) format.rightMargin = null;
+					if(group.format.indent != format.indent) format.indent = null;
+					if(group.format.leading != format.leading) format.leading = null;
+					if(group.format.blockIndent != format.blockIndent) format.blockIndent = null;
+					if(group.format.bullet != format.bullet) format.bullet = null;
+					if(group.format.kerning != format.kerning) format.kerning = null;
+					if(group.format.letterSpacing != format.letterSpacing) format.letterSpacing = null;
+					if(group.format.tabStops != format.tabStops) format.tabStops = null;
+				}
+			}
+		}
+		return format;
+	}
+	,replaceSelectedText: function(value) {
+		if(value == "" && this.__selectionIndex == this.__caretIndex) return;
+		var startIndex;
+		if(this.__caretIndex < this.__selectionIndex) startIndex = this.__caretIndex; else startIndex = this.__selectionIndex;
+		var endIndex;
+		if(this.__caretIndex > this.__selectionIndex) endIndex = this.__caretIndex; else endIndex = this.__selectionIndex;
+		this.replaceText(startIndex,endIndex,value);
+		this.__caretIndex = startIndex + value.length;
+		this.__selectionIndex = this.__caretIndex;
+	}
+	,replaceText: function(beginIndex,endIndex,newText) {
+		if(endIndex < beginIndex || beginIndex < 0 || endIndex > this.__textEngine.text.length || newText == null) return;
+		this.__textEngine.text = this.__textEngine.text.substring(0,beginIndex) + newText + this.__textEngine.text.substring(endIndex);
+		var offset = newText.length - (endIndex - beginIndex);
+		var i = 0;
+		var range;
+		while(i < this.__textEngine.textFormatRanges.length) {
+			range = this.__textEngine.textFormatRanges[i];
+			if(range.start <= beginIndex && range.end >= endIndex) {
+				range.end += offset;
+				i++;
+			} else if(range.start >= beginIndex && range.end <= endIndex) {
+				this.__textEngine.textFormatRanges.splice(i,1);
+				offset -= range.end - range.start;
+			} else if(range.start > beginIndex && range.start <= endIndex) {
+				range.start += offset;
+				i++;
+			} else i++;
+		}
+		this.__dirty = true;
+		this.__layoutDirty = true;
+	}
+	,setSelection: function(beginIndex,endIndex) {
+		this.__selectionIndex = beginIndex;
+		this.__caretIndex = endIndex;
+	}
+	,setTextFormat: function(format,beginIndex,endIndex) {
+		if(endIndex == null) endIndex = 0;
+		if(beginIndex == null) beginIndex = 0;
+		if(format.font != null) this.__textFormat.font = format.font;
+		if(format.size != null) this.__textFormat.size = format.size;
+		if(format.color != null) this.__textFormat.color = format.color;
+		if(format.bold != null) this.__textFormat.bold = format.bold;
+		if(format.italic != null) this.__textFormat.italic = format.italic;
+		if(format.underline != null) this.__textFormat.underline = format.underline;
+		if(format.url != null) this.__textFormat.url = format.url;
+		if(format.target != null) this.__textFormat.target = format.target;
+		if(format.align != null) this.__textFormat.align = format.align;
+		if(format.leftMargin != null) this.__textFormat.leftMargin = format.leftMargin;
+		if(format.rightMargin != null) this.__textFormat.rightMargin = format.rightMargin;
+		if(format.indent != null) this.__textFormat.indent = format.indent;
+		if(format.leading != null) this.__textFormat.leading = format.leading;
+		if(format.blockIndent != null) this.__textFormat.blockIndent = format.blockIndent;
+		if(format.bullet != null) this.__textFormat.bullet = format.bullet;
+		if(format.kerning != null) this.__textFormat.kerning = format.kerning;
+		if(format.letterSpacing != null) this.__textFormat.letterSpacing = format.letterSpacing;
+		if(format.tabStops != null) this.__textFormat.tabStops = format.tabStops;
+		this.__dirty = true;
+		this.__layoutDirty = true;
+	}
+	,__getBounds: function(rect,matrix) {
+		this.__updateLayout();
+		var bounds = openfl_geom_Rectangle.__temp;
+		this.__textEngine.bounds.__transform(bounds,matrix);
+		rect.__expand(bounds.x,bounds.y,bounds.width,bounds.height);
+	}
+	,__getCursor: function() {
+		if(this.__textEngine.selectable) return lime_ui_MouseCursor.TEXT; else return null;
+	}
+	,__getPosition: function(x,y) {
+		this.__updateLayout();
+		x += this.get_scrollH();
+		var _g1 = 0;
+		var _g = this.get_scrollV() - 1;
+		while(_g1 < _g) {
+			var i = _g1++;
+			y += this.__textEngine.lineHeights[i];
+		}
+		if(y > this.__textEngine.textHeight) y = this.__textEngine.textHeight;
+		var firstGroup = true;
+		var group;
+		var nextGroup;
+		var _g11 = 0;
+		var _g2 = this.__textEngine.layoutGroups.length;
+		while(_g11 < _g2) {
+			var i1 = _g11++;
+			group = this.__textEngine.layoutGroups[i1];
+			if(i1 < this.__textEngine.layoutGroups.length - 1) nextGroup = this.__textEngine.layoutGroups[i1 + 1]; else nextGroup = null;
+			if(firstGroup) {
+				if(y < group.offsetY) y = group.offsetY;
+				if(x < group.offsetX) x = group.offsetX;
+				firstGroup = false;
+			}
+			if(y >= group.offsetY && y <= group.offsetY + group.height || nextGroup == null) {
+				if(x >= group.offsetX && x <= group.offsetX + group.width || (nextGroup == null || nextGroup.lineIndex != group.lineIndex)) {
+					var advance = 0.0;
+					var _g3 = 0;
+					var _g21 = group.advances.length;
+					while(_g3 < _g21) {
+						var i2 = _g3++;
+						advance += group.advances[i2];
+						if(x <= group.offsetX + advance) {
+							if(x <= group.offsetX + (advance - group.advances[i2]) + group.advances[i2] / 2) return group.startIndex + i2; else if(group.startIndex + i2 < group.endIndex) return group.startIndex + i2 + 1; else return group.endIndex;
+						}
+					}
+					return group.endIndex;
+				}
+			}
+		}
+		return this.__textEngine.text.length;
+	}
+	,__hitTest: function(x,y,shapeFlag,stack,interactiveOnly,hitObject) {
+		if(!hitObject.get_visible() || this.__isMask || interactiveOnly && !this.mouseEnabled) return false;
+		if(this.get_mask() != null && !this.get_mask().__hitTestMask(x,y)) return false;
+		this.__getWorldTransform();
+		this.__updateLayout();
+		var px = this.__worldTransform.__transformInverseX(x,y);
+		var py = this.__worldTransform.__transformInverseY(x,y);
+		if(this.__textEngine.bounds.contains(px,py)) {
+			if(stack != null) stack.push(hitObject);
+			return true;
+		}
+		return false;
+	}
+	,__hitTestMask: function(x,y) {
+		this.__getWorldTransform();
+		this.__updateLayout();
+		var px = this.__worldTransform.__transformInverseX(x,y);
+		var py = this.__worldTransform.__transformInverseY(x,y);
+		if(this.__textEngine.bounds.contains(px,py)) return true;
+		return false;
+	}
+	,__renderCairo: function(renderSession) {
+		openfl__$internal_renderer_cairo_CairoTextField.render(this,renderSession);
+		openfl_display_InteractiveObject.prototype.__renderCairo.call(this,renderSession);
+	}
+	,__renderCanvas: function(renderSession) {
+		openfl__$internal_renderer_canvas_CanvasTextField.render(this,renderSession);
+		if(this.__textEngine.antiAliasType == 0 && this.__textEngine.gridFitType == 1) {
+			var smoothingEnabled = renderSession.context.imageSmoothingEnabled;
+			if(smoothingEnabled) {
+				renderSession.context.mozImageSmoothingEnabled = false;
+				renderSession.context.msImageSmoothingEnabled = false;
+				renderSession.context.imageSmoothingEnabled = false;
+			}
+			openfl_display_InteractiveObject.prototype.__renderCanvas.call(this,renderSession);
+			if(smoothingEnabled) {
+				renderSession.context.mozImageSmoothingEnabled = true;
+				renderSession.context.msImageSmoothingEnabled = true;
+				renderSession.context.imageSmoothingEnabled = true;
+			}
+		} else openfl_display_InteractiveObject.prototype.__renderCanvas.call(this,renderSession);
+	}
+	,__renderDOM: function(renderSession) {
+		openfl__$internal_renderer_dom_DOMTextField.render(this,renderSession);
+	}
+	,__renderGL: function(renderSession) {
+		if(this.__cacheAsBitmap) {
+			this.__cacheGL(renderSession);
+			return;
+		}
+		if(this.__scrollRect != null) renderSession.maskManager.pushRect(this.__scrollRect,this.__renderTransform);
+		if(this.__mask != null && this.__maskGraphics != null && this.__maskGraphics.__commands.get_length() > 0) renderSession.maskManager.pushMask(this);
+		openfl__$internal_renderer_canvas_CanvasTextField.render(this,renderSession);
+		openfl__$internal_renderer_opengl_GLRenderer.renderBitmap(this,renderSession,this.__textEngine.antiAliasType != 0 || this.__textEngine.gridFitType != 1);
+		if(this.__mask != null && this.__maskGraphics != null && this.__maskGraphics.__commands.get_length() > 0) renderSession.maskManager.popMask();
+		if(this.__scrollRect != null) renderSession.maskManager.popRect();
+	}
+	,__startCursorTimer: function() {
+		this.__cursorTimer = haxe_Timer.delay($bind(this,this.__startCursorTimer),600);
+		this.__showCursor = !this.__showCursor;
+		this.__dirty = true;
+	}
+	,__startTextInput: function() {
+		if(this.__caretIndex < 0) {
+			this.__caretIndex = this.__textEngine.text.length;
+			this.__selectionIndex = this.__caretIndex;
+		}
+		if(this.stage != null) {
+			this.stage.window.backend.setEnableTextEvents(true);
+			if(!this.__inputEnabled) {
+				this.stage.window.backend.setEnableTextEvents(true);
+				if(!this.stage.window.onTextInput.has($bind(this,this.window_onTextInput))) {
+					this.stage.window.onTextInput.add($bind(this,this.window_onTextInput));
+					this.stage.window.onKeyDown.add($bind(this,this.window_onKeyDown));
+				}
+				this.__inputEnabled = true;
+				this.__startCursorTimer();
+			}
+		}
+	}
+	,__stopCursorTimer: function() {
+		if(this.__cursorTimer != null) {
+			this.__cursorTimer.stop();
+			this.__cursorTimer = null;
+		}
+		if(this.__showCursor) {
+			this.__showCursor = false;
+			this.__dirty = true;
+		}
+	}
+	,__stopTextInput: function() {
+		if(this.__inputEnabled && this.stage != null) {
+			this.stage.window.backend.setEnableTextEvents(false);
+			this.stage.window.onTextInput.remove($bind(this,this.window_onTextInput));
+			this.stage.window.onKeyDown.remove($bind(this,this.window_onKeyDown));
+			this.__inputEnabled = false;
+			this.__stopCursorTimer();
+		}
+	}
+	,__updateLayout: function() {
+		if(this.__layoutDirty) {
+			this.__textEngine.update();
+			if(this.__textEngine.autoSize != 2) {
+				var cacheWidth = this.__textEngine.width;
+				var cacheHeight = this.__textEngine.height;
+				var _g = this.__textEngine.autoSize;
+				switch(_g) {
+				case 1:case 3:case 0:
+					if(!this.__textEngine.wordWrap) this.__textEngine.width = this.__textEngine.textWidth + 4;
+					this.__textEngine.height = this.__textEngine.textHeight + 4;
+					break;
+				default:
+				}
+				if(this.__textEngine.width != cacheWidth) {
+					var _g1 = this.__textEngine.autoSize;
+					switch(_g1) {
+					case 3:
+						var _g11 = this;
+						_g11.set_x(_g11.get_x() + (cacheWidth - this.__textEngine.width));
+						break;
+					case 0:
+						var _g12 = this;
+						_g12.set_x(_g12.get_x() + (cacheWidth - this.__textEngine.width) / 2);
+						break;
+					default:
+					}
+				}
+				this.__textEngine.getBounds();
+			}
+			this.__layoutDirty = false;
+		}
+	}
+	,get_antiAliasType: function() {
+		return this.__textEngine.antiAliasType;
+	}
+	,set_antiAliasType: function(value) {
+		if(value != this.__textEngine.antiAliasType) {
+		}
+		return this.__textEngine.antiAliasType = value;
+	}
+	,get_autoSize: function() {
+		return this.__textEngine.autoSize;
+	}
+	,set_autoSize: function(value) {
+		if(value != this.__textEngine.autoSize) {
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		}
+		return this.__textEngine.autoSize = value;
+	}
+	,get_background: function() {
+		return this.__textEngine.background;
+	}
+	,set_background: function(value) {
+		if(value != this.__textEngine.background) this.__dirty = true;
+		return this.__textEngine.background = value;
+	}
+	,get_backgroundColor: function() {
+		return this.__textEngine.backgroundColor;
+	}
+	,set_backgroundColor: function(value) {
+		if(value != this.__textEngine.backgroundColor) this.__dirty = true;
+		return this.__textEngine.backgroundColor = value;
+	}
+	,get_border: function() {
+		return this.__textEngine.border;
+	}
+	,set_border: function(value) {
+		if(value != this.__textEngine.border) this.__dirty = true;
+		return this.__textEngine.border = value;
+	}
+	,get_borderColor: function() {
+		return this.__textEngine.borderColor;
+	}
+	,set_borderColor: function(value) {
+		if(value != this.__textEngine.borderColor) this.__dirty = true;
+		return this.__textEngine.borderColor = value;
+	}
+	,get_bottomScrollV: function() {
+		this.__updateLayout();
+		return this.__textEngine.bottomScrollV;
+	}
+	,get_caretIndex: function() {
+		return this.__caretIndex;
+	}
+	,get_defaultTextFormat: function() {
+		return this.__textFormat.clone();
+	}
+	,set_defaultTextFormat: function(value) {
+		this.__textFormat.__merge(value);
+		this.__layoutDirty = true;
+		this.__dirty = true;
+		return value;
+	}
+	,get_displayAsPassword: function() {
+		return this.__textEngine.displayAsPassword;
+	}
+	,set_displayAsPassword: function(value) {
+		if(value != this.__textEngine.displayAsPassword) {
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		}
+		return this.__textEngine.displayAsPassword = value;
+	}
+	,get_embedFonts: function() {
+		return this.__textEngine.embedFonts;
+	}
+	,set_embedFonts: function(value) {
+		return this.__textEngine.embedFonts = value;
+	}
+	,get_gridFitType: function() {
+		return this.__textEngine.gridFitType;
+	}
+	,set_gridFitType: function(value) {
+		return this.__textEngine.gridFitType = value;
+	}
+	,get_height: function() {
+		this.__updateLayout();
+		return this.__textEngine.height;
+	}
+	,set_height: function(value) {
+		if(this.get_scaleY() != 1 || value != this.__textEngine.height) {
+			if(!this.__transformDirty) {
+				this.__transformDirty = true;
+				openfl_display_DisplayObject.__worldTransformDirty++;
+			}
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		}
+		this.set_scaleY(1);
+		return this.__textEngine.height = value;
+	}
+	,get_htmlText: function() {
+		return this.__textEngine.text;
+	}
+	,set_htmlText: function(value) {
+		if(!this.__isHTML || this.__textEngine.text != value) {
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		}
+		this.__isHTML = true;
+		if(this.__div == null) {
+			value = new EReg("<br>","g").replace(value,"\n");
+			value = new EReg("<br/>","g").replace(value,"\n");
+			var segments = value.split("<font");
+			if(segments.length == 1) {
+				value = new EReg("<.*?>","g").replace(value,"");
+				if(this.__textEngine.textFormatRanges.length > 1) this.__textEngine.textFormatRanges.splice(1,this.__textEngine.textFormatRanges.length - 1);
+				var range = this.__textEngine.textFormatRanges[0];
+				range.format = this.__textFormat;
+				range.start = 0;
+				range.end = value.length;
+				return this.__textEngine.text = value;
+			} else {
+				this.__textEngine.textFormatRanges.splice(0,this.__textEngine.textFormatRanges.length);
+				value = "";
+				var _g = 0;
+				while(_g < segments.length) {
+					var segment = segments[_g];
+					++_g;
+					if(segment == "") continue;
+					var closeFontIndex = segment.indexOf("</font>");
+					if(closeFontIndex > -1) {
+						var start = segment.indexOf(">") + 1;
+						var end = closeFontIndex;
+						var format = this.__textFormat.clone();
+						var faceIndex = segment.indexOf("face=");
+						var colorIndex = segment.indexOf("color=");
+						var sizeIndex = segment.indexOf("size=");
+						if(faceIndex > -1 && faceIndex < start) {
+							var len = segment.indexOf("\"",faceIndex);
+							format.font = HxOverrides.substr(segment,faceIndex + 6,len);
+						}
+						if(colorIndex > -1 && colorIndex < start) format.color = Std.parseInt("0x" + HxOverrides.substr(segment,colorIndex + 8,6));
+						if(sizeIndex > -1 && sizeIndex < start) format.size = Std.parseInt((function($this) {
+							var $r;
+							var len1 = segment.indexOf("\"",sizeIndex);
+							$r = HxOverrides.substr(segment,sizeIndex + 6,len1);
+							return $r;
+						}(this)));
+						var sub = segment.substring(start,end);
+						sub = new EReg("<.*?>","g").replace(sub,"");
+						this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(format,value.length,value.length + sub.length));
+						value += sub;
+						if(closeFontIndex + 7 < segment.length) {
+							sub = HxOverrides.substr(segment,closeFontIndex + 7,null);
+							this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(this.__textFormat,value.length,value.length + sub.length));
+							value += sub;
+						}
+					} else {
+						this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(this.__textFormat,value.length,value.length + segment.length));
+						value += segment;
+					}
+				}
+			}
+		}
+		return this.__textEngine.text = value;
+	}
+	,get_length: function() {
+		if(this.__textEngine.text != null) return this.__textEngine.text.length;
+		return 0;
+	}
+	,get_maxChars: function() {
+		return this.__textEngine.maxChars;
+	}
+	,set_maxChars: function(value) {
+		if(value != this.__textEngine.maxChars) {
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		}
+		return this.__textEngine.maxChars = value;
+	}
+	,get_maxScrollH: function() {
+		this.__updateLayout();
+		return this.__textEngine.maxScrollH;
+	}
+	,get_maxScrollV: function() {
+		this.__updateLayout();
+		return this.__textEngine.maxScrollV;
+	}
+	,get_multiline: function() {
+		return this.__textEngine.multiline;
+	}
+	,set_multiline: function(value) {
+		if(value != this.__textEngine.multiline) {
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		}
+		return this.__textEngine.multiline = value;
+	}
+	,get_numLines: function() {
+		this.__updateLayout();
+		return this.__textEngine.numLines;
+	}
+	,get_restrict: function() {
+		return this.__textEngine.restrict;
+	}
+	,set_restrict: function(value) {
+		return this.__textEngine.restrict = value;
+	}
+	,get_scrollH: function() {
+		return this.__textEngine.scrollH;
+	}
+	,set_scrollH: function(value) {
+		if(value > this.__textEngine.maxScrollH) value = this.__textEngine.maxScrollH;
+		if(value < 0) value = 0;
+		if(value != this.__textEngine.scrollH) this.__dirty = true;
+		return this.__textEngine.scrollH = value;
+	}
+	,get_scrollV: function() {
+		return this.__textEngine.scrollV;
+	}
+	,set_scrollV: function(value) {
+		if(value > this.__textEngine.maxScrollV) value = this.__textEngine.maxScrollV;
+		if(value < 1) value = 1;
+		if(value != this.__textEngine.scrollV) this.__dirty = true;
+		return this.__textEngine.scrollV = value;
+	}
+	,get_selectable: function() {
+		return this.__textEngine.selectable;
+	}
+	,set_selectable: function(value) {
+		if(value != this.__textEngine.selectable && this.get_type() == 1) {
+			if(this.stage != null && this.stage.get_focus() == this) this.__startTextInput(); else if(!value) this.__stopTextInput();
+		}
+		return this.__textEngine.selectable = value;
+	}
+	,get_selectionBeginIndex: function() {
+		return Std["int"](Math.min(this.__caretIndex,this.__selectionIndex));
+	}
+	,get_selectionEndIndex: function() {
+		return Std["int"](Math.max(this.__caretIndex,this.__selectionIndex));
+	}
+	,get_sharpness: function() {
+		return this.__textEngine.sharpness;
+	}
+	,set_sharpness: function(value) {
+		if(value != this.__textEngine.sharpness) this.__dirty = true;
+		return this.__textEngine.sharpness = value;
+	}
+	,get_text: function() {
+		return this.__textEngine.text;
+	}
+	,set_text: function(value) {
+		if(this.__isHTML || this.__textEngine.text != value) {
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		} else return value;
+		if(this.__textEngine.textFormatRanges.length > 1) this.__textEngine.textFormatRanges.splice(1,this.__textEngine.textFormatRanges.length - 1);
+		var range = this.__textEngine.textFormatRanges[0];
+		range.format = this.__textFormat;
+		range.start = 0;
+		range.end = value.length;
+		this.__isHTML = false;
+		return this.__textEngine.text = value;
+	}
+	,get_textColor: function() {
+		return this.__textFormat.color;
+	}
+	,set_textColor: function(value) {
+		if(value != this.__textFormat.color) this.__dirty = true;
+		var _g = 0;
+		var _g1 = this.__textEngine.textFormatRanges;
+		while(_g < _g1.length) {
+			var range = _g1[_g];
+			++_g;
+			range.format.color = value;
+		}
+		return this.__textFormat.color = value;
+	}
+	,get_textWidth: function() {
+		this.__updateLayout();
+		return this.__textEngine.textWidth;
+	}
+	,get_textHeight: function() {
+		this.__updateLayout();
+		return this.__textEngine.textHeight;
+	}
+	,get_type: function() {
+		return this.__textEngine.type;
+	}
+	,set_type: function(value) {
+		if(value != this.__textEngine.type) {
+			if(value == 1) {
+				this.addEventListener("focusIn",$bind(this,this.this_onFocusIn));
+				this.addEventListener("focusOut",$bind(this,this.this_onFocusOut));
+				this.addEventListener("addedToStage",$bind(this,this.this_onAddedToStage));
+				this.this_onFocusIn(null);
+			} else {
+				this.removeEventListener("focusIn",$bind(this,this.this_onFocusIn));
+				this.removeEventListener("focusOut",$bind(this,this.this_onFocusOut));
+				this.removeEventListener("addedToStage",$bind(this,this.this_onAddedToStage));
+				this.__stopTextInput();
+			}
+			this.__dirty = true;
+		}
+		return this.__textEngine.type = value;
+	}
+	,get_width: function() {
+		this.__updateLayout();
+		return this.__textEngine.width;
+	}
+	,set_width: function(value) {
+		if(this.get_scaleX() != 1 || this.__textEngine.width != value) {
+			if(!this.__transformDirty) {
+				this.__transformDirty = true;
+				openfl_display_DisplayObject.__worldTransformDirty++;
+			}
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		}
+		this.set_scaleX(1);
+		return this.__textEngine.width = value;
+	}
+	,get_wordWrap: function() {
+		return this.__textEngine.wordWrap;
+	}
+	,set_wordWrap: function(value) {
+		if(value != this.__textEngine.wordWrap) {
+			this.__dirty = true;
+			this.__layoutDirty = true;
+		}
+		return this.__textEngine.wordWrap = value;
+	}
+	,stage_onMouseMove: function(event) {
+		if(this.stage == null) return;
+		if(this.__textEngine.selectable && this.__selectionIndex >= 0) {
+			this.__updateLayout();
+			var position = this.__getPosition(this.get_mouseX(),this.get_mouseY());
+			if(position != this.__caretIndex) {
+				this.__caretIndex = position;
+				this.__dirty = true;
+			}
+		}
+	}
+	,stage_onMouseUp: function(event) {
+		if(this.stage == null) return;
+		this.stage.removeEventListener("mouseMove",$bind(this,this.stage_onMouseMove));
+		this.stage.removeEventListener("mouseUp",$bind(this,this.stage_onMouseUp));
+		if(this.stage.get_focus() == this) {
+			this.__getWorldTransform();
+			this.__updateLayout();
+			var px = this.__worldTransform.__transformInverseX(this.get_x(),this.get_y());
+			var py = this.__worldTransform.__transformInverseY(this.get_x(),this.get_y());
+			var upPos = this.__getPosition(this.get_mouseX(),this.get_mouseY());
+			var leftPos;
+			var rightPos;
+			leftPos = Std["int"](Math.min(this.__selectionIndex,upPos));
+			rightPos = Std["int"](Math.max(this.__selectionIndex,upPos));
+			this.__selectionIndex = leftPos;
+			this.__caretIndex = rightPos;
+			if(this.__inputEnabled) {
+				this.this_onFocusIn(null);
+				this.__stopCursorTimer();
+				this.__startCursorTimer();
+			}
+		}
+	}
+	,this_onAddedToStage: function(event) {
+		this.this_onFocusIn(null);
+	}
+	,this_onFocusIn: function(event) {
+		if(this.get_selectable() && this.get_type() == 1 && this.stage != null && this.stage.get_focus() == this) this.__startTextInput();
+	}
+	,this_onFocusOut: function(event) {
+		this.__stopTextInput();
+	}
+	,this_onMouseDown: function(event) {
+		if(!this.get_selectable()) return;
+		this.__updateLayout();
+		this.__caretIndex = this.__getPosition(this.get_mouseX(),this.get_mouseY());
+		this.__selectionIndex = this.__caretIndex;
+		this.__dirty = true;
+		this.stage.addEventListener("mouseMove",$bind(this,this.stage_onMouseMove));
+		this.stage.addEventListener("mouseUp",$bind(this,this.stage_onMouseUp));
+	}
+	,window_onKeyDown: function(key,modifier) {
+		switch(key) {
+		case 8:
+			if(this.__selectionIndex == this.__caretIndex && this.__caretIndex > 0) this.__selectionIndex = this.__caretIndex - 1;
+			if(this.__selectionIndex != this.__caretIndex) {
+				this.replaceSelectedText("");
+				this.__selectionIndex = this.__caretIndex;
+				this.dispatchEvent(new openfl_events_Event("change",true));
+			}
+			break;
+		case 127:
+			if(this.__selectionIndex == this.__caretIndex && this.__caretIndex < this.__textEngine.text.length) this.__selectionIndex = this.__caretIndex + 1;
+			if(this.__selectionIndex != this.__caretIndex) {
+				this.replaceSelectedText("");
+				this.__selectionIndex = this.__caretIndex;
+				this.dispatchEvent(new openfl_events_Event("change",true));
+			}
+			break;
+		case 1073741904:
+			if(lime_ui__$KeyModifier_KeyModifier_$Impl_$.get_shiftKey(modifier)) {
+				if(this.__caretIndex > 0) this.__caretIndex--;
+			} else {
+				if(this.__selectionIndex == this.__caretIndex) {
+					if(this.__caretIndex > 0) this.__caretIndex--;
+				} else this.__caretIndex = Std["int"](Math.min(this.__caretIndex,this.__selectionIndex));
+				this.__selectionIndex = this.__caretIndex;
+			}
+			this.__stopCursorTimer();
+			this.__startCursorTimer();
+			break;
+		case 1073741903:
+			if(lime_ui__$KeyModifier_KeyModifier_$Impl_$.get_shiftKey(modifier)) {
+				if(this.__caretIndex < this.__textEngine.text.length) this.__caretIndex++;
+			} else {
+				if(this.__selectionIndex == this.__caretIndex) {
+					if(this.__caretIndex < this.__textEngine.text.length) this.__caretIndex++;
+				} else this.__caretIndex = Std["int"](Math.max(this.__caretIndex,this.__selectionIndex));
+				this.__selectionIndex = this.__caretIndex;
+			}
+			this.__stopCursorTimer();
+			this.__startCursorTimer();
+			break;
+		case 99:
+			if(modifier == 64 || modifier == 128) lime_system_Clipboard.set_text(this.__textEngine.text.substring(this.__caretIndex,this.__selectionIndex));
+			break;
+		case 120:
+			if(modifier == 64 || modifier == 128) {
+				lime_system_Clipboard.set_text(this.__textEngine.text.substring(this.__caretIndex,this.__selectionIndex));
+				if(this.__caretIndex != this.__selectionIndex) {
+					this.replaceSelectedText("");
+					this.dispatchEvent(new openfl_events_Event("change",true));
+				}
+			}
+			break;
+		case 118:
+			if(modifier == 64 || modifier == 128) {
+				var text = lime_system_Clipboard.get_text();
+				if(text != null) this.replaceSelectedText(text); else this.replaceSelectedText("");
+				this.dispatchEvent(new openfl_events_Event("change",true));
+			} else this.__textEngine.textFormatRanges[this.__textEngine.textFormatRanges.length - 1].end = this.__textEngine.text.length;
+			break;
+		default:
+		}
+	}
+	,window_onTextInput: function(value) {
+		this.replaceSelectedText(value);
+		this.dispatchEvent(new openfl_events_Event("change",true));
+	}
+	,__class__: openfl_text_TextField
+	,__properties__: $extend(openfl_display_InteractiveObject.prototype.__properties__,{set_wordWrap:"set_wordWrap",get_wordWrap:"get_wordWrap",set_type:"set_type",get_type:"get_type",get_textWidth:"get_textWidth",get_textHeight:"get_textHeight",set_textColor:"set_textColor",get_textColor:"get_textColor",set_text:"set_text",get_text:"get_text",set_sharpness:"set_sharpness",get_sharpness:"get_sharpness",get_selectionEndIndex:"get_selectionEndIndex",get_selectionBeginIndex:"get_selectionBeginIndex",set_selectable:"set_selectable",get_selectable:"get_selectable",set_scrollV:"set_scrollV",get_scrollV:"get_scrollV",set_scrollH:"set_scrollH",get_scrollH:"get_scrollH",set_restrict:"set_restrict",get_restrict:"get_restrict",get_numLines:"get_numLines",set_multiline:"set_multiline",get_multiline:"get_multiline",get_maxScrollV:"get_maxScrollV",get_maxScrollH:"get_maxScrollH",set_maxChars:"set_maxChars",get_maxChars:"get_maxChars",get_length:"get_length",set_htmlText:"set_htmlText",get_htmlText:"get_htmlText",set_gridFitType:"set_gridFitType",get_gridFitType:"get_gridFitType",set_embedFonts:"set_embedFonts",get_embedFonts:"get_embedFonts",set_displayAsPassword:"set_displayAsPassword",get_displayAsPassword:"get_displayAsPassword",set_defaultTextFormat:"set_defaultTextFormat",get_defaultTextFormat:"get_defaultTextFormat",get_caretIndex:"get_caretIndex",get_bottomScrollV:"get_bottomScrollV",set_borderColor:"set_borderColor",get_borderColor:"get_borderColor",set_border:"set_border",get_border:"get_border",set_backgroundColor:"set_backgroundColor",get_backgroundColor:"get_backgroundColor",set_background:"set_background",get_background:"get_background",set_autoSize:"set_autoSize",get_autoSize:"get_autoSize",set_antiAliasType:"set_antiAliasType",get_antiAliasType:"get_antiAliasType"})
+});
+var openfl_display_FPS = function(x,y,color) {
+	if(color == null) color = 0;
+	if(y == null) y = 10;
+	if(x == null) x = 10;
+	openfl_text_TextField.call(this);
+	this.set_x(x);
+	this.set_y(y);
+	this.currentFPS = 0;
+	this.set_selectable(false);
+	this.mouseEnabled = false;
+	this.set_defaultTextFormat(new openfl_text_TextFormat("_sans",12,color));
+	this.set_text("FPS: ");
+	this.cacheCount = 0;
+	this.times = [];
+	this.addEventListener("enterFrame",$bind(this,this.this_onEnterFrame));
+};
+$hxClasses["openfl.display.FPS"] = openfl_display_FPS;
+openfl_display_FPS.__name__ = ["openfl","display","FPS"];
+openfl_display_FPS.__super__ = openfl_text_TextField;
+openfl_display_FPS.prototype = $extend(openfl_text_TextField.prototype,{
+	this_onEnterFrame: function(event) {
+		var currentTime = haxe_Timer.stamp();
+		this.times.push(currentTime);
+		while(this.times[0] < currentTime - 1) this.times.shift();
+		var currentCount = this.times.length;
+		this.currentFPS = Math.round((currentCount + this.cacheCount) / 2);
+		if(currentCount != this.cacheCount) this.set_text("FPS: " + this.currentFPS);
+		this.cacheCount = currentCount;
+	}
+	,__class__: openfl_display_FPS
+});
 var openfl_display_FrameLabel = function(name,frame) {
 	openfl_events_EventDispatcher.call(this);
 	this.__name = name;
@@ -33683,940 +34653,6 @@ openfl_text__$GridFitType_GridFitType_$Impl_$.toString = function(value) {
 		return null;
 	}
 };
-var openfl_text_TextField = function() {
-	openfl_display_InteractiveObject.call(this);
-	this.__caretIndex = -1;
-	this.__graphics = new openfl_display_Graphics();
-	this.__textEngine = new openfl__$internal_text_TextEngine(this);
-	this.__layoutDirty = true;
-	this.__tabEnabled = true;
-	if(openfl_text_TextField.__defaultTextFormat == null) {
-		openfl_text_TextField.__defaultTextFormat = new openfl_text_TextFormat("Times New Roman",12,0,false,false,false,"","",3,0,0,0,0);
-		openfl_text_TextField.__defaultTextFormat.blockIndent = 0;
-		openfl_text_TextField.__defaultTextFormat.bullet = false;
-		openfl_text_TextField.__defaultTextFormat.letterSpacing = 0;
-		openfl_text_TextField.__defaultTextFormat.kerning = false;
-	}
-	this.__textFormat = openfl_text_TextField.__defaultTextFormat.clone();
-	this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(this.__textFormat,0,0));
-	this.addEventListener("mouseDown",$bind(this,this.this_onMouseDown));
-};
-$hxClasses["openfl.text.TextField"] = openfl_text_TextField;
-openfl_text_TextField.__name__ = ["openfl","text","TextField"];
-openfl_text_TextField.__defaultTextFormat = null;
-openfl_text_TextField.__super__ = openfl_display_InteractiveObject;
-openfl_text_TextField.prototype = $extend(openfl_display_InteractiveObject.prototype,{
-	appendText: function(text) {
-		this.__textEngine.text += text;
-		this.__textEngine.textFormatRanges[this.__textEngine.textFormatRanges.length - 1].end = this.__textEngine.text.length;
-		this.__dirty = true;
-		this.__layoutDirty = true;
-	}
-	,getCharBoundaries: function(charIndex) {
-		if(charIndex < 0 || charIndex > this.__textEngine.text.length - 1) return null;
-		this.__updateLayout();
-		var _g = 0;
-		var _g1 = this.__textEngine.layoutGroups;
-		while(_g < _g1.length) {
-			var group = _g1[_g];
-			++_g;
-			if(charIndex >= group.startIndex && charIndex <= group.endIndex) {
-				var x = group.offsetX;
-				var _g3 = 0;
-				var _g2 = charIndex - group.startIndex;
-				while(_g3 < _g2) {
-					var i = _g3++;
-					x += group.advances[i];
-				}
-				return new openfl_geom_Rectangle(x,group.offsetY,group.advances[charIndex - group.startIndex],group.ascent + group.descent);
-			}
-		}
-		return null;
-	}
-	,getCharIndexAtPoint: function(x,y) {
-		if(x <= 2 || x > this.get_width() + 4 || y <= 0 || y > this.get_height() + 4) return -1;
-		this.__updateLayout();
-		x += this.get_scrollH();
-		var _g1 = 0;
-		var _g = this.get_scrollV() - 1;
-		while(_g1 < _g) {
-			var i = _g1++;
-			y += this.__textEngine.lineHeights[i];
-		}
-		var _g2 = 0;
-		var _g11 = this.__textEngine.layoutGroups;
-		while(_g2 < _g11.length) {
-			var group = _g11[_g2];
-			++_g2;
-			if(y >= group.offsetY && y <= group.offsetY + group.height) {
-				if(x >= group.offsetX && x <= group.offsetX + group.width) {
-					var advance = 0.0;
-					var _g3 = 0;
-					var _g21 = group.advances.length;
-					while(_g3 < _g21) {
-						var i1 = _g3++;
-						advance += group.advances[i1];
-						if(x <= group.offsetX + advance) return group.startIndex + i1;
-					}
-					return group.endIndex;
-				}
-			}
-		}
-		return -1;
-	}
-	,getFirstCharInParagraph: function(charIndex) {
-		if(charIndex < 0 || charIndex > this.__textEngine.text.length - 1) return 0;
-		var index = this.__textEngine.text.indexOf("\n");
-		var startIndex = 0;
-		while(index > -1) {
-			if(index <= charIndex) startIndex = index + 1; else if(index > charIndex) break;
-			index = this.__textEngine.text.indexOf("\n",index + 1);
-		}
-		return startIndex;
-	}
-	,getLineIndexAtPoint: function(x,y) {
-		this.__updateLayout();
-		if(x <= 2 || x > this.get_width() + 4 || y <= 0 || y > this.get_height() + 4) return -1;
-		var _g1 = 0;
-		var _g = this.get_scrollV() - 1;
-		while(_g1 < _g) {
-			var i = _g1++;
-			y += this.__textEngine.lineHeights[i];
-		}
-		var _g2 = 0;
-		var _g11 = this.__textEngine.layoutGroups;
-		while(_g2 < _g11.length) {
-			var group = _g11[_g2];
-			++_g2;
-			if(y >= group.offsetY && y <= group.offsetY + group.height) return group.lineIndex;
-		}
-		return -1;
-	}
-	,getLineIndexOfChar: function(charIndex) {
-		if(charIndex < 0 || charIndex > this.__textEngine.text.length - 1) return -1;
-		this.__updateLayout();
-		var _g = 0;
-		var _g1 = this.__textEngine.layoutGroups;
-		while(_g < _g1.length) {
-			var group = _g1[_g];
-			++_g;
-			if(group.startIndex <= charIndex && group.endIndex >= charIndex) return group.lineIndex;
-		}
-		return -1;
-	}
-	,getLineLength: function(lineIndex) {
-		this.__updateLayout();
-		if(lineIndex < 0 || lineIndex > this.__textEngine.numLines - 1) return 0;
-		var startIndex = -1;
-		var endIndex = -1;
-		var _g = 0;
-		var _g1 = this.__textEngine.layoutGroups;
-		while(_g < _g1.length) {
-			var group = _g1[_g];
-			++_g;
-			if(group.lineIndex == lineIndex) {
-				if(startIndex == -1) startIndex = group.startIndex;
-			} else if(group.lineIndex == lineIndex + 1) {
-				endIndex = group.startIndex;
-				break;
-			}
-		}
-		if(endIndex == -1) endIndex = this.__textEngine.text.length;
-		return endIndex - startIndex;
-	}
-	,getLineMetrics: function(lineIndex) {
-		this.__updateLayout();
-		var ascender = this.__textEngine.lineAscents[lineIndex];
-		var descender = this.__textEngine.lineDescents[lineIndex];
-		var leading = this.__textEngine.lineLeadings[lineIndex];
-		var lineHeight = this.__textEngine.lineHeights[lineIndex];
-		var lineWidth = this.__textEngine.lineWidths[lineIndex];
-		var margin;
-		var _g = this.__textFormat.align;
-		switch(_g) {
-		case 3:case 2:case 5:
-			margin = 2;
-			break;
-		case 4:case 1:
-			margin = this.__textEngine.width - lineWidth - 2;
-			break;
-		case 0:
-			margin = (this.__textEngine.width - lineWidth) / 2;
-			break;
-		}
-		return new openfl_text_TextLineMetrics(margin,lineWidth,lineHeight,ascender,descender,leading);
-	}
-	,getLineOffset: function(lineIndex) {
-		this.__updateLayout();
-		if(lineIndex < 0 || lineIndex > this.__textEngine.numLines - 1) return -1;
-		var _g = 0;
-		var _g1 = this.__textEngine.layoutGroups;
-		while(_g < _g1.length) {
-			var group = _g1[_g];
-			++_g;
-			if(group.lineIndex == lineIndex) return group.startIndex;
-		}
-		return 0;
-	}
-	,getLineText: function(lineIndex) {
-		this.__updateLayout();
-		if(lineIndex < 0 || lineIndex > this.__textEngine.numLines - 1) return null;
-		var startIndex = -1;
-		var endIndex = -1;
-		var _g = 0;
-		var _g1 = this.__textEngine.layoutGroups;
-		while(_g < _g1.length) {
-			var group = _g1[_g];
-			++_g;
-			if(group.lineIndex == lineIndex) {
-				if(startIndex == -1) startIndex = group.startIndex;
-			} else if(group.lineIndex == lineIndex + 1) {
-				endIndex = group.startIndex;
-				break;
-			}
-		}
-		if(endIndex == -1) endIndex = this.__textEngine.text.length;
-		return this.__textEngine.text.substring(startIndex,endIndex);
-	}
-	,getParagraphLength: function(charIndex) {
-		if(charIndex < 0 || charIndex > this.__textEngine.text.length - 1) return 0;
-		var startIndex = this.getFirstCharInParagraph(charIndex);
-		var endIndex = this.__textEngine.text.indexOf("\n",charIndex) + 1;
-		if(endIndex == 0) endIndex = this.__textEngine.text.length;
-		return endIndex - startIndex;
-	}
-	,getTextFormat: function(beginIndex,endIndex) {
-		if(endIndex == null) endIndex = 0;
-		if(beginIndex == null) beginIndex = 0;
-		var format = null;
-		var _g = 0;
-		var _g1 = this.__textEngine.textFormatRanges;
-		while(_g < _g1.length) {
-			var group = _g1[_g];
-			++_g;
-			if(group.start <= beginIndex && group.end >= beginIndex || group.start <= endIndex && group.end >= endIndex) {
-				if(format == null) format = group.format.clone(); else {
-					if(group.format.font != format.font) format.font = null;
-					if(group.format.size != format.size) format.size = null;
-					if(group.format.color != format.color) format.color = null;
-					if(group.format.bold != format.bold) format.bold = null;
-					if(group.format.italic != format.italic) format.italic = null;
-					if(group.format.underline != format.underline) format.underline = null;
-					if(group.format.url != format.url) format.url = null;
-					if(group.format.target != format.target) format.target = null;
-					if(group.format.align != format.align) format.align = null;
-					if(group.format.leftMargin != format.leftMargin) format.leftMargin = null;
-					if(group.format.rightMargin != format.rightMargin) format.rightMargin = null;
-					if(group.format.indent != format.indent) format.indent = null;
-					if(group.format.leading != format.leading) format.leading = null;
-					if(group.format.blockIndent != format.blockIndent) format.blockIndent = null;
-					if(group.format.bullet != format.bullet) format.bullet = null;
-					if(group.format.kerning != format.kerning) format.kerning = null;
-					if(group.format.letterSpacing != format.letterSpacing) format.letterSpacing = null;
-					if(group.format.tabStops != format.tabStops) format.tabStops = null;
-				}
-			}
-		}
-		return format;
-	}
-	,replaceSelectedText: function(value) {
-		if(value == "" && this.__selectionIndex == this.__caretIndex) return;
-		var startIndex;
-		if(this.__caretIndex < this.__selectionIndex) startIndex = this.__caretIndex; else startIndex = this.__selectionIndex;
-		var endIndex;
-		if(this.__caretIndex > this.__selectionIndex) endIndex = this.__caretIndex; else endIndex = this.__selectionIndex;
-		this.replaceText(startIndex,endIndex,value);
-		this.__caretIndex = startIndex + value.length;
-		this.__selectionIndex = this.__caretIndex;
-	}
-	,replaceText: function(beginIndex,endIndex,newText) {
-		if(endIndex < beginIndex || beginIndex < 0 || endIndex > this.__textEngine.text.length || newText == null) return;
-		this.__textEngine.text = this.__textEngine.text.substring(0,beginIndex) + newText + this.__textEngine.text.substring(endIndex);
-		var offset = newText.length - (endIndex - beginIndex);
-		var i = 0;
-		var range;
-		while(i < this.__textEngine.textFormatRanges.length) {
-			range = this.__textEngine.textFormatRanges[i];
-			if(range.start <= beginIndex && range.end >= endIndex) {
-				range.end += offset;
-				i++;
-			} else if(range.start >= beginIndex && range.end <= endIndex) {
-				this.__textEngine.textFormatRanges.splice(i,1);
-				offset -= range.end - range.start;
-			} else if(range.start > beginIndex && range.start <= endIndex) {
-				range.start += offset;
-				i++;
-			} else i++;
-		}
-		this.__dirty = true;
-		this.__layoutDirty = true;
-	}
-	,setSelection: function(beginIndex,endIndex) {
-		this.__selectionIndex = beginIndex;
-		this.__caretIndex = endIndex;
-	}
-	,setTextFormat: function(format,beginIndex,endIndex) {
-		if(endIndex == null) endIndex = 0;
-		if(beginIndex == null) beginIndex = 0;
-		if(format.font != null) this.__textFormat.font = format.font;
-		if(format.size != null) this.__textFormat.size = format.size;
-		if(format.color != null) this.__textFormat.color = format.color;
-		if(format.bold != null) this.__textFormat.bold = format.bold;
-		if(format.italic != null) this.__textFormat.italic = format.italic;
-		if(format.underline != null) this.__textFormat.underline = format.underline;
-		if(format.url != null) this.__textFormat.url = format.url;
-		if(format.target != null) this.__textFormat.target = format.target;
-		if(format.align != null) this.__textFormat.align = format.align;
-		if(format.leftMargin != null) this.__textFormat.leftMargin = format.leftMargin;
-		if(format.rightMargin != null) this.__textFormat.rightMargin = format.rightMargin;
-		if(format.indent != null) this.__textFormat.indent = format.indent;
-		if(format.leading != null) this.__textFormat.leading = format.leading;
-		if(format.blockIndent != null) this.__textFormat.blockIndent = format.blockIndent;
-		if(format.bullet != null) this.__textFormat.bullet = format.bullet;
-		if(format.kerning != null) this.__textFormat.kerning = format.kerning;
-		if(format.letterSpacing != null) this.__textFormat.letterSpacing = format.letterSpacing;
-		if(format.tabStops != null) this.__textFormat.tabStops = format.tabStops;
-		this.__dirty = true;
-		this.__layoutDirty = true;
-	}
-	,__getBounds: function(rect,matrix) {
-		this.__updateLayout();
-		var bounds = openfl_geom_Rectangle.__temp;
-		this.__textEngine.bounds.__transform(bounds,matrix);
-		rect.__expand(bounds.x,bounds.y,bounds.width,bounds.height);
-	}
-	,__getCursor: function() {
-		if(this.__textEngine.selectable) return lime_ui_MouseCursor.TEXT; else return null;
-	}
-	,__getPosition: function(x,y) {
-		this.__updateLayout();
-		x += this.get_scrollH();
-		var _g1 = 0;
-		var _g = this.get_scrollV() - 1;
-		while(_g1 < _g) {
-			var i = _g1++;
-			y += this.__textEngine.lineHeights[i];
-		}
-		if(y > this.__textEngine.textHeight) y = this.__textEngine.textHeight;
-		var firstGroup = true;
-		var group;
-		var nextGroup;
-		var _g11 = 0;
-		var _g2 = this.__textEngine.layoutGroups.length;
-		while(_g11 < _g2) {
-			var i1 = _g11++;
-			group = this.__textEngine.layoutGroups[i1];
-			if(i1 < this.__textEngine.layoutGroups.length - 1) nextGroup = this.__textEngine.layoutGroups[i1 + 1]; else nextGroup = null;
-			if(firstGroup) {
-				if(y < group.offsetY) y = group.offsetY;
-				if(x < group.offsetX) x = group.offsetX;
-				firstGroup = false;
-			}
-			if(y >= group.offsetY && y <= group.offsetY + group.height || nextGroup == null) {
-				if(x >= group.offsetX && x <= group.offsetX + group.width || (nextGroup == null || nextGroup.lineIndex != group.lineIndex)) {
-					var advance = 0.0;
-					var _g3 = 0;
-					var _g21 = group.advances.length;
-					while(_g3 < _g21) {
-						var i2 = _g3++;
-						advance += group.advances[i2];
-						if(x <= group.offsetX + advance) {
-							if(x <= group.offsetX + (advance - group.advances[i2]) + group.advances[i2] / 2) return group.startIndex + i2; else if(group.startIndex + i2 < group.endIndex) return group.startIndex + i2 + 1; else return group.endIndex;
-						}
-					}
-					return group.endIndex;
-				}
-			}
-		}
-		return this.__textEngine.text.length;
-	}
-	,__hitTest: function(x,y,shapeFlag,stack,interactiveOnly,hitObject) {
-		if(!hitObject.get_visible() || this.__isMask || interactiveOnly && !this.mouseEnabled) return false;
-		if(this.get_mask() != null && !this.get_mask().__hitTestMask(x,y)) return false;
-		this.__getWorldTransform();
-		this.__updateLayout();
-		var px = this.__worldTransform.__transformInverseX(x,y);
-		var py = this.__worldTransform.__transformInverseY(x,y);
-		if(this.__textEngine.bounds.contains(px,py)) {
-			if(stack != null) stack.push(hitObject);
-			return true;
-		}
-		return false;
-	}
-	,__hitTestMask: function(x,y) {
-		this.__getWorldTransform();
-		this.__updateLayout();
-		var px = this.__worldTransform.__transformInverseX(x,y);
-		var py = this.__worldTransform.__transformInverseY(x,y);
-		if(this.__textEngine.bounds.contains(px,py)) return true;
-		return false;
-	}
-	,__renderCairo: function(renderSession) {
-		openfl__$internal_renderer_cairo_CairoTextField.render(this,renderSession);
-		openfl_display_InteractiveObject.prototype.__renderCairo.call(this,renderSession);
-	}
-	,__renderCanvas: function(renderSession) {
-		openfl__$internal_renderer_canvas_CanvasTextField.render(this,renderSession);
-		if(this.__textEngine.antiAliasType == 0 && this.__textEngine.gridFitType == 1) {
-			var smoothingEnabled = renderSession.context.imageSmoothingEnabled;
-			if(smoothingEnabled) {
-				renderSession.context.mozImageSmoothingEnabled = false;
-				renderSession.context.msImageSmoothingEnabled = false;
-				renderSession.context.imageSmoothingEnabled = false;
-			}
-			openfl_display_InteractiveObject.prototype.__renderCanvas.call(this,renderSession);
-			if(smoothingEnabled) {
-				renderSession.context.mozImageSmoothingEnabled = true;
-				renderSession.context.msImageSmoothingEnabled = true;
-				renderSession.context.imageSmoothingEnabled = true;
-			}
-		} else openfl_display_InteractiveObject.prototype.__renderCanvas.call(this,renderSession);
-	}
-	,__renderDOM: function(renderSession) {
-		openfl__$internal_renderer_dom_DOMTextField.render(this,renderSession);
-	}
-	,__renderGL: function(renderSession) {
-		if(this.__cacheAsBitmap) {
-			this.__cacheGL(renderSession);
-			return;
-		}
-		if(this.__scrollRect != null) renderSession.maskManager.pushRect(this.__scrollRect,this.__renderTransform);
-		if(this.__mask != null && this.__maskGraphics != null && this.__maskGraphics.__commands.get_length() > 0) renderSession.maskManager.pushMask(this);
-		openfl__$internal_renderer_canvas_CanvasTextField.render(this,renderSession);
-		openfl__$internal_renderer_opengl_GLRenderer.renderBitmap(this,renderSession,this.__textEngine.antiAliasType != 0 || this.__textEngine.gridFitType != 1);
-		if(this.__mask != null && this.__maskGraphics != null && this.__maskGraphics.__commands.get_length() > 0) renderSession.maskManager.popMask();
-		if(this.__scrollRect != null) renderSession.maskManager.popRect();
-	}
-	,__startCursorTimer: function() {
-		this.__cursorTimer = haxe_Timer.delay($bind(this,this.__startCursorTimer),600);
-		this.__showCursor = !this.__showCursor;
-		this.__dirty = true;
-	}
-	,__startTextInput: function() {
-		if(this.__caretIndex < 0) {
-			this.__caretIndex = this.__textEngine.text.length;
-			this.__selectionIndex = this.__caretIndex;
-		}
-		if(this.stage != null) {
-			this.stage.window.backend.setEnableTextEvents(true);
-			if(!this.__inputEnabled) {
-				this.stage.window.backend.setEnableTextEvents(true);
-				if(!this.stage.window.onTextInput.has($bind(this,this.window_onTextInput))) {
-					this.stage.window.onTextInput.add($bind(this,this.window_onTextInput));
-					this.stage.window.onKeyDown.add($bind(this,this.window_onKeyDown));
-				}
-				this.__inputEnabled = true;
-				this.__startCursorTimer();
-			}
-		}
-	}
-	,__stopCursorTimer: function() {
-		if(this.__cursorTimer != null) {
-			this.__cursorTimer.stop();
-			this.__cursorTimer = null;
-		}
-		if(this.__showCursor) {
-			this.__showCursor = false;
-			this.__dirty = true;
-		}
-	}
-	,__stopTextInput: function() {
-		if(this.__inputEnabled && this.stage != null) {
-			this.stage.window.backend.setEnableTextEvents(false);
-			this.stage.window.onTextInput.remove($bind(this,this.window_onTextInput));
-			this.stage.window.onKeyDown.remove($bind(this,this.window_onKeyDown));
-			this.__inputEnabled = false;
-			this.__stopCursorTimer();
-		}
-	}
-	,__updateLayout: function() {
-		if(this.__layoutDirty) {
-			this.__textEngine.update();
-			if(this.__textEngine.autoSize != 2) {
-				var cacheWidth = this.__textEngine.width;
-				var cacheHeight = this.__textEngine.height;
-				var _g = this.__textEngine.autoSize;
-				switch(_g) {
-				case 1:case 3:case 0:
-					if(!this.__textEngine.wordWrap) this.__textEngine.width = this.__textEngine.textWidth + 4;
-					this.__textEngine.height = this.__textEngine.textHeight + 4;
-					break;
-				default:
-				}
-				if(this.__textEngine.width != cacheWidth) {
-					var _g1 = this.__textEngine.autoSize;
-					switch(_g1) {
-					case 3:
-						var _g11 = this;
-						_g11.set_x(_g11.get_x() + (cacheWidth - this.__textEngine.width));
-						break;
-					case 0:
-						var _g12 = this;
-						_g12.set_x(_g12.get_x() + (cacheWidth - this.__textEngine.width) / 2);
-						break;
-					default:
-					}
-				}
-				this.__textEngine.getBounds();
-			}
-			this.__layoutDirty = false;
-		}
-	}
-	,get_antiAliasType: function() {
-		return this.__textEngine.antiAliasType;
-	}
-	,set_antiAliasType: function(value) {
-		if(value != this.__textEngine.antiAliasType) {
-		}
-		return this.__textEngine.antiAliasType = value;
-	}
-	,get_autoSize: function() {
-		return this.__textEngine.autoSize;
-	}
-	,set_autoSize: function(value) {
-		if(value != this.__textEngine.autoSize) {
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		}
-		return this.__textEngine.autoSize = value;
-	}
-	,get_background: function() {
-		return this.__textEngine.background;
-	}
-	,set_background: function(value) {
-		if(value != this.__textEngine.background) this.__dirty = true;
-		return this.__textEngine.background = value;
-	}
-	,get_backgroundColor: function() {
-		return this.__textEngine.backgroundColor;
-	}
-	,set_backgroundColor: function(value) {
-		if(value != this.__textEngine.backgroundColor) this.__dirty = true;
-		return this.__textEngine.backgroundColor = value;
-	}
-	,get_border: function() {
-		return this.__textEngine.border;
-	}
-	,set_border: function(value) {
-		if(value != this.__textEngine.border) this.__dirty = true;
-		return this.__textEngine.border = value;
-	}
-	,get_borderColor: function() {
-		return this.__textEngine.borderColor;
-	}
-	,set_borderColor: function(value) {
-		if(value != this.__textEngine.borderColor) this.__dirty = true;
-		return this.__textEngine.borderColor = value;
-	}
-	,get_bottomScrollV: function() {
-		this.__updateLayout();
-		return this.__textEngine.bottomScrollV;
-	}
-	,get_caretIndex: function() {
-		return this.__caretIndex;
-	}
-	,get_defaultTextFormat: function() {
-		return this.__textFormat.clone();
-	}
-	,set_defaultTextFormat: function(value) {
-		this.__textFormat.__merge(value);
-		this.__layoutDirty = true;
-		this.__dirty = true;
-		return value;
-	}
-	,get_displayAsPassword: function() {
-		return this.__textEngine.displayAsPassword;
-	}
-	,set_displayAsPassword: function(value) {
-		if(value != this.__textEngine.displayAsPassword) {
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		}
-		return this.__textEngine.displayAsPassword = value;
-	}
-	,get_embedFonts: function() {
-		return this.__textEngine.embedFonts;
-	}
-	,set_embedFonts: function(value) {
-		return this.__textEngine.embedFonts = value;
-	}
-	,get_gridFitType: function() {
-		return this.__textEngine.gridFitType;
-	}
-	,set_gridFitType: function(value) {
-		return this.__textEngine.gridFitType = value;
-	}
-	,get_height: function() {
-		this.__updateLayout();
-		return this.__textEngine.height;
-	}
-	,set_height: function(value) {
-		if(this.get_scaleY() != 1 || value != this.__textEngine.height) {
-			if(!this.__transformDirty) {
-				this.__transformDirty = true;
-				openfl_display_DisplayObject.__worldTransformDirty++;
-			}
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		}
-		this.set_scaleY(1);
-		return this.__textEngine.height = value;
-	}
-	,get_htmlText: function() {
-		return this.__textEngine.text;
-	}
-	,set_htmlText: function(value) {
-		if(!this.__isHTML || this.__textEngine.text != value) {
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		}
-		this.__isHTML = true;
-		if(this.__div == null) {
-			value = new EReg("<br>","g").replace(value,"\n");
-			value = new EReg("<br/>","g").replace(value,"\n");
-			var segments = value.split("<font");
-			if(segments.length == 1) {
-				value = new EReg("<.*?>","g").replace(value,"");
-				if(this.__textEngine.textFormatRanges.length > 1) this.__textEngine.textFormatRanges.splice(1,this.__textEngine.textFormatRanges.length - 1);
-				var range = this.__textEngine.textFormatRanges[0];
-				range.format = this.__textFormat;
-				range.start = 0;
-				range.end = value.length;
-				return this.__textEngine.text = value;
-			} else {
-				this.__textEngine.textFormatRanges.splice(0,this.__textEngine.textFormatRanges.length);
-				value = "";
-				var _g = 0;
-				while(_g < segments.length) {
-					var segment = segments[_g];
-					++_g;
-					if(segment == "") continue;
-					var closeFontIndex = segment.indexOf("</font>");
-					if(closeFontIndex > -1) {
-						var start = segment.indexOf(">") + 1;
-						var end = closeFontIndex;
-						var format = this.__textFormat.clone();
-						var faceIndex = segment.indexOf("face=");
-						var colorIndex = segment.indexOf("color=");
-						var sizeIndex = segment.indexOf("size=");
-						if(faceIndex > -1 && faceIndex < start) {
-							var len = segment.indexOf("\"",faceIndex);
-							format.font = HxOverrides.substr(segment,faceIndex + 6,len);
-						}
-						if(colorIndex > -1 && colorIndex < start) format.color = Std.parseInt("0x" + HxOverrides.substr(segment,colorIndex + 8,6));
-						if(sizeIndex > -1 && sizeIndex < start) format.size = Std.parseInt((function($this) {
-							var $r;
-							var len1 = segment.indexOf("\"",sizeIndex);
-							$r = HxOverrides.substr(segment,sizeIndex + 6,len1);
-							return $r;
-						}(this)));
-						var sub = segment.substring(start,end);
-						sub = new EReg("<.*?>","g").replace(sub,"");
-						this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(format,value.length,value.length + sub.length));
-						value += sub;
-						if(closeFontIndex + 7 < segment.length) {
-							sub = HxOverrides.substr(segment,closeFontIndex + 7,null);
-							this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(this.__textFormat,value.length,value.length + sub.length));
-							value += sub;
-						}
-					} else {
-						this.__textEngine.textFormatRanges.push(new openfl__$internal_text_TextFormatRange(this.__textFormat,value.length,value.length + segment.length));
-						value += segment;
-					}
-				}
-			}
-		}
-		return this.__textEngine.text = value;
-	}
-	,get_length: function() {
-		if(this.__textEngine.text != null) return this.__textEngine.text.length;
-		return 0;
-	}
-	,get_maxChars: function() {
-		return this.__textEngine.maxChars;
-	}
-	,set_maxChars: function(value) {
-		if(value != this.__textEngine.maxChars) {
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		}
-		return this.__textEngine.maxChars = value;
-	}
-	,get_maxScrollH: function() {
-		this.__updateLayout();
-		return this.__textEngine.maxScrollH;
-	}
-	,get_maxScrollV: function() {
-		this.__updateLayout();
-		return this.__textEngine.maxScrollV;
-	}
-	,get_multiline: function() {
-		return this.__textEngine.multiline;
-	}
-	,set_multiline: function(value) {
-		if(value != this.__textEngine.multiline) {
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		}
-		return this.__textEngine.multiline = value;
-	}
-	,get_numLines: function() {
-		this.__updateLayout();
-		return this.__textEngine.numLines;
-	}
-	,get_restrict: function() {
-		return this.__textEngine.restrict;
-	}
-	,set_restrict: function(value) {
-		return this.__textEngine.restrict = value;
-	}
-	,get_scrollH: function() {
-		return this.__textEngine.scrollH;
-	}
-	,set_scrollH: function(value) {
-		if(value > this.__textEngine.maxScrollH) value = this.__textEngine.maxScrollH;
-		if(value < 0) value = 0;
-		if(value != this.__textEngine.scrollH) this.__dirty = true;
-		return this.__textEngine.scrollH = value;
-	}
-	,get_scrollV: function() {
-		return this.__textEngine.scrollV;
-	}
-	,set_scrollV: function(value) {
-		if(value > this.__textEngine.maxScrollV) value = this.__textEngine.maxScrollV;
-		if(value < 1) value = 1;
-		if(value != this.__textEngine.scrollV) this.__dirty = true;
-		return this.__textEngine.scrollV = value;
-	}
-	,get_selectable: function() {
-		return this.__textEngine.selectable;
-	}
-	,set_selectable: function(value) {
-		if(value != this.__textEngine.selectable && this.get_type() == 1) {
-			if(this.stage != null && this.stage.get_focus() == this) this.__startTextInput(); else if(!value) this.__stopTextInput();
-		}
-		return this.__textEngine.selectable = value;
-	}
-	,get_selectionBeginIndex: function() {
-		return Std["int"](Math.min(this.__caretIndex,this.__selectionIndex));
-	}
-	,get_selectionEndIndex: function() {
-		return Std["int"](Math.max(this.__caretIndex,this.__selectionIndex));
-	}
-	,get_sharpness: function() {
-		return this.__textEngine.sharpness;
-	}
-	,set_sharpness: function(value) {
-		if(value != this.__textEngine.sharpness) this.__dirty = true;
-		return this.__textEngine.sharpness = value;
-	}
-	,get_text: function() {
-		return this.__textEngine.text;
-	}
-	,set_text: function(value) {
-		if(this.__isHTML || this.__textEngine.text != value) {
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		} else return value;
-		if(this.__textEngine.textFormatRanges.length > 1) this.__textEngine.textFormatRanges.splice(1,this.__textEngine.textFormatRanges.length - 1);
-		var range = this.__textEngine.textFormatRanges[0];
-		range.format = this.__textFormat;
-		range.start = 0;
-		range.end = value.length;
-		this.__isHTML = false;
-		return this.__textEngine.text = value;
-	}
-	,get_textColor: function() {
-		return this.__textFormat.color;
-	}
-	,set_textColor: function(value) {
-		if(value != this.__textFormat.color) this.__dirty = true;
-		var _g = 0;
-		var _g1 = this.__textEngine.textFormatRanges;
-		while(_g < _g1.length) {
-			var range = _g1[_g];
-			++_g;
-			range.format.color = value;
-		}
-		return this.__textFormat.color = value;
-	}
-	,get_textWidth: function() {
-		this.__updateLayout();
-		return this.__textEngine.textWidth;
-	}
-	,get_textHeight: function() {
-		this.__updateLayout();
-		return this.__textEngine.textHeight;
-	}
-	,get_type: function() {
-		return this.__textEngine.type;
-	}
-	,set_type: function(value) {
-		if(value != this.__textEngine.type) {
-			if(value == 1) {
-				this.addEventListener("focusIn",$bind(this,this.this_onFocusIn));
-				this.addEventListener("focusOut",$bind(this,this.this_onFocusOut));
-				this.addEventListener("addedToStage",$bind(this,this.this_onAddedToStage));
-				this.this_onFocusIn(null);
-			} else {
-				this.removeEventListener("focusIn",$bind(this,this.this_onFocusIn));
-				this.removeEventListener("focusOut",$bind(this,this.this_onFocusOut));
-				this.removeEventListener("addedToStage",$bind(this,this.this_onAddedToStage));
-				this.__stopTextInput();
-			}
-			this.__dirty = true;
-		}
-		return this.__textEngine.type = value;
-	}
-	,get_width: function() {
-		this.__updateLayout();
-		return this.__textEngine.width;
-	}
-	,set_width: function(value) {
-		if(this.get_scaleX() != 1 || this.__textEngine.width != value) {
-			if(!this.__transformDirty) {
-				this.__transformDirty = true;
-				openfl_display_DisplayObject.__worldTransformDirty++;
-			}
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		}
-		this.set_scaleX(1);
-		return this.__textEngine.width = value;
-	}
-	,get_wordWrap: function() {
-		return this.__textEngine.wordWrap;
-	}
-	,set_wordWrap: function(value) {
-		if(value != this.__textEngine.wordWrap) {
-			this.__dirty = true;
-			this.__layoutDirty = true;
-		}
-		return this.__textEngine.wordWrap = value;
-	}
-	,stage_onMouseMove: function(event) {
-		if(this.stage == null) return;
-		if(this.__textEngine.selectable && this.__selectionIndex >= 0) {
-			this.__updateLayout();
-			var position = this.__getPosition(this.get_mouseX(),this.get_mouseY());
-			if(position != this.__caretIndex) {
-				this.__caretIndex = position;
-				this.__dirty = true;
-			}
-		}
-	}
-	,stage_onMouseUp: function(event) {
-		if(this.stage == null) return;
-		this.stage.removeEventListener("mouseMove",$bind(this,this.stage_onMouseMove));
-		this.stage.removeEventListener("mouseUp",$bind(this,this.stage_onMouseUp));
-		if(this.stage.get_focus() == this) {
-			this.__getWorldTransform();
-			this.__updateLayout();
-			var px = this.__worldTransform.__transformInverseX(this.get_x(),this.get_y());
-			var py = this.__worldTransform.__transformInverseY(this.get_x(),this.get_y());
-			var upPos = this.__getPosition(this.get_mouseX(),this.get_mouseY());
-			var leftPos;
-			var rightPos;
-			leftPos = Std["int"](Math.min(this.__selectionIndex,upPos));
-			rightPos = Std["int"](Math.max(this.__selectionIndex,upPos));
-			this.__selectionIndex = leftPos;
-			this.__caretIndex = rightPos;
-			if(this.__inputEnabled) {
-				this.this_onFocusIn(null);
-				this.__stopCursorTimer();
-				this.__startCursorTimer();
-			}
-		}
-	}
-	,this_onAddedToStage: function(event) {
-		this.this_onFocusIn(null);
-	}
-	,this_onFocusIn: function(event) {
-		if(this.get_selectable() && this.get_type() == 1 && this.stage != null && this.stage.get_focus() == this) this.__startTextInput();
-	}
-	,this_onFocusOut: function(event) {
-		this.__stopTextInput();
-	}
-	,this_onMouseDown: function(event) {
-		if(!this.get_selectable()) return;
-		this.__updateLayout();
-		this.__caretIndex = this.__getPosition(this.get_mouseX(),this.get_mouseY());
-		this.__selectionIndex = this.__caretIndex;
-		this.__dirty = true;
-		this.stage.addEventListener("mouseMove",$bind(this,this.stage_onMouseMove));
-		this.stage.addEventListener("mouseUp",$bind(this,this.stage_onMouseUp));
-	}
-	,window_onKeyDown: function(key,modifier) {
-		switch(key) {
-		case 8:
-			if(this.__selectionIndex == this.__caretIndex && this.__caretIndex > 0) this.__selectionIndex = this.__caretIndex - 1;
-			if(this.__selectionIndex != this.__caretIndex) {
-				this.replaceSelectedText("");
-				this.__selectionIndex = this.__caretIndex;
-				this.dispatchEvent(new openfl_events_Event("change",true));
-			}
-			break;
-		case 127:
-			if(this.__selectionIndex == this.__caretIndex && this.__caretIndex < this.__textEngine.text.length) this.__selectionIndex = this.__caretIndex + 1;
-			if(this.__selectionIndex != this.__caretIndex) {
-				this.replaceSelectedText("");
-				this.__selectionIndex = this.__caretIndex;
-				this.dispatchEvent(new openfl_events_Event("change",true));
-			}
-			break;
-		case 1073741904:
-			if(lime_ui__$KeyModifier_KeyModifier_$Impl_$.get_shiftKey(modifier)) {
-				if(this.__caretIndex > 0) this.__caretIndex--;
-			} else {
-				if(this.__selectionIndex == this.__caretIndex) {
-					if(this.__caretIndex > 0) this.__caretIndex--;
-				} else this.__caretIndex = Std["int"](Math.min(this.__caretIndex,this.__selectionIndex));
-				this.__selectionIndex = this.__caretIndex;
-			}
-			this.__stopCursorTimer();
-			this.__startCursorTimer();
-			break;
-		case 1073741903:
-			if(lime_ui__$KeyModifier_KeyModifier_$Impl_$.get_shiftKey(modifier)) {
-				if(this.__caretIndex < this.__textEngine.text.length) this.__caretIndex++;
-			} else {
-				if(this.__selectionIndex == this.__caretIndex) {
-					if(this.__caretIndex < this.__textEngine.text.length) this.__caretIndex++;
-				} else this.__caretIndex = Std["int"](Math.max(this.__caretIndex,this.__selectionIndex));
-				this.__selectionIndex = this.__caretIndex;
-			}
-			this.__stopCursorTimer();
-			this.__startCursorTimer();
-			break;
-		case 99:
-			if(modifier == 64 || modifier == 128) lime_system_Clipboard.set_text(this.__textEngine.text.substring(this.__caretIndex,this.__selectionIndex));
-			break;
-		case 120:
-			if(modifier == 64 || modifier == 128) {
-				lime_system_Clipboard.set_text(this.__textEngine.text.substring(this.__caretIndex,this.__selectionIndex));
-				if(this.__caretIndex != this.__selectionIndex) {
-					this.replaceSelectedText("");
-					this.dispatchEvent(new openfl_events_Event("change",true));
-				}
-			}
-			break;
-		case 118:
-			if(modifier == 64 || modifier == 128) {
-				var text = lime_system_Clipboard.get_text();
-				if(text != null) this.replaceSelectedText(text); else this.replaceSelectedText("");
-				this.dispatchEvent(new openfl_events_Event("change",true));
-			} else this.__textEngine.textFormatRanges[this.__textEngine.textFormatRanges.length - 1].end = this.__textEngine.text.length;
-			break;
-		default:
-		}
-	}
-	,window_onTextInput: function(value) {
-		this.replaceSelectedText(value);
-		this.dispatchEvent(new openfl_events_Event("change",true));
-	}
-	,__class__: openfl_text_TextField
-	,__properties__: $extend(openfl_display_InteractiveObject.prototype.__properties__,{set_wordWrap:"set_wordWrap",get_wordWrap:"get_wordWrap",set_type:"set_type",get_type:"get_type",get_textWidth:"get_textWidth",get_textHeight:"get_textHeight",set_textColor:"set_textColor",get_textColor:"get_textColor",set_text:"set_text",get_text:"get_text",set_sharpness:"set_sharpness",get_sharpness:"get_sharpness",get_selectionEndIndex:"get_selectionEndIndex",get_selectionBeginIndex:"get_selectionBeginIndex",set_selectable:"set_selectable",get_selectable:"get_selectable",set_scrollV:"set_scrollV",get_scrollV:"get_scrollV",set_scrollH:"set_scrollH",get_scrollH:"get_scrollH",set_restrict:"set_restrict",get_restrict:"get_restrict",get_numLines:"get_numLines",set_multiline:"set_multiline",get_multiline:"get_multiline",get_maxScrollV:"get_maxScrollV",get_maxScrollH:"get_maxScrollH",set_maxChars:"set_maxChars",get_maxChars:"get_maxChars",get_length:"get_length",set_htmlText:"set_htmlText",get_htmlText:"get_htmlText",set_gridFitType:"set_gridFitType",get_gridFitType:"get_gridFitType",set_embedFonts:"set_embedFonts",get_embedFonts:"get_embedFonts",set_displayAsPassword:"set_displayAsPassword",get_displayAsPassword:"get_displayAsPassword",set_defaultTextFormat:"set_defaultTextFormat",get_defaultTextFormat:"get_defaultTextFormat",get_caretIndex:"get_caretIndex",get_bottomScrollV:"get_bottomScrollV",set_borderColor:"set_borderColor",get_borderColor:"get_borderColor",set_border:"set_border",get_border:"get_border",set_backgroundColor:"set_backgroundColor",get_backgroundColor:"get_backgroundColor",set_background:"set_background",get_background:"get_background",set_autoSize:"set_autoSize",get_autoSize:"get_autoSize",set_antiAliasType:"set_antiAliasType",get_antiAliasType:"get_antiAliasType"})
-});
 var openfl_text__$TextFieldAutoSize_TextFieldAutoSize_$Impl_$ = {};
 $hxClasses["openfl.text._TextFieldAutoSize.TextFieldAutoSize_Impl_"] = openfl_text__$TextFieldAutoSize_TextFieldAutoSize_$Impl_$;
 openfl_text__$TextFieldAutoSize_TextFieldAutoSize_$Impl_$.__name__ = ["openfl","text","_TextFieldAutoSize","TextFieldAutoSize_Impl_"];
@@ -35817,6 +35853,7 @@ haxe_lang_Iterable.prototype = {
 };
 var ttg_game_Game = function(m) {
 	this.main = m;
+	this.fps = new openfl_display_FPS(10,10,15658734);
 };
 $hxClasses["ttg.game.Game"] = ttg_game_Game;
 ttg_game_Game.__name__ = ["ttg","game","Game"];
@@ -35835,6 +35872,7 @@ ttg_game_Game.prototype = {
 		if(this.level != null) this.level.exit();
 		l.load(this);
 		this.level = l;
+		this.main.addChild(this.fps);
 	}
 	,__class__: ttg_game_Game
 };
@@ -35991,6 +36029,7 @@ ttg_game_level_Level1.prototype = $extend(ttg_game_level_Level.prototype,{
 		this.addGameObject(new ttg_game_gameobject_ui_ButtonObject(this,700,500,100,50,"Menu",function(e) {
 			game.loadLevel(new ttg_game_level_LevelMenu(_g.main));
 		}));
+		this.addGameObject(new ttg_game_gameobject_TestObject(this,700,200));
 	}
 	,__class__: ttg_game_level_Level1
 });

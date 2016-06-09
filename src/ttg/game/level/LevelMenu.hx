@@ -1,5 +1,6 @@
 package ttg.game.level;
 
+import openfl.display.FPS;
 import ttg.game.Main;
 import ttg.game.gameobject.TestObject;
 import ttg.game.gameobject.ui.ButtonObject;
@@ -20,6 +21,7 @@ class LevelMenu extends Level
 	override public function load(game) 
 	{
 		super.load(game);
+		
 		bg = new TileBackground(main, [
 		[0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
 		[0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
@@ -38,6 +40,7 @@ class LevelMenu extends Level
 		[0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
 		]);
 		main.addChild(bg);
+		
 		addGameObject(new ButtonObject(this, 400, 300, 200, 100, "Poziom 1", function(e) { 
 			game.loadLevel(new Level1(main));
 		} ));

@@ -72,6 +72,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
 		#end
 		
 		#if flash
@@ -102,6 +103,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/lokalizacje/las/rowlewakoncowka.png", AssetType.IMAGE);
 		className.set ("img/lokalizacje/las/rowprawaczesc.png", __ASSET__img_lokalizacje_las_rowprawaczesc_png);
 		type.set ("img/lokalizacje/las/rowprawaczesc.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowprawakoncowca.png", __ASSET__img_lokalizacje_las_rowprawakoncowca_png);
+		type.set ("img/lokalizacje/las/rowprawakoncowca.png", AssetType.IMAGE);
 		className.set ("img/lokalizacje/las/rowprawakoncowka.png", __ASSET__img_lokalizacje_las_rowprawakoncowka_png);
 		type.set ("img/lokalizacje/las/rowprawakoncowka.png", AssetType.IMAGE);
 		className.set ("img/lokalizacje/las/sciezka.png", __ASSET__img_lokalizacje_las_sciezka_png);
@@ -170,6 +173,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.IMAGE);
 		id = "img/lokalizacje/las/rowprawaczesc.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowprawakoncowca.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -257,6 +264,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("img/lokalizacje/las/rowprawaczesc.png", __ASSET__img_lokalizacje_las_rowprawaczesc_png);
 		type.set ("img/lokalizacje/las/rowprawaczesc.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowprawakoncowca.png", __ASSET__img_lokalizacje_las_rowprawakoncowca_png);
+		type.set ("img/lokalizacje/las/rowprawakoncowca.png", AssetType.IMAGE);
 		
 		className.set ("img/lokalizacje/las/rowprawakoncowka.png", __ASSET__img_lokalizacje_las_rowprawakoncowka_png);
 		type.set ("img/lokalizacje/las/rowprawakoncowka.png", AssetType.IMAGE);
@@ -936,6 +946,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowlewaczesc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowlewakoncowka_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowprawaczesc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowprawakoncowca_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowprawakoncowka_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_sciezka_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_sciezka_dolna_czesc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -946,6 +957,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
 
 
 
@@ -989,6 +1001,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:image("assets/img/lokalizacje/las/rowlewaczesc.png") #if display private #end class __ASSET__img_lokalizacje_las_rowlewaczesc_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/rowlewakoncowka.png") #if display private #end class __ASSET__img_lokalizacje_las_rowlewakoncowka_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/rowprawaczesc.png") #if display private #end class __ASSET__img_lokalizacje_las_rowprawaczesc_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowprawakoncowca.png") #if display private #end class __ASSET__img_lokalizacje_las_rowprawakoncowca_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/rowprawakoncowka.png") #if display private #end class __ASSET__img_lokalizacje_las_rowprawakoncowka_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/sciezka.png") #if display private #end class __ASSET__img_lokalizacje_las_sciezka_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/sciezka_dolna_czesc.png") #if display private #end class __ASSET__img_lokalizacje_las_sciezka_dolna_czesc_png extends lime.graphics.Image {}

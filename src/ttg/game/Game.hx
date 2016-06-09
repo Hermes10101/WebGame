@@ -1,4 +1,5 @@
 package ttg.game;
+import openfl.display.FPS;
 import ttg.game.level.Level;
 import ttg.game.gameobject.TestObject;
 import ttg.game.level.LevelMenu;
@@ -11,10 +12,12 @@ class Game
 {
 	var main:Main;
 	var level:Level;
+	var fps:FPS;
 
 	public function new(m:Main) 
 	{
 		main = m;
+		fps = new FPS(10, 10, 0xeeeeee);
 	}
 	
 	public function init()
@@ -40,6 +43,6 @@ class Game
 			
 		l.load(this);
 		level = l;
+		main.addChild(fps);
 	}
-	
 }
