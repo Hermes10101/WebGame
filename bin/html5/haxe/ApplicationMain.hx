@@ -30,6 +30,30 @@ class ApplicationMain {
 		var types = [];
 		
 		
+		urls.push ("img/lokalizacje/las/drzewo.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/lokalizacje/las/korona_drzewa.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/lokalizacje/las/sciezka.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/lokalizacje/las/sciezka_dolna_czesc.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/lokalizacje/las/sciezka_gorna czesc.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/lokalizacje/las/trawa.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		
 		if (config.assetsPrefix != null) {
 			
@@ -91,7 +115,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "3",
+			build: "5",
 			company: "TTGTeam",
 			file: "WebGame",
 			fps: 60,
@@ -108,7 +132,7 @@ class ApplicationMain {
 					depthBuffer: false,
 					display: 0,
 					fullscreen: false,
-					hardware: true,
+					hardware: false,
 					height: 600,
 					parameters: "{}",
 					resizable: true,
@@ -133,7 +157,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 800, 600, "null");
+		openfl.Lib.embed (null, 800, 600, "000000");
 		#end
 		#else
 		create ();
