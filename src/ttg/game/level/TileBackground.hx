@@ -17,13 +17,15 @@ import ttg.game.Main;
  */
 class TileBackground extends Sprite
 {
-	private static var bgBitmap = Assets.getBitmapData("img/tlo.png");
-	public static var bgTileSheet:Tilesheet = new Tilesheet(bgBitmap);
+	private static var bgBitmap:BitmapData;
+	public static var bgTileSheet:Tilesheet;
 	
 	var map:Array<Array<Int>>;
 	
 	public static function init()
 	{
+		bgBitmap = Assets.getBitmapData("img/tlo.png");
+		bgTileSheet = new Tilesheet(bgBitmap);
 		for (i in 0...8)
 		{
 			for (j in 0...8)
@@ -37,7 +39,6 @@ class TileBackground extends Sprite
 	{
 		super();
 		map = m;
-		createBackground(map);
 	}
 	
 	private function createBackground(map:Array<Array<Int>>)

@@ -47,7 +47,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "2", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
+	ApplicationMain.config = { build : "25", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -35800,10 +35800,9 @@ ttg_game_gameobject_GameObject.prototype = {
 var ttg_game_gameobject_TestObject = function(l,x,y) {
 	this.speed = 10;
 	ttg_game_gameobject_GameObject.call(this,l,x,y);
+	this.width = 100;
+	this.height = 100;
 	this.movement = new lime_math_Vector2();
-	var imgData = openfl_Assets.getBitmapData("img/lokalizacje/las/sciezka_dolna_czesc.png");
-	this.imgBmp = new openfl_display_Bitmap(imgData);
-	this.sprite.addChild(this.imgBmp);
 };
 $hxClasses["ttg.game.gameobject.TestObject"] = ttg_game_gameobject_TestObject;
 ttg_game_gameobject_TestObject.__name__ = ["ttg","game","gameobject","TestObject"];
@@ -35817,12 +35816,13 @@ ttg_game_gameobject_TestObject.prototype = $extend(ttg_game_gameobject_GameObjec
 		if(ttg_game_input_Input.isKeyDown(40)) this.movement.y += this.speed;
 		this.x += this.movement.x;
 		this.y += this.movement.y;
-		this.imgBmp.set_x(this.x);
-		this.imgBmp.set_y(this.y);
 		this.movement = new lime_math_Vector2();
 	}
 	,render: function() {
 		ttg_game_gameobject_GameObject.prototype.render.call(this);
+		this.sprite.get_graphics().beginFill(65280);
+		this.sprite.get_graphics().drawRect(this.x - this.width / 2,this.y - this.height / 2,this.width,this.height);
+		this.sprite.get_graphics().endFill();
 	}
 	,__class__: ttg_game_gameobject_TestObject
 });
@@ -35956,11 +35956,14 @@ ttg_game_level_LevelMenu.prototype = $extend(ttg_game_level_Level.prototype,{
 var ttg_game_level_TileBackground = function(m) {
 	openfl_display_Sprite.call(this);
 	this.map = m;
-	this.createBackground(this.map);
 };
 $hxClasses["ttg.game.level.TileBackground"] = ttg_game_level_TileBackground;
 ttg_game_level_TileBackground.__name__ = ["ttg","game","level","TileBackground"];
+ttg_game_level_TileBackground.bgBitmap = null;
+ttg_game_level_TileBackground.bgTileSheet = null;
 ttg_game_level_TileBackground.init = function() {
+	ttg_game_level_TileBackground.bgBitmap = openfl_Assets.getBitmapData("img/tlo.png");
+	ttg_game_level_TileBackground.bgTileSheet = new openfl_display_Tilesheet(ttg_game_level_TileBackground.bgBitmap);
 	var _g = 0;
 	while(_g < 8) {
 		var i = _g++;
@@ -37304,7 +37307,5 @@ openfl_utils__$CompressionAlgorithm_CompressionAlgorithm_$Impl_$.ZLIB = 2;
 openfl_utils__$Endian_Endian_$Impl_$.BIG_ENDIAN = 0;
 openfl_utils__$Endian_Endian_$Impl_$.LITTLE_ENDIAN = 1;
 ttg_game_input_Input.keysDown = [];
-ttg_game_level_TileBackground.bgBitmap = openfl_Assets.getBitmapData("img/tlo.png");
-ttg_game_level_TileBackground.bgTileSheet = new openfl_display_Tilesheet(ttg_game_level_TileBackground.bgBitmap);
 ApplicationMain.main();
 })(typeof console != "undefined" ? console : {log:function(){}}, typeof window != "undefined" ? window : exports, typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);

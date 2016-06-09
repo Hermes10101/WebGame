@@ -16,16 +16,13 @@ class TestObject extends GameObject
 	var speed:Float = 10;
 	var width:Float;
 	var height:Float;
-	var imgBmp:Bitmap;
 
 	public function new(l:Level, x:Float, y:Float) 
 	{
 		super(l, x, y);
+		width = 100;
+		height = 100;
 		movement = new Vector2();
-		
-		var imgData = Assets.getBitmapData("img/lokalizacje/las/sciezka_dolna_czesc.png");
-		imgBmp = new Bitmap(imgData);
-		sprite.addChild(imgBmp);
 	}
 	
 	override public function update() 
@@ -46,15 +43,15 @@ class TestObject extends GameObject
 		x += movement.x;
 		y += movement.y;
 		
-		imgBmp.x = x;
-		imgBmp.y = y;
-		
 		movement = new Vector2();
 	}
 	
 	override public function render() 
 	{
 		super.render();
+		sprite.graphics.beginFill(0x00ff00);
+		sprite.graphics.drawRect(x - width / 2, y - height / 2, width, height);
+		sprite.graphics.endFill();
 	}
 	
 }
