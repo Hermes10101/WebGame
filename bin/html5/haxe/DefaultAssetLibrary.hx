@@ -60,14 +60,50 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		#end
 		
 		#if flash
 		
 		className.set ("img/lokalizacje/las/drzewo.png", __ASSET__img_lokalizacje_las_drzewo_png);
 		type.set ("img/lokalizacje/las/drzewo.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/grzyby.png", __ASSET__img_lokalizacje_las_grzyby_png);
+		type.set ("img/lokalizacje/las/grzyby.png", AssetType.IMAGE);
 		className.set ("img/lokalizacje/las/korona_drzewa.png", __ASSET__img_lokalizacje_las_korona_drzewa_png);
 		type.set ("img/lokalizacje/las/korona_drzewa.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowagoraprawe.png", __ASSET__img_lokalizacje_las_rowagoraprawe_png);
+		type.set ("img/lokalizacje/las/rowagoraprawe.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowcentrum.png", __ASSET__img_lokalizacje_las_rowcentrum_png);
+		type.set ("img/lokalizacje/las/rowcentrum.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowdol.png", __ASSET__img_lokalizacje_las_rowdol_png);
+		type.set ("img/lokalizacje/las/rowdol.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowdollewa.png", __ASSET__img_lokalizacje_las_rowdollewa_png);
+		type.set ("img/lokalizacje/las/rowdollewa.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowdolprawe.png", __ASSET__img_lokalizacje_las_rowdolprawe_png);
+		type.set ("img/lokalizacje/las/rowdolprawe.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowgora.png", __ASSET__img_lokalizacje_las_rowgora_png);
+		type.set ("img/lokalizacje/las/rowgora.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowgoralewa.png", __ASSET__img_lokalizacje_las_rowgoralewa_png);
+		type.set ("img/lokalizacje/las/rowgoralewa.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowlewaczesc.png", __ASSET__img_lokalizacje_las_rowlewaczesc_png);
+		type.set ("img/lokalizacje/las/rowlewaczesc.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowlewakoncowka.png", __ASSET__img_lokalizacje_las_rowlewakoncowka_png);
+		type.set ("img/lokalizacje/las/rowlewakoncowka.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowprawaczesc.png", __ASSET__img_lokalizacje_las_rowprawaczesc_png);
+		type.set ("img/lokalizacje/las/rowprawaczesc.png", AssetType.IMAGE);
+		className.set ("img/lokalizacje/las/rowprawakoncowka.png", __ASSET__img_lokalizacje_las_rowprawakoncowka_png);
+		type.set ("img/lokalizacje/las/rowprawakoncowka.png", AssetType.IMAGE);
 		className.set ("img/lokalizacje/las/sciezka.png", __ASSET__img_lokalizacje_las_sciezka_png);
 		type.set ("img/lokalizacje/las/sciezka.png", AssetType.IMAGE);
 		className.set ("img/lokalizacje/las/sciezka_dolna_czesc.png", __ASSET__img_lokalizacje_las_sciezka_dolna_czesc_png);
@@ -89,7 +125,55 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/grzyby.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "img/lokalizacje/las/korona_drzewa.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowagoraprawe.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowcentrum.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowdol.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowdollewa.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowdolprawe.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowgora.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowgoralewa.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowlewaczesc.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowlewakoncowka.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowprawaczesc.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowprawakoncowka.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -138,8 +222,44 @@ class DefaultAssetLibrary extends AssetLibrary {
 		className.set ("img/lokalizacje/las/drzewo.png", __ASSET__img_lokalizacje_las_drzewo_png);
 		type.set ("img/lokalizacje/las/drzewo.png", AssetType.IMAGE);
 		
+		className.set ("img/lokalizacje/las/grzyby.png", __ASSET__img_lokalizacje_las_grzyby_png);
+		type.set ("img/lokalizacje/las/grzyby.png", AssetType.IMAGE);
+		
 		className.set ("img/lokalizacje/las/korona_drzewa.png", __ASSET__img_lokalizacje_las_korona_drzewa_png);
 		type.set ("img/lokalizacje/las/korona_drzewa.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowagoraprawe.png", __ASSET__img_lokalizacje_las_rowagoraprawe_png);
+		type.set ("img/lokalizacje/las/rowagoraprawe.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowcentrum.png", __ASSET__img_lokalizacje_las_rowcentrum_png);
+		type.set ("img/lokalizacje/las/rowcentrum.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowdol.png", __ASSET__img_lokalizacje_las_rowdol_png);
+		type.set ("img/lokalizacje/las/rowdol.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowdollewa.png", __ASSET__img_lokalizacje_las_rowdollewa_png);
+		type.set ("img/lokalizacje/las/rowdollewa.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowdolprawe.png", __ASSET__img_lokalizacje_las_rowdolprawe_png);
+		type.set ("img/lokalizacje/las/rowdolprawe.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowgora.png", __ASSET__img_lokalizacje_las_rowgora_png);
+		type.set ("img/lokalizacje/las/rowgora.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowgoralewa.png", __ASSET__img_lokalizacje_las_rowgoralewa_png);
+		type.set ("img/lokalizacje/las/rowgoralewa.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowlewaczesc.png", __ASSET__img_lokalizacje_las_rowlewaczesc_png);
+		type.set ("img/lokalizacje/las/rowlewaczesc.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowlewakoncowka.png", __ASSET__img_lokalizacje_las_rowlewakoncowka_png);
+		type.set ("img/lokalizacje/las/rowlewakoncowka.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowprawaczesc.png", __ASSET__img_lokalizacje_las_rowprawaczesc_png);
+		type.set ("img/lokalizacje/las/rowprawaczesc.png", AssetType.IMAGE);
+		
+		className.set ("img/lokalizacje/las/rowprawakoncowka.png", __ASSET__img_lokalizacje_las_rowprawakoncowka_png);
+		type.set ("img/lokalizacje/las/rowprawakoncowka.png", AssetType.IMAGE);
 		
 		className.set ("img/lokalizacje/las/sciezka.png", __ASSET__img_lokalizacje_las_sciezka_png);
 		type.set ("img/lokalizacje/las/sciezka.png", AssetType.IMAGE);
@@ -804,7 +924,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if flash
 
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_drzewo_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_grzyby_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_korona_drzewa_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowagoraprawe_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowcentrum_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowdol_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowdollewa_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowdolprawe_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowgora_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowgoralewa_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowlewaczesc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowlewakoncowka_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowprawaczesc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_rowprawakoncowka_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_sciezka_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_sciezka_dolna_czesc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_lokalizacje_las_sciezka_gorna_czesc_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -825,6 +957,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 #else
 
 
@@ -833,7 +977,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 @:image("assets/img/lokalizacje/las/drzewo.png") #if display private #end class __ASSET__img_lokalizacje_las_drzewo_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/grzyby.png") #if display private #end class __ASSET__img_lokalizacje_las_grzyby_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/korona_drzewa.png") #if display private #end class __ASSET__img_lokalizacje_las_korona_drzewa_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowagoraprawe.png") #if display private #end class __ASSET__img_lokalizacje_las_rowagoraprawe_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowcentrum.png") #if display private #end class __ASSET__img_lokalizacje_las_rowcentrum_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowdol.png") #if display private #end class __ASSET__img_lokalizacje_las_rowdol_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowdollewa.png") #if display private #end class __ASSET__img_lokalizacje_las_rowdollewa_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowdolprawe.png") #if display private #end class __ASSET__img_lokalizacje_las_rowdolprawe_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowgora.png") #if display private #end class __ASSET__img_lokalizacje_las_rowgora_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowgoralewa.png") #if display private #end class __ASSET__img_lokalizacje_las_rowgoralewa_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowlewaczesc.png") #if display private #end class __ASSET__img_lokalizacje_las_rowlewaczesc_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowlewakoncowka.png") #if display private #end class __ASSET__img_lokalizacje_las_rowlewakoncowka_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowprawaczesc.png") #if display private #end class __ASSET__img_lokalizacje_las_rowprawaczesc_png extends lime.graphics.Image {}
+@:image("assets/img/lokalizacje/las/rowprawakoncowka.png") #if display private #end class __ASSET__img_lokalizacje_las_rowprawakoncowka_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/sciezka.png") #if display private #end class __ASSET__img_lokalizacje_las_sciezka_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/sciezka_dolna_czesc.png") #if display private #end class __ASSET__img_lokalizacje_las_sciezka_dolna_czesc_png extends lime.graphics.Image {}
 @:image("assets/img/lokalizacje/las/sciezka_gorna czesc.png") #if display private #end class __ASSET__img_lokalizacje_las_sciezka_gorna_czesc_png extends lime.graphics.Image {}

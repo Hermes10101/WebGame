@@ -17,9 +17,9 @@ class LevelMenu extends Level
 		super(m);
 	}
 	
-	override public function load() 
+	override public function load(game) 
 	{
-		super.load();
+		super.load(game);
 		bg = new TileBackground(main, [
 		[0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
 		[0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
@@ -38,13 +38,8 @@ class LevelMenu extends Level
 		[0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
 		]);
 		main.addChild(bg);
-		testBox = new TestObject(this, 100, 100);
-		addGameObject(testBox);
-		addGameObject(new ButtonObject(this, 400, 250, 100, 50, "W góre", function(e) { 
-			testBox.movement.y -= 50;
-		} ));
-		addGameObject(new ButtonObject(this, 400, 350, 100, 50, "W dół", function(e) {
-			testBox.movement.y += 50;
+		addGameObject(new ButtonObject(this, 400, 300, 200, 100, "Poziom 1", function(e) { 
+			game.loadLevel(new Level1(main));
 		} ));
 	}
 	

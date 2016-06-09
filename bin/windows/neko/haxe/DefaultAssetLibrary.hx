@@ -60,14 +60,50 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		#end
 		
 		#if flash
 		
 		path.set ("img/lokalizacje/las/drzewo.png", "img/lokalizacje/las/drzewo.png");
 		type.set ("img/lokalizacje/las/drzewo.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/grzyby.png", "img/lokalizacje/las/grzyby.png");
+		type.set ("img/lokalizacje/las/grzyby.png", AssetType.IMAGE);
 		path.set ("img/lokalizacje/las/korona_drzewa.png", "img/lokalizacje/las/korona_drzewa.png");
 		type.set ("img/lokalizacje/las/korona_drzewa.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowagoraprawe.png", "img/lokalizacje/las/rowagoraprawe.png");
+		type.set ("img/lokalizacje/las/rowagoraprawe.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowcentrum.png", "img/lokalizacje/las/rowcentrum.png");
+		type.set ("img/lokalizacje/las/rowcentrum.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowdol.png", "img/lokalizacje/las/rowdol.png");
+		type.set ("img/lokalizacje/las/rowdol.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowdollewa.png", "img/lokalizacje/las/rowdollewa.png");
+		type.set ("img/lokalizacje/las/rowdollewa.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowdolprawe.png", "img/lokalizacje/las/rowdolprawe.png");
+		type.set ("img/lokalizacje/las/rowdolprawe.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowgora.png", "img/lokalizacje/las/rowgora.png");
+		type.set ("img/lokalizacje/las/rowgora.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowgoralewa.png", "img/lokalizacje/las/rowgoralewa.png");
+		type.set ("img/lokalizacje/las/rowgoralewa.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowlewaczesc.png", "img/lokalizacje/las/rowlewaczesc.png");
+		type.set ("img/lokalizacje/las/rowlewaczesc.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowlewakoncowka.png", "img/lokalizacje/las/rowlewakoncowka.png");
+		type.set ("img/lokalizacje/las/rowlewakoncowka.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowprawaczesc.png", "img/lokalizacje/las/rowprawaczesc.png");
+		type.set ("img/lokalizacje/las/rowprawaczesc.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/rowprawakoncowka.png", "img/lokalizacje/las/rowprawakoncowka.png");
+		type.set ("img/lokalizacje/las/rowprawakoncowka.png", AssetType.IMAGE);
 		path.set ("img/lokalizacje/las/sciezka.png", "img/lokalizacje/las/sciezka.png");
 		type.set ("img/lokalizacje/las/sciezka.png", AssetType.IMAGE);
 		path.set ("img/lokalizacje/las/sciezka_dolna_czesc.png", "img/lokalizacje/las/sciezka_dolna_czesc.png");
@@ -88,7 +124,43 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/lokalizacje/las/drzewo.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/grzyby.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "img/lokalizacje/las/korona_drzewa.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowagoraprawe.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowcentrum.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowdol.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowdollewa.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowdolprawe.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowgora.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowgoralewa.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowlewaczesc.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowlewakoncowka.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowprawaczesc.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/rowprawakoncowka.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "img/lokalizacje/las/sciezka.png";
@@ -126,6 +198,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -789,7 +873,31 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 #elseif html5
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

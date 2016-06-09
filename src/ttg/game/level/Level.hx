@@ -1,4 +1,5 @@
 package ttg.game.level;
+import ttg.game.Game;
 import ttg.game.Main;
 import ttg.game.gameobject.GameObject;
 
@@ -40,7 +41,7 @@ class Level
 		}
 	}
 	
-	public function load()
+	public function load(game:Game)
 	{
 		
 	}

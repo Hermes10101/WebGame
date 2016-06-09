@@ -17,11 +17,22 @@ import ttg.game.Main;
 class TileBackground extends Sprite
 {
 	var tileNames:Array<String> = [
-		"trawa",
-		"trawa_kamienie",
-		"trawa_kwiatki",
-		"drzewo",
-		"sciezka"
+		"trawa", //0
+		"trawa_kamienie", //1
+		"trawa_kwiatki", //2
+		"drzewo", //3
+		"sciezka", //4
+		"rowagoraprawe", //5
+		"rowgora", //6
+		"rowgoralewa",
+		"rowlewakoncowka",
+		"rowlewaczesc",
+		"rowcentrum",
+		"rowprawaczesc",
+		"rowprawakoncowka",
+		"rowdollewa",
+		"rowdol",
+		"rowdolprawe"
 	];
 	
 	public function new(m:Main, map:Array<Array<Int>>) 

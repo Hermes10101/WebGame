@@ -25,7 +25,31 @@ ApplicationMain.create = function() {
 	var types = [];
 	urls.push("img/lokalizacje/las/drzewo.png");
 	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/grzyby.png");
+	types.push("IMAGE");
 	urls.push("img/lokalizacje/las/korona_drzewa.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowagoraprawe.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowcentrum.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowdol.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowdollewa.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowdolprawe.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowgora.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowgoralewa.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowlewaczesc.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowlewakoncowka.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowprawaczesc.png");
+	types.push("IMAGE");
+	urls.push("img/lokalizacje/las/rowprawakoncowka.png");
 	types.push("IMAGE");
 	urls.push("img/lokalizacje/las/sciezka.png");
 	types.push("IMAGE");
@@ -1490,7 +1514,43 @@ var DefaultAssetLibrary = function() {
 	id = "img/lokalizacje/las/drzewo.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/grzyby.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
 	id = "img/lokalizacje/las/korona_drzewa.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowagoraprawe.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowcentrum.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowdol.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowdollewa.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowdolprawe.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowgora.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowgoralewa.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowlewaczesc.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowlewakoncowka.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowprawaczesc.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/lokalizacje/las/rowprawakoncowka.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
 	id = "img/lokalizacje/las/sciezka.png";
@@ -35773,7 +35833,7 @@ ttg_game_Game.prototype = {
 	}
 	,loadLevel: function(l) {
 		if(this.level != null) this.level.exit();
-		l.load();
+		l.load(this);
 		this.level = l;
 	}
 	,__class__: ttg_game_Game
@@ -35903,7 +35963,7 @@ ttg_game_level_Level.prototype = {
 			obj.render();
 		}
 	}
-	,load: function() {
+	,load: function(game) {
 	}
 	,exit: function() {
 		var _g = 0;
@@ -35916,6 +35976,24 @@ ttg_game_level_Level.prototype = {
 	}
 	,__class__: ttg_game_level_Level
 };
+var ttg_game_level_Level1 = function(m) {
+	ttg_game_level_Level.call(this,m);
+};
+$hxClasses["ttg.game.level.Level1"] = ttg_game_level_Level1;
+ttg_game_level_Level1.__name__ = ["ttg","game","level","Level1"];
+ttg_game_level_Level1.__super__ = ttg_game_level_Level;
+ttg_game_level_Level1.prototype = $extend(ttg_game_level_Level.prototype,{
+	load: function(game) {
+		var _g = this;
+		ttg_game_level_Level.prototype.load.call(this,game);
+		this.bg = new ttg_game_level_TileBackground(this.main,[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,8,9,10,11,12,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,13,14,15,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]);
+		this.main.addChild(this.bg);
+		this.addGameObject(new ttg_game_gameobject_ui_ButtonObject(this,700,500,100,50,"Menu",function(e) {
+			game.loadLevel(new ttg_game_level_LevelMenu(_g.main));
+		}));
+	}
+	,__class__: ttg_game_level_Level1
+});
 var ttg_game_level_LevelMenu = function(m) {
 	ttg_game_level_Level.call(this,m);
 };
@@ -35923,24 +36001,19 @@ $hxClasses["ttg.game.level.LevelMenu"] = ttg_game_level_LevelMenu;
 ttg_game_level_LevelMenu.__name__ = ["ttg","game","level","LevelMenu"];
 ttg_game_level_LevelMenu.__super__ = ttg_game_level_Level;
 ttg_game_level_LevelMenu.prototype = $extend(ttg_game_level_Level.prototype,{
-	load: function() {
+	load: function(game) {
 		var _g = this;
-		ttg_game_level_Level.prototype.load.call(this);
+		ttg_game_level_Level.prototype.load.call(this,game);
 		this.bg = new ttg_game_level_TileBackground(this.main,[[0,0,0,0,0,4,0,0,0,0,0,0,1,0,0,0,0,1,0,0],[0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,3,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,1,0,4,0,0,0,0,0,0,0,3,0,0,0,1,0,0],[4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,4,1,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,2,0,0,0,4,0,0,0,0,0,0,1,0,0,0,0,1,0,0],[0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,3,0,1,0,0],[0,0,0,0,0,4,0,0,0,0,1,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,4,2,0,0,0,0,0,0,0,1,0,0,1,0,0],[0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0]]);
 		this.main.addChild(this.bg);
-		this.testBox = new ttg_game_gameobject_TestObject(this,100,100);
-		this.addGameObject(this.testBox);
-		this.addGameObject(new ttg_game_gameobject_ui_ButtonObject(this,400,250,100,50,"W góre",function(e) {
-			_g.testBox.movement.y -= 50;
-		}));
-		this.addGameObject(new ttg_game_gameobject_ui_ButtonObject(this,400,350,100,50,"W dół",function(e1) {
-			_g.testBox.movement.y += 50;
+		this.addGameObject(new ttg_game_gameobject_ui_ButtonObject(this,400,300,200,100,"Poziom 1",function(e) {
+			game.loadLevel(new ttg_game_level_Level1(_g.main));
 		}));
 	}
 	,__class__: ttg_game_level_LevelMenu
 });
 var ttg_game_level_TileBackground = function(m,map) {
-	this.tileNames = ["trawa","trawa_kamienie","trawa_kwiatki","drzewo","sciezka"];
+	this.tileNames = ["trawa","trawa_kamienie","trawa_kwiatki","drzewo","sciezka","rowagoraprawe","rowgora","rowgoralewa","rowlewakoncowka","rowlewaczesc","rowcentrum","rowprawaczesc","rowprawakoncowka","rowdollewa","rowdol","rowdolprawe"];
 	openfl_display_Sprite.call(this);
 	var bgData = new openfl_display_BitmapData(800,600);
 	this.createBackground(bgData,map);

@@ -38,7 +38,7 @@ class Game
 		if (level != null)
 			level.exit();
 			
-		l.load();
+		l.load(this);
 		level = l;
 	}
 	
