@@ -1,10 +1,4 @@
 Bohater budzi się w rowie przy drodze jest cały obolały i nic nie pamięta.
 Bohater: Wszystko mnie boli, nic nie pamiętam. Muszę sprawdzić co mam w plecaku.{miejsce na samouczek dotyczący ekipunku}.
 Bohater: Mam niewiele zpasów, powinienem się rozejrzeć {miejsce na samouczek dotyczący sterowania}.
-co może odnaleść bohater:
-1.Karczme
-2.Dom
-3.Namiot
-4.Loch
-5.Zamek
-6.Sklep
+Bohater znajduje Karczme
