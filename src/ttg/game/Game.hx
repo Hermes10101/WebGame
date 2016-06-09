@@ -1,6 +1,7 @@
 package ttg.game;
 import ttg.game.level.Level;
 import ttg.game.gameobject.TestObject;
+import ttg.game.level.LevelMenu;
 
 /**
  * ...
@@ -18,9 +19,7 @@ class Game
 	
 	public function init()
 	{
-		level = new Level(main);
-		var obj:TestObject = new TestObject(level, 600, 300);
-		level.addGameObject(obj);
+		loadLevel(new LevelMenu(main));
 	}
 	
 	public function update()
@@ -32,6 +31,15 @@ class Game
 	public function render()
 	{
 		level.render();
+	}
+	
+	public function loadLevel(l:Level)
+	{
+		if (level != null)
+			level.exit();
+			
+		l.load();
+		level = l;
 	}
 	
 }

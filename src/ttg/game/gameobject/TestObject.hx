@@ -1,8 +1,10 @@
 package ttg.game.gameobject;
 
 import lime.math.Vector2;
+import openfl.display.Bitmap;
 import ttg.game.level.Level;
 import ttg.game.input.Input;
+import openfl.Assets;
 
 /**
  * ...
@@ -10,13 +12,20 @@ import ttg.game.input.Input;
  */
 class TestObject extends GameObject
 {
-	var movement:Vector2;
+	public var movement:Vector2;
 	var speed:Float = 10;
+	var width:Float;
+	var height:Float;
+	var imgBmp:Bitmap;
 
 	public function new(l:Level, x:Float, y:Float) 
 	{
 		super(l, x, y);
 		movement = new Vector2();
+		
+		var imgData = Assets.getBitmapData("img/lokalizacje/las/trawa.png");
+		imgBmp = new Bitmap(imgData);
+		sprite.addChild(imgBmp);
 	}
 	
 	override public function update() 
@@ -37,15 +46,15 @@ class TestObject extends GameObject
 		x += movement.x;
 		y += movement.y;
 		
+		imgBmp.x = x;
+		imgBmp.y = y;
+		
 		movement = new Vector2();
 	}
 	
 	override public function render() 
 	{
 		super.render();
-		sprite.graphics.beginFill(0xffffff);
-		sprite.graphics.drawRect(x - 50, y - 50, 100, 100);
-		sprite.graphics.endFill();
 	}
 	
 }

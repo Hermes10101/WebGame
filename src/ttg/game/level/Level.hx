@@ -38,4 +38,16 @@ class Level
 		}
 	}
 	
+	public function load()
+	{
+		
+	}
+	
+	public function exit()
+	{
+		for (obj in objects)
+		{
+			obj.destroy();
+		}
+	}
 }

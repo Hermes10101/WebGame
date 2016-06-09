@@ -32,4 +32,8 @@ class GameObject
 		sprite.graphics.clear();
 	}
 	
+	public function destroy()
+	{
+		level.main.removeChild(sprite);
+	}
 }

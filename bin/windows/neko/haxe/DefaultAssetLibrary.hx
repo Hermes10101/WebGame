@@ -52,15 +52,51 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (openfl && !flash)
 		
 		
+		
+		
+		
+		
+		
+		
 		#end
 		
 		#if flash
 		
+		path.set ("img/lokalizacje/las/drzewo.png", "img/lokalizacje/las/drzewo.png");
+		type.set ("img/lokalizacje/las/drzewo.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/korona_drzewa.png", "img/lokalizacje/las/korona_drzewa.png");
+		type.set ("img/lokalizacje/las/korona_drzewa.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/sciezka.png", "img/lokalizacje/las/sciezka.png");
+		type.set ("img/lokalizacje/las/sciezka.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/sciezka_dolna_czesc.png", "img/lokalizacje/las/sciezka_dolna_czesc.png");
+		type.set ("img/lokalizacje/las/sciezka_dolna_czesc.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/sciezka_gorna czesc.png", "img/lokalizacje/las/sciezka_gorna czesc.png");
+		type.set ("img/lokalizacje/las/sciezka_gorna czesc.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/trawa.png", "img/lokalizacje/las/trawa.png");
+		type.set ("img/lokalizacje/las/trawa.png", AssetType.IMAGE);
 		
 		
 		#elseif html5
 		
 		var id;
+		id = "img/lokalizacje/las/drzewo.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/korona_drzewa.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/sciezka.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/sciezka_dolna_czesc.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/sciezka_gorna czesc.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/trawa.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		
 		
 		var assetsPrefix = null;
@@ -78,6 +114,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		
 		
 		if (useManifest) {
@@ -725,7 +767,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
 #elseif html5
+
+
+
+
+
+
 
 
 
