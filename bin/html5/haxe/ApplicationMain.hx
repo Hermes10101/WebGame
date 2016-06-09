@@ -30,87 +30,7 @@ class ApplicationMain {
 		var types = [];
 		
 		
-		urls.push ("img/lokalizacje/las/drzewo.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/grzyby.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/korona_drzewa.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowagoraprawe.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowcentrum.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowdol.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowdollewa.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowdolprawe.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowgora.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowgoralewa.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowlewaczesc.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowlewakoncowka.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowprawaczesc.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowprawakoncowca.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/rowprawakoncowka.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/sciezka.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/sciezka_dolna_czesc.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/sciezka_gorna czesc.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/trawa.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/trawa_kamienie.png");
-		types.push (lime.Assets.AssetType.IMAGE);
-		
-		
-		urls.push ("img/lokalizacje/las/trawa_kwiatki.png");
+		urls.push ("img/tlo.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
@@ -175,7 +95,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "16",
+			build: "2",
 			company: "TTGTeam",
 			file: "WebGame",
 			fps: 60,

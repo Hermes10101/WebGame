@@ -5,6 +5,7 @@ import haxe.ds.Vector;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.Assets;
+import openfl.display.Tilesheet;
 import openfl.geom.Matrix;
 import openfl.geom.Point;
 import openfl.geom.Rectangle;
@@ -16,49 +17,45 @@ import ttg.game.Main;
  */
 class TileBackground extends Sprite
 {
-	var tileNames:Array<String> = [
-		"trawa", //0
-		"trawa_kamienie", //1
-		"trawa_kwiatki", //2
-		"drzewo", //3
-		"sciezka", //4
-		"rowagoraprawe", //5
-		"rowgora", //6
-		"rowgoralewa",
-		"rowlewakoncowka",
-		"rowlewaczesc",
-		"rowcentrum",
-		"rowprawaczesc",
-		"rowprawakoncowka",
-		"rowdollewa",
-		"rowdol",
-		"rowdolprawe"
-	];
+	private static var bgBitmap = Assets.getBitmapData("img/tlo.png");
+	public static var bgTileSheet:Tilesheet = new Tilesheet(bgBitmap);
 	
-	public function new(m:Main, map:Array<Array<Int>>) 
+	var map:Array<Array<Int>>;
+	
+	public static function init()
 	{
-		super();
-		var bgData = new BitmapData(800, 600);
-		createBackground(bgData, map);
-		var bitMap = new Bitmap(bgData);
-		addChild(bitMap);
+		for (i in 0...8)
+		{
+			for (j in 0...8)
+			{
+				bgTileSheet.addTileRect(new Rectangle(j * 40, i * 40, 40, 40));
+			}
+		}
 	}
 	
-	private function createBackground(bgData:BitmapData, map:Array<Array<Int>>)
+	public function new(m:Array<Array<Int>>) 
+	{
+		super();
+		map = m;
+		createBackground(map);
+	}
+	
+	private function createBackground(map:Array<Array<Int>>)
 	{
 		for (i in 0...map.length)
 		{
 			var row:Array<Int> = map[i];
 			for (j in 0...row.length)
 			{
-				bgData.draw(Assets.getBitmapData("img/lokalizacje/las/" + tileNames[row[j]] + ".png"), new Matrix(1, 0, 0, 1, j * 40, i * 40));
+				bgTileSheet.drawTiles(graphics, [j * 40, i * 40, row[j]]);
 			}
 		}
 	}
 	
 	public function render()
 	{
-		this.graphics.clear();
+		graphics.clear();
+		createBackground(map);
 	}
 	
 }

@@ -3,6 +3,7 @@ import openfl.display.FPS;
 import ttg.game.level.Level;
 import ttg.game.gameobject.TestObject;
 import ttg.game.level.LevelMenu;
+import ttg.game.level.TileBackground;
 
 /**
  * ...
@@ -22,6 +23,7 @@ class Game
 	
 	public function init()
 	{
+		TileBackground.init();
 		loadLevel(new LevelMenu(main));
 	}
 	

@@ -52,5 +52,6 @@ class Level
 		{
 			obj.destroy();
 		}
+		main.removeChild(bg);
 	}
 }

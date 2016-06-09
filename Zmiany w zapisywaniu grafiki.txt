@@ -1,0 +1,1 @@
+£atwiej bêdzie jeœli grafiki zapisywane bêd¹ w jednym pliku. Np. wszystkie pola t³a zapisane bêd¹ w pliku /assets/img/tlo.png
