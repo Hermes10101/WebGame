@@ -58,6 +58,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
 		#end
 		
 		#if flash
@@ -74,6 +76,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/lokalizacje/las/sciezka_gorna czesc.png", AssetType.IMAGE);
 		path.set ("img/lokalizacje/las/trawa.png", "img/lokalizacje/las/trawa.png");
 		type.set ("img/lokalizacje/las/trawa.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/trawa_kamienie.png", "img/lokalizacje/las/trawa_kamienie.png");
+		type.set ("img/lokalizacje/las/trawa_kamienie.png", AssetType.IMAGE);
+		path.set ("img/lokalizacje/las/trawa_kwiatki.png", "img/lokalizacje/las/trawa_kwiatki.png");
+		type.set ("img/lokalizacje/las/trawa_kwiatki.png", AssetType.IMAGE);
 		
 		
 		#elseif html5
@@ -97,6 +103,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "img/lokalizacje/las/trawa.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/trawa_kamienie.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/lokalizacje/las/trawa_kwiatki.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		
 		
 		var assetsPrefix = null;
@@ -114,6 +126,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -773,7 +787,11 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
 #elseif html5
+
+
 
 
 

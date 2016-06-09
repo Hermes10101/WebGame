@@ -23,7 +23,7 @@ class TestObject extends GameObject
 		super(l, x, y);
 		movement = new Vector2();
 		
-		var imgData = Assets.getBitmapData("img/lokalizacje/las/trawa.png");
+		var imgData = Assets.getBitmapData("img/lokalizacje/las/sciezka_dolna_czesc.png");
 		imgBmp = new Bitmap(imgData);
 		sprite.addChild(imgBmp);
 	}

@@ -10,6 +10,7 @@ class Level
 {
 	var objects:Array<GameObject>;
 	public var main:Main;
+	var bg:TileBackground;
 	
 	public function new(m:Main) 
 	{
@@ -32,6 +33,7 @@ class Level
 	
 	public function render()
 	{
+		bg.render();
 		for (obj in objects)
 		{
 			obj.render();
