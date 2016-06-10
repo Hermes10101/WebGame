@@ -1,5 +1,5 @@
-Rozdzielczość 1280x720.
-Tadek zajmuje się silnikem, Tomek zajmie się grafiką i fabułą, Gerard grafiką.
+﻿Rozdzielczość 1280x720.
+Tadek zajmuje się silnikem, Tomek zajmie się fabułą, Gerard grafiką,Patryk zjmuje się muzyką,fabułą i grafiką.
 Gatunek-RPG.
 Pegi 16.
 Pikselowa grafika.
