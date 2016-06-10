@@ -1,4 +1,56 @@
-Bohater budzi się w rowie przy drodze jest cały obolały i nic nie pamięta.
-Bohater: Wszystko mnie boli, nic nie pamiętam. Muszę sprawdzić co mam w plecaku.{miejsce na samouczek dotyczący ekipunku}.
-Bohater: Mam niewiele zpasów, powinienem się rozejrzeć {miejsce na samouczek dotyczący sterowania}.
+﻿Bohater budzi się w rowie przy drodze jest cały obolały i nic nie pamięta.
+Bohater: Wszystko mnie boli, nic nie pamiętam. Muszę sprawdzić co mam w plecaku.[miejsce na samouczek dotyczący ekipunku].
+Bohater: Mam niewiele zpasów, powinienem się rozejrzeć [miejsce na samouczek dotyczący sterowania].
+Bohater: Sprawdze co mam w tobołkach [samouczek dotyczący interakcji z przedmiotami]
 Bohater znajduje Karczme
+bohater podchodzi do karczmarza[interackja z npc i handlu]
+karczmar:witaj jesteś tu nowy,może skusisz sie na ciepły posiłek i noclek.
+bohater:[to chyba dobry pomysł]"ile kosztuje nocleg"
+karczmarz:"dla ciebie za 5 monet bedzie jedzenie a nocleg 10"
+bohater"dobra to ja poprosze kolacje nocleg i śniadanie"
+bohater idzie spać
+nastepnei idzie do karczmarza po śniadanie i nagle podchodzi do niego kowal
+kowal"witja widze że jesteś przybyłym i wyglądasz na biednego , ale możesz dostać pieniądze za prace u mnie"
+bohater[brakuje mi pieniedzy wiec jednak warto by było coś zarobić]"dobra co chcesz"
+kowal"chodź zamną"
+idą do kuźni
+jak doszli to kowal mówi"potrzebuje węgla ale na w kopalni grasuje stwór"
+bohater"dobrze,zrobie to ale potrzebuje tarczy'
+kowal"dobrze masz tu jedną powinna być dobra"
+idzie do kopalni tam jest {nie mam jeszcze pomysłu} zaczyna się samouczek do walki
+zabija to coś. zdobywa węgiel i idzie do kowala 
+kokwal"dziękuje za zabicie i przyniesienie węgla masz tu 50gg za fatygę"
+bohater"nie ma sprawy jak byś coś jeszcze chiał to pomogę, oczywiście nie za darmo"
+bohater odchodzi i ma po samouczku
+bohater"dobra teraz powinieniem pójść do karczmy by podziękować za nocleg"
+wchodzi do karczmy widzi zakaprturzoną postać 
+zakapturzony"naraszcie cie znalazłem."
+bohater patrzy na niego dość zdiwiony bo go nie rozpoznaje
+zakapturzonny"co tak na mnie patrzysz jak byś mnie nie znał...  najwidoczniej cię dorwali i wymazali ci pamięć jak zwykle mają w naturze. ale spokojnie to minie ale nie odrazu.wiem że mnie nie pamiętasz ale msisz mi zaufać"
+bohater"no dobrze nic nie pamiętam więc uznam że ci zaufam"
+zakapturzony"powińeneś porozglądać się wokół i pomóc ludzią którzy będą potrzebowali twej pomocy i dzięki temu powinno ci przywrócić przynajmniej skrwatek pamięci. przyjde za 3 dni i zobaczymy co dalej"
+następna noc podczas snu bohaterowi przypomina sobie jedno wydarzenie w którym brał on udział i był tma zakapturozny i jeszcze jeden którego nie zna
+nie znajomy"zostaw nas w spokoju, nie oddam ci recepty"'
+zakapturzony"jeszcze tu wrócę a wtedy nie będę już miły. ZGINIECIĘ OBAJ"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+jeszcze mam pomysł żeby dać w karczmie mistrela który za pieniądze będzie spiewał ballady 
+
+przeszłośc bohatera:przewodnik powstania po wygranej bitwie za ginoł i po 10 lata powrócił do ojczyzny z wymazaną pamięcią
+enjoy ;)
