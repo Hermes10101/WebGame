@@ -1,0 +1,7 @@
+Zadania od Kowala.
+1.Potrzebuje żelaza, proszę przynieś mi go z kopalni.(Kilka wersji zadania np. najpierw 15 sztuk później 30, 45 i najwięcej 60, nagorda rosła by wraz z wzrostem ilości żelaza).
+2.Przynieś mi jedzenie.(Zapłata byłaby trochę większa od ceny posiłku).
+3.Przynieś mi węgiel z kopalni.(To samo co przy żelazie).
+Zadania od Minstrela.
+1.Przynieś mi jedzenie.(To co przy kowalu).
+...
