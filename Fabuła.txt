@@ -34,7 +34,9 @@ Duga noc od spotkania. Podczas snu bohaterowi przypomina sobie jedno wydarzenie 
 Nieznajomy: Zostaw nas w spokoju, nie oddam ci recepty.
 Zakapturzony: Jeszcze tu wrócę a wtedy nie będę już miły. ZGINIECIE OBAJ.
 Bohater budzi się w południe (normalnie rano) od Karczmarza dostaje kartke od zakapturzonego.
-Na kartce: „Nie mogłem czekać, musiałem ruszać do tego upierdliwego alchemika. Podążaj za mną, ale tylko wtedy, jeśli jesteś w stanie przetrwać noc. Oczekuję, że szybko do mnie dołączysz.”  
+Na kartce: „Nie mogłem czekać, musiałem ruszać do tego upierdliwego alchemika. Podążaj za mną, ale tylko wtedy, jeśli jesteś w stanie przetrwać noc. Oczekuję, że szybko do mnie dołączysz.”
+Pojawia się wspomnienie zakapturzonego i nagły obraz postaci z wizji
+Bohater: Coś mi tu nie gra…  
 
 
 
