@@ -58,7 +58,28 @@ Bohater dostaje zadanie - „Znajdź sposób by przetrwać noc”. Dostępne opc
  Bohater: 1)1]masz może chwilę na rozmowę?
           1)2]wiesz może jak można przetrwać noc w drodze?
  Siedzący:1)1]obawiam się, że nie
-          1)2]przykro mi, ale nie. Wydaje mi się, że może ktoś z tamtej grupki będzie coś wiedział 
+          1)2]przykro mi, ale nie. Wydaje mi się, że może ktoś z tamtej grupki będzie coś wiedział
+Bohater odchodzi od stolika numer 1, idzie do stolika numer 2
+ Bohater: 1)witajcie
+          2)jak się macie?
+ Grupka:  1)witaj
+          2)dobrze, bracie, a ty?
+ Bohater: 1)1]możemy pogadać?
+          1)2]jak tam?
+          2)1]w porządku, możemy pogadać?
+          2)2]kiepsko
+ Grupka:  1)1]pewnie
+          1)2]dobrze, bracie, a ty?
+          2)1]pewnie, bracie
+          2)2]a czemuż to? Masz tu 10 srebrników, na poprawę humoru, bracie!
+ Bohater: 1)1]wiecie może jak przetrwać noc w drodze?
+          1)2]dobrze, nie będę wam przeszkadzał {odejście}
+          2)1]wiecie może jak przetrwać noc w drodze?
+          2)2]dziękuje, wiecie może jak przetrwać noc w drodze?
+ Grupka:  1)1]nie, bracie
+          2)1]nie, ale może karczmarz będzie coś wiedział?
+          2)2]nie, przykro nam, bracie
+Bohater odchodzi od stolika numer 2, idzie do lady  
            
 
 
