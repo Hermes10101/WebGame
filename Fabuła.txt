@@ -33,6 +33,8 @@ Zakapturzony: Powinieneś porozglądać się wokół i pomóc ludziom którzy po
 Duga noc od spotkania. Podczas snu bohaterowi przypomina sobie jedno wydarzenie w którym brał on udział i był tma zakapturozny, i jeszcze jeden którego nie pamiętał.
 Nieznajomy: Zostaw nas w spokoju, nie oddam ci recepty.
 Zakapturzony: Jeszcze tu wrócę a wtedy nie będę już miły. ZGINIECIE OBAJ.
+Bohater budzi się w południe (normalnie rano) od Karczmarza dostaje kartke od zakapturzonego.
+"
 
 
 
@@ -51,7 +53,6 @@ Zakapturzony: Jeszcze tu wrócę a wtedy nie będę już miły. ZGINIECIE OBAJ.
 
 
 
-Jeszcze mam pomysł żeby dać w karczmie mistrela który za pieniądze będzie spiewał ballady 
-
+Minstrel będzie podróżował z bohaterem.
 Przeszłość bohatera:przewodnik powstania po wygranej bitwie zaginął i po 10 latach powrócił do ojczyzny z wymazaną pamięcią.
 enjoy ;)
