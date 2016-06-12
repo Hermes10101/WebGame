@@ -1,4 +1,4 @@
-﻿Bohater budzi się w rowie przy drodze jest cały obolały i nic nie pamięta.
+Bohater budzi się w rowie przy drodze jest cały obolały i nic nie pamięta.
 Bohater: Wszystko mnie boli, nic nie pamiętam. Muszę sprawdzić co mam w plecaku.[miejsce na samouczek dotyczący ekipunku].
 Bohater: Mam niewiele zpasów, powinienem się rozejrzeć [miejsce na samouczek dotyczący sterowania].
 Bohater: Sprawdze co mam w tobołkach [samouczek dotyczący interakcji z przedmiotami]
@@ -34,7 +34,7 @@ Duga noc od spotkania. Podczas snu bohaterowi przypomina sobie jedno wydarzenie 
 Nieznajomy: Zostaw nas w spokoju, nie oddam ci recepty.
 Zakapturzony: Jeszcze tu wrócę a wtedy nie będę już miły. ZGINIECIE OBAJ.
 Bohater budzi się w południe (normalnie rano) od Karczmarza dostaje kartke od zakapturzonego.
-"
+Minstrel siedzi pod karczmą
 
 
 
