@@ -36,7 +36,30 @@ Zakapturzony: Jeszcze tu wrócę a wtedy nie będę już miły. ZGINIECIE OBAJ.
 Bohater budzi się w południe (normalnie rano) od Karczmarza dostaje kartke od zakapturzonego.
 Na kartce: „Nie mogłem czekać, musiałem ruszać do tego upierdliwego alchemika. Podążaj za mną, ale tylko wtedy, jeśli jesteś w stanie przetrwać noc. Oczekuję, że szybko do mnie dołączysz.”
 Pojawia się wspomnienie zakapturzonego i nagły obraz postaci z wizji
-Bohater: Coś mi tu nie gra…  
+Bohater: Coś mi tu nie gra…
+Bohater dostaje zadanie - „Znajdź sposób by przetrwać noc”. Dostępne opcje: Podejdź do stolika numer 1, rozmawiaj z siedzącym. Podejdź do stolika numer 2, rozmawiaj z grupą siedzących. Podejdź do lady, rozmawiaj z karczmarzem.
+ Stolik numer:
+ Bohater: 1)witaj
+          2)hej
+          3)co słychać?
+ Siedzący:1)witaj
+          2)nie spoufalasz się za bardzo?
+          3)w porządku
+ Bohater: 1)1]co słychać?
+          1)2]masz może chwilę na rozmowę?
+          2)1]wybacz, może jeszcze raz zaczniemy rozmowę? 
+          2)2]{odejście}
+          3)1]masz może chwilę na rozmowę?
+          3)2]nie będę ci przeszkadzał {odejście}
+ Siedzący:1)1]w porządku
+          1)2]czemu by nie?
+          2)1]{cofnięcie do samego początku rozmowy}
+          3)1]nie {odejście}
+ Bohater: 1)1]masz może chwilę na rozmowę?
+          1)2]wiesz może jak można przetrwać noc w drodze?
+ Siedzący:1)1]obawiam się, że nie
+          1)2]przykro mi, ale nie. Wydaje mi się, że może ktoś z tamtej grupki będzie coś wiedział 
+           
 
 
 
