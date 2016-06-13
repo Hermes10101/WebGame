@@ -1,7 +1,9 @@
 package ttg.game.level;
+import flash.display.Sprite;
 import ttg.game.Game;
 import ttg.game.Main;
 import ttg.game.gameobject.GameObject;
+import ttg.game.physics.Collider;
 
 /**
  * ...
@@ -9,19 +11,28 @@ import ttg.game.gameobject.GameObject;
  */
 class Level
 {
-	var objects:Array<GameObject>;
+	public var objects:Array<GameObject>;
 	public var main:Main;
 	var bg:TileBackground;
+	public var colliders:Array<Collider>;
+	var debugSprite:Sprite;
 	
 	public function new(m:Main) 
 	{
 		objects = new Array<GameObject>();
+		colliders = new Array<Collider>();
 		main = m;
+		debugSprite = new Sprite();
 	}
 	
 	public function addGameObject(obj:GameObject)
 	{
 		objects.push(obj);
+	}
+	
+	public function addCollider(col:Collider)
+	{
+		colliders.push(col);
 	}
 	
 	public function update()
@@ -34,10 +45,15 @@ class Level
 	
 	public function render()
 	{
+		debugSprite.graphics.clear();
 		bg.render();
 		for (obj in objects)
 		{
 			obj.render();
+		}
+		for (col in colliders)
+		{
+			col.debugDraw(debugSprite.graphics);
 		}
 	}
 	

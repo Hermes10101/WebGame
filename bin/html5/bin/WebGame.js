@@ -47,7 +47,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "25", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
+	ApplicationMain.config = { build : "212", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -35751,7 +35751,15 @@ haxe_lang_Iterable.__name__ = ["haxe","lang","Iterable"];
 haxe_lang_Iterable.prototype = {
 	__class__: haxe_lang_Iterable
 };
+var ttg_game_GameState = $hxClasses["ttg.game.GameState"] = { __ename__ : true, __constructs__ : ["Playing","Paused"] };
+ttg_game_GameState.Playing = ["Playing",0];
+ttg_game_GameState.Playing.toString = $estr;
+ttg_game_GameState.Playing.__enum__ = ttg_game_GameState;
+ttg_game_GameState.Paused = ["Paused",1];
+ttg_game_GameState.Paused.toString = $estr;
+ttg_game_GameState.Paused.__enum__ = ttg_game_GameState;
 var ttg_game_Game = function(m) {
+	this.state = ttg_game_GameState.Playing;
 	this.main = m;
 	this.fps = new openfl_display_FPS(10,10,15658734);
 };
@@ -35763,7 +35771,7 @@ ttg_game_Game.prototype = {
 		this.loadLevel(new ttg_game_level_LevelMenu(this.main));
 	}
 	,update: function() {
-		this.level.update();
+		if(this.state == ttg_game_GameState.Playing) this.level.update();
 		this.render();
 	}
 	,render: function() {
@@ -35783,6 +35791,7 @@ var ttg_game_gameobject_GameObject = function(l,x,y) {
 	this.sprite = new openfl_display_Sprite();
 	this.level = l;
 	l.main.addChild(this.sprite);
+	l.addGameObject(this);
 };
 $hxClasses["ttg.game.gameobject.GameObject"] = ttg_game_gameobject_GameObject;
 ttg_game_gameobject_GameObject.__name__ = ["ttg","game","gameobject","GameObject"];
@@ -35798,11 +35807,13 @@ ttg_game_gameobject_GameObject.prototype = {
 	,__class__: ttg_game_gameobject_GameObject
 };
 var ttg_game_gameobject_TestObject = function(l,x,y) {
-	this.speed = 10;
+	this.speed = 5;
 	ttg_game_gameobject_GameObject.call(this,l,x,y);
 	this.width = 100;
 	this.height = 100;
-	this.movement = new lime_math_Vector2();
+	this.movement = new openfl_geom_Point();
+	this.hitBox = new ttg_game_physics_AABB(x - this.width / 2,y - this.height / 2,this.width,this.height);
+	l.addCollider(this.hitBox);
 };
 $hxClasses["ttg.game.gameobject.TestObject"] = ttg_game_gameobject_TestObject;
 ttg_game_gameobject_TestObject.__name__ = ["ttg","game","gameobject","TestObject"];
@@ -35814,9 +35825,17 @@ ttg_game_gameobject_TestObject.prototype = $extend(ttg_game_gameobject_GameObjec
 		if(ttg_game_input_Input.isKeyDown(38)) this.movement.y -= this.speed;
 		if(ttg_game_input_Input.isKeyDown(39)) this.movement.x += this.speed;
 		if(ttg_game_input_Input.isKeyDown(40)) this.movement.y += this.speed;
+		this.hitBox.update(this.x - this.width / 2,this.y - this.height / 2,this.width,this.height);
+		var _g = 0;
+		var _g1 = this.level.colliders;
+		while(_g < _g1.length) {
+			var col = _g1[_g];
+			++_g;
+			if(this.hitBox.checkCollision(col,this.movement)) this.hitBox.collide(col,this.movement);
+		}
 		this.x += this.movement.x;
 		this.y += this.movement.y;
-		this.movement = new lime_math_Vector2();
+		this.movement = new openfl_geom_Point();
 	}
 	,render: function() {
 		ttg_game_gameobject_GameObject.prototype.render.call(this);
@@ -35875,13 +35894,18 @@ ttg_game_input_Input.isKeyDown = function(keyCode) {
 };
 var ttg_game_level_Level = function(m) {
 	this.objects = [];
+	this.colliders = [];
 	this.main = m;
+	this.debugSprite = new openfl_display_Sprite();
 };
 $hxClasses["ttg.game.level.Level"] = ttg_game_level_Level;
 ttg_game_level_Level.__name__ = ["ttg","game","level","Level"];
 ttg_game_level_Level.prototype = {
 	addGameObject: function(obj) {
 		this.objects.push(obj);
+	}
+	,addCollider: function(col) {
+		this.colliders.push(col);
 	}
 	,update: function() {
 		var _g = 0;
@@ -35893,6 +35917,7 @@ ttg_game_level_Level.prototype = {
 		}
 	}
 	,render: function() {
+		this.debugSprite.get_graphics().clear();
 		this.bg.render();
 		var _g = 0;
 		var _g1 = this.objects;
@@ -35900,6 +35925,13 @@ ttg_game_level_Level.prototype = {
 			var obj = _g1[_g];
 			++_g;
 			obj.render();
+		}
+		var _g2 = 0;
+		var _g11 = this.colliders;
+		while(_g2 < _g11.length) {
+			var col = _g11[_g2];
+			++_g2;
+			col.debugDraw(this.debugSprite.get_graphics());
 		}
 	}
 	,load: function(game) {
@@ -35928,10 +35960,18 @@ ttg_game_level_Level1.prototype = $extend(ttg_game_level_Level.prototype,{
 		ttg_game_level_Level.prototype.load.call(this,game);
 		this.bg = new ttg_game_level_TileBackground([[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,9,10,11,12,13,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]);
 		this.main.addChild(this.bg);
-		this.addGameObject(new ttg_game_gameobject_ui_ButtonObject(this,700,500,100,50,"Menu",function(e) {
+		new ttg_game_gameobject_ui_ButtonObject(this,700,500,100,50,"Menu",function(e) {
 			game.loadLevel(new ttg_game_level_LevelMenu(_g.main));
-		}));
-		this.addGameObject(new ttg_game_gameobject_TestObject(this,700,200));
+		});
+		new ttg_game_gameobject_TestObject(this,700,300);
+		this.addCollider(new ttg_game_physics_AABB(150,150,500,50));
+		this.addCollider(new ttg_game_physics_AABB(150,200,50,200));
+		this.addCollider(new ttg_game_physics_AABB(150,400,500,50));
+		this.addCollider(new ttg_game_physics_BorderCollider(false,false,0));
+		this.addCollider(new ttg_game_physics_BorderCollider(true,false,0));
+		this.addCollider(new ttg_game_physics_BorderCollider(false,true,800));
+		this.addCollider(new ttg_game_physics_BorderCollider(true,true,600));
+		this.main.addChild(this.debugSprite);
 	}
 	,__class__: ttg_game_level_Level1
 });
@@ -35947,9 +35987,10 @@ ttg_game_level_LevelMenu.prototype = $extend(ttg_game_level_Level.prototype,{
 		ttg_game_level_Level.prototype.load.call(this,game);
 		this.bg = new ttg_game_level_TileBackground([[0,1,2,3,0,3,2,0,1,1,2,0,0,3,2,1,0,0,0,0],[0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,3,2,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],[6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6],[7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7],[0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,1,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,0,0],[0,2,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0],[0,0,0,0,0,2,0,0,0,0,1,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,3,2,0,0,0,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,0,0]]);
 		this.main.addChild(this.bg);
-		this.addGameObject(new ttg_game_gameobject_ui_ButtonObject(this,400,300,200,100,"Poziom 1",function(e) {
+		new ttg_game_gameobject_ui_ButtonObject(this,400,300,200,100,"Poziom 1",function(e) {
 			game.loadLevel(new ttg_game_level_Level1(_g.main));
-		}));
+		});
+		this.main.addChild(this.debugSprite);
 	}
 	,__class__: ttg_game_level_LevelMenu
 });
@@ -35995,6 +36036,112 @@ ttg_game_level_TileBackground.prototype = $extend(openfl_display_Sprite.prototyp
 		this.createBackground(this.map);
 	}
 	,__class__: ttg_game_level_TileBackground
+});
+var ttg_game_physics_Collider = function() { };
+$hxClasses["ttg.game.physics.Collider"] = ttg_game_physics_Collider;
+ttg_game_physics_Collider.__name__ = ["ttg","game","physics","Collider"];
+ttg_game_physics_Collider.prototype = {
+	checkCollision: function(other,movement) {
+		return false;
+	}
+	,collide: function(other,movement) {
+	}
+	,debugDraw: function(graphics) {
+	}
+	,__class__: ttg_game_physics_Collider
+};
+var ttg_game_physics_AABB = function(x,y,width,height) {
+	this.rect = new openfl_geom_Rectangle(x,y,width,height);
+};
+$hxClasses["ttg.game.physics.AABB"] = ttg_game_physics_AABB;
+ttg_game_physics_AABB.__name__ = ["ttg","game","physics","AABB"];
+ttg_game_physics_AABB.__super__ = ttg_game_physics_Collider;
+ttg_game_physics_AABB.prototype = $extend(ttg_game_physics_Collider.prototype,{
+	update: function(x,y,width,height) {
+		this.rect.x = x;
+		this.rect.y = y;
+		this.rect.width = width;
+		this.rect.height = height;
+	}
+	,checkCollision: function(other,movement) {
+		if(other == this) return false;
+		if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) return new openfl_geom_Rectangle(this.rect.x + movement.x,this.rect.y + movement.y,this.rect.width,this.rect.height).intersects((js_Boot.__cast(other , ttg_game_physics_AABB)).rect);
+		if(js_Boot.__instanceof(other,ttg_game_physics_BorderCollider)) return (js_Boot.__cast(other , ttg_game_physics_BorderCollider)).checkCollision(this,movement);
+		return false;
+	}
+	,collide: function(other,movement) {
+		if(other == this) return;
+		if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) this.AABBvsAABB(this.rect,(js_Boot.__cast(other , ttg_game_physics_AABB)).rect,movement);
+		if(js_Boot.__instanceof(other,ttg_game_physics_BorderCollider)) this.AABBvsBorder(this.rect,movement,js_Boot.__cast(other , ttg_game_physics_BorderCollider));
+	}
+	,AABBvsAABB: function(rect,otherRect,movement) {
+		var newX = 0;
+		var newY = 0;
+		if(rect.get_right() + movement.x > otherRect.x && !(rect.x + movement.x < otherRect.get_right())) newX = Math.min(rect.get_right(),otherRect.x) - Math.max(rect.get_right(),otherRect.x);
+		if(rect.x + movement.x < otherRect.get_right() && !(rect.get_right() + movement.x > otherRect.x)) newX = Math.max(rect.x,otherRect.get_right()) - Math.min(rect.x,otherRect.get_right());
+		if(rect.get_top() + movement.y < otherRect.get_top() && !(rect.y + movement.y < otherRect.get_top())) newY = Math.min(rect.get_top(),otherRect.y) - Math.max(rect.get_top(),otherRect.y);
+		if(rect.y + movement.y < otherRect.get_top() && !(rect.get_top() + movement.y < otherRect.get_top())) newY = Math.max(rect.y,otherRect.get_top()) - Math.min(rect.y,otherRect.get_top());
+		movement.x = newX;
+		movement.y = newY;
+	}
+	,AABBvsBorder: function(rect,movement,border) {
+		if(!border.axis) {
+			if(!border.normal) movement.x = border.location - rect.x; else movement.x = rect.get_right() - border.location;
+		} else if(!border.normal) movement.y = border.location - rect.get_top(); else movement.y = border.location - rect.get_bottom();
+	}
+	,debugDraw: function(graphics) {
+		graphics.lineStyle(1,16711680);
+		graphics.drawRect(this.rect.x,this.rect.y,this.rect.width,this.rect.height);
+	}
+	,__class__: ttg_game_physics_AABB
+});
+var ttg_game_physics_BorderCollider = function(a,n,l) {
+	this.axis = a;
+	this.normal = n;
+	this.location = l;
+};
+$hxClasses["ttg.game.physics.BorderCollider"] = ttg_game_physics_BorderCollider;
+ttg_game_physics_BorderCollider.__name__ = ["ttg","game","physics","BorderCollider"];
+ttg_game_physics_BorderCollider.__super__ = ttg_game_physics_Collider;
+ttg_game_physics_BorderCollider.prototype = $extend(ttg_game_physics_Collider.prototype,{
+	checkCollision: function(other,movement) {
+		if(other == this) return false;
+		if(!this.axis) {
+			if(!this.normal) {
+				var otherLeft = null;
+				if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherLeft = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.x + movement.x;
+				if(otherLeft == null) return false;
+				return otherLeft < this.location;
+			} else {
+				var otherRight = null;
+				if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherRight = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_right() + movement.x;
+				if(otherRight == null) return false;
+				return otherRight > this.location;
+			}
+		} else if(!this.normal) {
+			var otherTop = null;
+			if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherTop = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_top() + movement.y;
+			if(otherTop == null) return false;
+			return otherTop < this.location;
+		} else {
+			var otherBottom = null;
+			if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherBottom = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_bottom() + movement.y;
+			if(otherBottom == null) return false;
+			return otherBottom > this.location;
+		}
+		return false;
+	}
+	,debugDraw: function(graphics) {
+		graphics.lineStyle(3,16711680);
+		if(this.axis) {
+			graphics.moveTo(0,this.location);
+			graphics.lineTo(800,this.location);
+		} else {
+			graphics.moveTo(this.location,0);
+			graphics.lineTo(this.location,600);
+		}
+	}
+	,__class__: ttg_game_physics_BorderCollider
 });
 var $_, $fid = 0;
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $fid++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = function(){ return f.method.apply(f.scope, arguments); }; f.scope = o; f.method = m; o.hx__closures__[m.__id__] = f; } return f; }

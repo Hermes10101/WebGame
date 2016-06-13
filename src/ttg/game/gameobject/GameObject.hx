@@ -20,6 +20,7 @@ class GameObject
 		sprite = new Sprite();
 		level = l;
 		l.main.addChild(sprite);
+		l.addGameObject(this);
 	}
 	
 	public function update()

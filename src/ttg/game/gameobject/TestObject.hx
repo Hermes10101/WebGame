@@ -1,10 +1,10 @@
 package ttg.game.gameobject;
 
-import lime.math.Vector2;
-import openfl.display.Bitmap;
-import ttg.game.level.Level;
+import openfl.geom.Point;
 import ttg.game.input.Input;
-import openfl.Assets;
+import ttg.game.level.Level;
+import ttg.game.physics.AABB;
+import ttg.game.physics.Collider;
 
 /**
  * ...
@@ -12,17 +12,20 @@ import openfl.Assets;
  */
 class TestObject extends GameObject
 {
-	public var movement:Vector2;
-	var speed:Float = 10;
+	public var movement:Point;
+	var speed:Float = 5;
 	var width:Float;
 	var height:Float;
+	var hitBox:AABB;
 
 	public function new(l:Level, x:Float, y:Float) 
 	{
 		super(l, x, y);
 		width = 100;
 		height = 100;
-		movement = new Vector2();
+		movement = new Point();
+		hitBox = new AABB(x - width / 2, y - height / 2, width, height);
+		l.addCollider(hitBox);
 	}
 	
 	override public function update() 
@@ -40,10 +43,19 @@ class TestObject extends GameObject
 		if (Input.isKeyDown(40))
 			movement.y += speed;
 		
+		hitBox.update(x - (width / 2), y - (height / 2), width, height);
+		for (col in level.colliders)
+		{
+			if (hitBox.checkCollision(col, movement))
+			{
+				hitBox.collide(col, movement);
+			}
+		}
+		
 		x += movement.x;
 		y += movement.y;
 		
-		movement = new Vector2();
+		movement = new Point();
 	}
 	
 	override public function render() 

@@ -1,6 +1,5 @@
 package ttg.game.level;
 
-import openfl.display.FPS;
 import ttg.game.Main;
 import ttg.game.gameobject.TestObject;
 import ttg.game.gameobject.ui.ButtonObject;
@@ -41,9 +40,11 @@ class LevelMenu extends Level
 		]);
 		main.addChild(bg);
 		
-		addGameObject(new ButtonObject(this, 400, 300, 200, 100, "Poziom 1", function(e) { 
+		new ButtonObject(this, 400, 300, 200, 100, "Poziom 1", function(e) { 
 			game.loadLevel(new Level1(main));
-		} ));
+		} );
+		
+		main.addChild(debugSprite);
 	}
 	
 }

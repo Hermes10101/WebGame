@@ -91,7 +91,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "27",
+			build: "192",
 			company: "TTGTeam",
 			file: "WebGame",
 			fps: 60,

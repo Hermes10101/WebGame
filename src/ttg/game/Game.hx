@@ -1,7 +1,7 @@
 package ttg.game;
+
 import openfl.display.FPS;
 import ttg.game.level.Level;
-import ttg.game.gameobject.TestObject;
 import ttg.game.level.LevelMenu;
 import ttg.game.level.TileBackground;
 
@@ -9,11 +9,18 @@ import ttg.game.level.TileBackground;
  * ...
  * @author Tad
  */
+enum GameState
+{
+	Playing;
+	Paused;
+}
+ 
 class Game
 {
 	var main:Main;
 	var level:Level;
 	var fps:FPS;
+	var state:GameState = GameState.Playing;
 
 	public function new(m:Main) 
 	{
@@ -29,7 +36,9 @@ class Game
 	
 	public function update()
 	{
-		level.update();
+		if (state == GameState.Playing)
+			level.update();
+		
 		render();
 	}
 	
