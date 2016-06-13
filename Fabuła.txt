@@ -1,39 +1,39 @@
 Bohater budzi się w rowie przy drodze jest cały obolały i nic nie pamięta.
 Bohater: Wszystko mnie boli, nic nie pamiętam. Muszę sprawdzić co mam w plecaku.[miejsce na samouczek dotyczący ekipunku].
-Bohater: Mam niewiele zpasów, powinienem się rozejrzeć [miejsce na samouczek dotyczący sterowania].
-Bohater: Sprawdze co mam w tobołkach [samouczek dotyczący interakcji z przedmiotami]
-Bohater znajduje Karczme
-Bohater podchodzi do karczmarza[samouczek o interackji z npc i handlu]
-Karczmarzarczmarz: Witaj jesteś tu nowy,może skusisz sie na ciepły posiłek i noclek.
+Bohater: Mam niewiele zapasów, powinienem się rozejrzeć [miejsce na samouczek dotyczący sterowania].
+Bohater: Sprawdzę co mam w tobołkach [samouczek dotyczący interakcji z przedmiotami]
+Bohater znajduje Karczmę
+Bohater podchodzi do karczmarza[samouczek o interakcji z noc i handlu]
+Karczmarz: Witaj jesteś tu nowy,może skusisz się na ciepły posiłek i nocleg.
 Bohater; [to chyba dobry pomysł]: Ile kosztuje nocleg?
-Karczmarz: Dla ciebie za 5 monet bedzie jedzenie a nocleg 10.
-Bohater: Dobra to ja poprosze kolacje nocleg i śniadanie.
+Karczmarz: Dla ciebie za 5 monet będzie jedzenie a nocleg 10.
+Bohater: Dobra to ja poproszę kolacje nocleg i śniadanie.
 Bohater idzie spać.
-Budzi sie, nastepnie idzie do karczmarza po śniadanie. Nagle podchodzi do niego Kowal.
-Kowal: Witaj widze że jesteś nowo przybyłym i wyglądasz na biednego , ale możesz dostać pieniądze za prace u mnie.
-Bohater; [brakuje mi pieniedzy wiec jednak warto by było coś zarobić]: Dobra co chcesz.
+Budzi się, następnie idzie do karczmarza po śniadanie. Nagle podchodzi do niego Kowal.
+Kowal: Witaj widzę że jesteś nowo przybyłym i wyglądasz na biednego , ale możesz dostać pieniądze za prace u mnie.
+Bohater; [brakuje mi pieniędzy wiec jednak warto by było coś zarobić]: Dobra co chcesz.
 Kowal: Chodź za mną.
 Idą do kuźni.
 W kuźni.
 Kowal: Potrzebuje węgla ale na drodze do kopalni grasuje stwór.
-Bohater: Dobrze,zrobie to ale potrzebuje tarczy.
+Bohater: Dobrze,zrobię to ale potrzebuje tarczy.
 Kowal: Dobrze masz tu jedną powinna być dobra.
 Bohater idzie do kopalni pod drodze spotyka {nie mam jeszcze pomysłu} zaczyna się samouczek do walki.
 Bohater zabija to coś. zdobywa węgiel i idzie do Kowala. 
 Kowal: Dziękuje za oczyszczenie drogi i przyniesienie węgla masz tu 50 monet za fatygę.
 Bohater: Nie ma sprawy, jak byś coś jeszcze czegoś potrzebował to powiedz.
 Bohater odchodzi [koniec samouczków,gracz może dowolnie poruszać sie po mapie].
-Bohater: Dobra teraz powinieniem pójść do karczmy coś zjeść i wykupić nocleg.
+Bohater: Dobra teraz powinienem pójść do karczmy coś zjeść i wykupić nocleg.
 Wchodzi do karczmy widzi zakapturzoną postać. 
-Zakapturzony: Naraszcie cie znalazłem.
-Bohater patrzy na niego dość zdiwiony bo go nie wie kto to jest.
-Zakapturzony: Co tak na mnie patrzysz jak byś mnie nie znał...?  Najwidoczniej cię dorwali i wymazali ci pamięć jak zwykle mają w naturze. Ale spokojnie to minie niestety nie odrazu. Wiem że mnie nie pamiętasz ale musisz mi zaufać.
+Zakapturzony: Nareszcie cie znalazłem.
+Bohater patrzy na niego dość zdziwiony bo go nie wie kto to jest.
+Zakapturzony: Co tak na mnie patrzysz jak byś mnie nie znał...?  Najwidoczniej cię dorwali i wymazali ci pamięć jak zwykle mają w naturze. Ale spokojnie to minie niestety nie od razu. Wiem że mnie nie pamiętasz ale musisz mi zaufać.
 Bohater: No dobrze nic nie pamiętam więc uznam że ci zaufam.
-Zakapturzony: Powinieneś porozglądać się wokół i pomóc ludziom którzy potrzebują pomocy i dzięki temu powinno ci przywrócić przynajmniej skrawek pamięci. Przyjde za 3 dni i zobaczymy co dalej.
-Duga noc od spotkania. Podczas snu bohaterowi przypomina sobie jedno wydarzenie w którym brał on udział i był tma zakapturozny, i jeszcze jeden którego nie pamiętał.
+Zakapturzony: Powinieneś porozglądać się wokół i pomóc ludziom którzy potrzebują pomocy i dzięki temu powinno ci przywrócić przynajmniej skrawek pamięci. Przyjdę za 3 dni i zobaczymy co dalej.
+Długa noc od spotkania. Podczas snu bohaterowi przypomina sobie jedno wydarzenie w którym brał on udział i był tam zakapturzony, i jeszcze jeden którego nie pamiętał.
 Nieznajomy: Zostaw nas w spokoju, nie oddam ci recepty.
 Zakapturzony: Jeszcze tu wrócę a wtedy nie będę już miły. ZGINIECIE OBAJ.
-Bohater budzi się w południe (normalnie rano) od Karczmarza dostaje kartke od zakapturzonego.
+Bohater budzi się w południe (normalnie rano) od Karczmarza dostaje kartkę od zakapturzonego.
 Na kartce: „Nie mogłem czekać, musiałem ruszać do tego upierdliwego alchemika. Podążaj za mną, ale tylko wtedy, jeśli jesteś w stanie przetrwać noc. Oczekuję, że szybko do mnie dołączysz.”
 Pojawia się wspomnienie zakapturzonego i nagły obraz postaci z wizji
 Bohater: Coś mi tu nie gra…
