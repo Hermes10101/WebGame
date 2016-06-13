@@ -1,0 +1,82 @@
+Bohater budzi się w rowie przy drodze jest cały obolały i nic nie pamięta.
+Bohater: Wszystko mnie boli, nic nie pamiętam. Muszę sprawdzić co mam w plecaku.[miejsce na samouczek dotyczący ekipunku].
+Bohater: Mam niewiele zapasów, powinienem się rozejrzeć [miejsce na samouczek dotyczący sterowania].
+Bohater: Sprawdzę co mam w tobołkach [samouczek dotyczący interakcji z przedmiotami]
+Bohater znajduje Karczmę
+Bohater podchodzi do karczmarza[samouczek o interakcji z noc i handlu]
+Karczmarz: Witaj jesteś tu nowy,może skusisz się na ciepły posiłek i nocleg.
+Bohater; [to chyba dobry pomysł]: Ile kosztuje nocleg?
+Karczmarz: Dla ciebie za 5 monet będzie jedzenie a nocleg 10.
+Bohater: Dobra to ja poproszę kolacje nocleg i śniadanie.
+Bohater idzie spać.
+Budzi się, następnie idzie do karczmarza po śniadanie. Nagle podchodzi do niego Kowal.
+Kowal: Witaj widzę że jesteś nowo przybyłym i wyglądasz na biednego , ale możesz dostać pieniądze za prace u mnie.
+Bohater; [brakuje mi pieniędzy wiec jednak warto by było coś zarobić]: Dobra co chcesz.
+Kowal: Chodź za mną.
+Idą do kuźni.
+W kuźni.
+Kowal: Potrzebuje węgla ale na drodze do kopalni grasuje stwór.
+Bohater: Dobrze,zrobię to ale potrzebuje tarczy.
+Kowal: Dobrze masz tu jedną powinna być dobra.
+Bohater idzie do kopalni pod drodze spotyka {nie mam jeszcze pomysłu} zaczyna się samouczek do walki.
+Bohater zabija to coś. zdobywa węgiel i idzie do Kowala. 
+Kowal: Dziękuje za oczyszczenie drogi i przyniesienie węgla masz tu 50 monet za fatygę.
+Bohater: Nie ma sprawy, jak byś coś jeszcze czegoś potrzebował to powiedz.
+Bohater odchodzi [koniec samouczków,gracz może dowolnie poruszać sie po mapie].
+Bohater: Dobra teraz powinienem pójść do karczmy coś zjeść i wykupić nocleg.
+Wchodzi do karczmy widzi zakapturzoną postać. 
+Zakapturzony: Nareszcie cie znalazłem.
+Bohater patrzy na niego dość zdziwiony bo go nie wie kto to jest.
+Zakapturzony: Co tak na mnie patrzysz jak byś mnie nie znał...?  Najwidoczniej cię dorwali i wymazali ci pamięć jak zwykle mają w naturze. Ale spokojnie to minie niestety nie od razu. Wiem że mnie nie pamiętasz ale musisz mi zaufać.
+Bohater: No dobrze nic nie pamiętam więc uznam że ci zaufam.
+Zakapturzony: Powinieneś porozglądać się wokół i pomóc ludziom którzy potrzebują pomocy i dzięki temu powinno ci przywrócić przynajmniej skrawek pamięci. Przyjdę za 3 dni i zobaczymy co dalej.
+Długa noc od spotkania. Podczas snu bohaterowi przypomina sobie jedno wydarzenie w którym brał on udział i był tam zakapturzony, i jeszcze jeden którego nie pamiętał.
+Nieznajomy: Zostaw nas w spokoju, nie oddam ci recepty.
+Zakapturzony: Jeszcze tu wrócę a wtedy nie będę już miły. ZGINIECIE OBAJ.
+Bohater budzi się w południe (normalnie rano) od Karczmarza dostaje kartkę od zakapturzonego.
+Na kartce: „Nie mogłem czekać, musiałem ruszać do tego upierdliwego alchemika. Podążaj za mną, ale tylko wtedy, jeśli jesteś w stanie przetrwać noc. Oczekuję, że szybko do mnie dołączysz.”
+Pojawia się wspomnienie zakapturzonego i nagły obraz postaci z wizji
+Bohater: Coś mi tu nie gra…
+Bohater dostaje zadanie - „Znajdź sposób by przetrwać noc”. Dostępne opcje: Podejdź do stolika numer 1, rozmawiaj z siedzącym. Podejdź do stolika numer 2, rozmawiaj z grupą siedzących. Podejdź do lady, rozmawiaj z karczmarzem.
+ Stolik numer:
+ Bohater: 1)witaj
+          2)hej
+          3)co słychać?
+ Siedzący:1)witaj
+          2)nie spoufalasz się za bardzo?
+          3)w porządku
+ Bohater: 1)1]co słychać?
+          1)2]masz może chwilę na rozmowę?
+          2)1]wybacz, może jeszcze raz zaczniemy rozmowę? 
+          2)2]{odejście}
+          3)1]masz może chwilę na rozmowę?
+          3)2]nie będę ci przeszkadzał {odejście}
+ Siedzący:1)1]w porządku
+          1)2]czemu by nie?
+          2)1]{cofnięcie do samego początku rozmowy}
+          3)1]nie {odejście}
+ Bohater: 1)1]masz może chwilę na rozmowę?
+          1)2]wiesz może jak można przetrwać noc w drodze?
+ Siedzący:1)1]obawiam się, że nie
+          1)2]przykro mi, ale nie. Wydaje mi się, że może ktoś z tamtej grupki będzie coś wiedział
+Bohater odchodzi od stolika numer 1, idzie do stolika numer 2
+ Bohater: 1)witajcie
+          2)jak się macie?
+ Grupka:  1)witaj
+          2)dobrze, bracie, a ty?
+ Bohater: 1)1]możemy pogadać?
+          1)2]jak tam?
+          2)1]w porządku, możemy pogadać?
+          2)2]kiepsko
+ Grupka:  1)1]pewnie
+          1)2]dobrze, bracie, a ty?
+          2)1]pewnie, bracie
+          2)2]a czemuż to? Masz tu 10 srebrników, na poprawę humoru, bracie!
+ Bohater: 1)1]wiecie może jak przetrwać noc w drodze?
+          1)2]dobrze, nie będę wam przeszkadzał {odejście}
+          2)1]wiecie może jak przetrwać noc w drodze?
+          2)2]dziękuje, wiecie może jak przetrwać noc w drodze?
+ Grupka:  1)1]nie, bracie
+          2)1]nie, ale może karczmarz będzie coś wiedział?
+          2)2]nie, przykro nam, bracie
+Bohater odchodzi od stolika numer 2, idzie do lady.
