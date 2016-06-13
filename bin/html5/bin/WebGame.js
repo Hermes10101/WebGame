@@ -47,7 +47,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "212", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
+	ApplicationMain.config = { build : "217", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -36005,11 +36005,15 @@ ttg_game_level_TileBackground.bgTileSheet = null;
 ttg_game_level_TileBackground.init = function() {
 	ttg_game_level_TileBackground.bgBitmap = openfl_Assets.getBitmapData("img/tlo.png");
 	ttg_game_level_TileBackground.bgTileSheet = new openfl_display_Tilesheet(ttg_game_level_TileBackground.bgBitmap);
+	var sheetWidth;
+	sheetWidth = js_Boot.__cast(ttg_game_level_TileBackground.bgBitmap.width / 40 , Int);
+	var sheetHeight;
+	sheetHeight = js_Boot.__cast(ttg_game_level_TileBackground.bgBitmap.height / 40 , Int);
 	var _g = 0;
-	while(_g < 8) {
+	while(_g < sheetWidth) {
 		var i = _g++;
 		var _g1 = 0;
-		while(_g1 < 8) {
+		while(_g1 < sheetHeight) {
 			var j = _g1++;
 			ttg_game_level_TileBackground.bgTileSheet.addTileRect(new openfl_geom_Rectangle(j * 40,i * 40,40,40));
 		}

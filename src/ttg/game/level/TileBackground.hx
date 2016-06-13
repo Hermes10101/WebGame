@@ -26,9 +26,12 @@ class TileBackground extends Sprite
 	{
 		bgBitmap = Assets.getBitmapData("img/tlo.png");
 		bgTileSheet = new Tilesheet(bgBitmap);
-		for (i in 0...8)
+		
+		var sheetWidth:Int = cast(bgBitmap.width / 40, Int);
+		var sheetHeight:Int = cast(bgBitmap.height / 40, Int);
+		for (i in 0...sheetWidth)
 		{
-			for (j in 0...8)
+			for (j in 0...sheetHeight)
 			{
 				bgTileSheet.addTileRect(new Rectangle(j * 40, i * 40, 40, 40));
 			}
