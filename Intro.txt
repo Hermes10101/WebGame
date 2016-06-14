@@ -80,3 +80,84 @@ Bohater odchodzi od stolika numer 1, idzie do stolika numer 2
           2)1]nie, ale może karczmarz będzie coś wiedział?
           2)2]nie, przykro nam, bracie
 Bohater odchodzi od stolika numer 2, idzie do lady.
+Karczmarz:Witaj, przyjacielu
+ Bohater:  1)witaj
+           2)czy wiesz jak przetrwać noc?
+ Karczmarz:1)czego potrzebujesz?
+           2)takie informacje kosztują
+ Bohater:  1)wiesz może jak przetrwać noc?
+           2)1]dusigrosz {odejście}
+           2)2]ile są warte?
+ Karczmarz:1)nie, musisz spróbować na zewnątrz {odejście}
+           2)5 srebrników 
+ Bohater:  2)1]proszę {płaci}
+           2)2]sknera {odejście} 
+ Karczmarz:2)nie wiem jak przetrwać noc, musisz popytać na zewnątrz 
+Bohater odchodzi od lady, podchodzi do drzwi, animacja wyjścia z karczmy         
+Przed karczmą jest Pijak, Łotr i Minstrel. 
+ Bohater:  1)witaj
+           2)co tutaj robisz? 
+ Pijak:    1)no witaj, witaj
+           2)siedzę, nie widać?
+ Bohater:  1)wiesz może jak przetrwać noc?
+           2)1]widać, gburze
+           2)2]…
+ Pijak:    1)nawet jeśli, to co ci do tego?
+           2)1]może grzeczniej do osoby starszej, zwyrodnialcu? 
+           2)2]zabrakło ci języka w gębie, pomiocie?
+ Bohater:  1)1]chciałbym się dowiedzieć jak to zrobić 
+           1)2]rozumiem, że kultura wyszła trzaskając drzwiami z twojego życia?
+           2)1]1#a może zamkniesz swoją krzywą jadaczkę?
+           2)1]2#zwyrodnialcu? 
+           2)1]3#… 
+           2)2]1#nie, tylko zatkało nos od twojego smrodu
+           2)2]2#coś jeszcze, cwaniaku?
+ Pijak:    1)1]a ja chciałbym być bogaty, wyglądam ci na bogatego? 
+           1)2]tak jak u ciebie intelekt? 
+           2)1]1#a może pójdziesz w diabły?
+           2)1]2#głuchy jesteś, czy co?
+           2)1]3#idź w diabły, niemowo
+           2)2]1#poratuj więc i obdaruj groszami… 
+           2)2]2#weź idź w diabły 
+ Bohater:  1)1]1#nie bardzo
+           1)1]2#myślisz, że jesteś cwaniak?
+           2)2]1#…{odejście}
+ Pijak:    1)1]1#no właśnie, bystrzaku, idź w diabły {odejście}
+           1)1]2#a idź w diabły {odejście}
+ 
+ 
+
+ Bohater:  1)witaj
+           2)czy wiesz jak przetrwać noc?
+ Łotr:     za dużo gadasz, nie podoba mi się to. Wolisz oddać pieniądze czy życie?
+ Bohater:  {traci wszystkie pieniądze}
+
+                  
+ Minstrel: Witaj przyjacielu, chcesz posłuchać ballady?
+ Bohater:  1)Witaj, nie mam czasu na ballady 
+           2)witaj, obawiam się, że nie po to do ciebie przyszedłem…
+ Minstrel: 1)więc ja nie mam czasu na rozmowę z tobą {odejście}
+           2)a po cóż przyszedłeś?
+ Bohater:  2)1]czy wiesz może jak przetrwać noc?
+           2)2]dużo podróżujesz?
+ Minstrel: 2)1]mogę ci udzielić te informacje, ale w zamian będę potrzebował, żebyś coś dla mnie zrobił
+           2)2]całkiem sporo, czemu pytasz?
+ Bohater:  2)1]1#co mam zrobić? 
+           2)1]2#nie mam na to czasu {odejście} 
+           2)2]1#potrzebuje się dowiedzieć jak przetrwać noc
+           2)2]2#czy jesteś w drodze również w nocy?
+ Minstrel: 2)1]potrzebuję drewna na opał, dokładnie dwadzieścia patyków
+           2)2]1#potrzebujesz namiotu 
+           2)2]2#zgadza się czemu pytasz?             
+ Bohater:  2)1]1#dobrze, daj mi trochę czasu {odejście, otrzymanie zadania}
+           2)1]2#i co jeszcze? może domek mam ci zbudować? {odejście}
+           2)2]1#gdzie go mogę zdobyć?
+           2)2]2#potrzebuje się dowiedzieć jak przetrwać noc w drodze
+ Minstrel: 2)2]1#w dzisiejszych czasach nie kupisz namiotu, musisz go sam zrobić, a do tego potrzebujesz specjalnych materiałów, ale aktualnie potrzebuję kogoś do podróży i mam własny namiot
+           2)2]2#potrzebujesz namiotu 
+ Bohater:  2)2]1#mogę się do ciebie przyłączyć?
+           2)2]2#gdzie go mogę zdobyć?
+ Minstrel: 2)2]1#oczywiście, przyjacielu! {koniec intra}
+           2)2]2#w dzisiejszych czasach nie kupisz namiotu, musisz go sam zrobić, a do tego potrzebujesz specjalnych materiałów, ale aktualnie potrzebuję kogoś do podróży i mam własny namiot
+ Bohater:  2)2]2#mogę się do ciebie przyłączyć?
+ Minstrel: 2)2]2#oczywiście, przyjacielu! {koniec intra}.
