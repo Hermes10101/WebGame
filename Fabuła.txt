@@ -1,5 +1,5 @@
 Bohater budzi się w rowie przy drodze jest cały obolały i nic nie pamięta.
-Bohater: Wszystko mnie boli, nic nie pamiętam. Muszę sprawdzić co mam w plecaku.[miejsce na samouczek dotyczący ekipunku].
+Bohater: Wszystko mnie boli, nic nie pamiętam. Muszę sprawdzić co mam w plecaku.[miejsce na samouczek dotyczący ekiwpunku].
 Bohater: Mam niewiele zapasów, powinienem się rozejrzeć [miejsce na samouczek dotyczący sterowania].
 Bohater: Sprawdzę co mam w tobołkach [samouczek dotyczący interakcji z przedmiotami]
 Bohater znajduje Karczmę
@@ -80,7 +80,19 @@ Bohater odchodzi od stolika numer 1, idzie do stolika numer 2
           2)1]nie, ale może karczmarz będzie coś wiedział?
           2)2]nie, przykro nam, bracie
 Bohater odchodzi od stolika numer 2, idzie do lady  
-           
+ Karczmarz:Witaj, przyjacielu
+ Bohater:  1)witaj
+           2)czy wiesz jak przetrwać noc?
+ Karczmarz:1)czego potrzebujesz?
+           2)takie informacje kosztują
+ Bohater:  1)wiesz może jak przetrwać noc?
+           2)1]dusigrosz {odejście}
+           2)2]ile są warte?
+ Karczmarz:1)nie, musisz spróbować na zewnątrz {odejście}
+           2)5 srebrników 
+ Bohater:  2)1]proszę {płaci}
+           2)2]sknera {odejście} 
+ Karczmarz:2)nie wiem jak przetrwać noc, musisz popytać na zewnątrz          
 
 
 
