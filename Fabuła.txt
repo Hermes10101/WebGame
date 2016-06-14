@@ -92,9 +92,40 @@ Bohater odchodzi od stolika numer 2, idzie do lady
            2)5 srebrników 
  Bohater:  2)1]proszę {płaci}
            2)2]sknera {odejście} 
- Karczmarz:2)nie wiem jak przetrwać noc, musisz popytać na zewnątrz          
-
-
+ Karczmarz:2)nie wiem jak przetrwać noc, musisz popytać na zewnątrz 
+Bohater odchodzi od lady, podchodzi do drzwi, animacja wyjścia z karczmy         
+Przed karczmą jest Pijak, Łotr i Minstrel. 
+ Bohater:  1)witaj
+           2)co tutaj robisz? 
+ Pijak:    1)no witaj, witaj
+           2)siedzę, nie widać?
+ Bohater:  1)wiesz może jak przetrwać noc?
+           2)1]widać, gburze
+           2)2]…
+ Pijak:    1)nawet jeśli, to co ci do tego?
+           2)1]może grzeczniej do osoby starszej, zwyrodnialcu? 
+           2)2]zabrakło ci języka w gębie, pomiocie?
+ Bohater:  1)1]chciałbym się dowiedzieć jak to zrobić 
+           1)2]rozumiem, że kultura wyszła trzaskając drzwiami z twojego życia?
+           2)1]1#a może zamkniesz swoją krzywą jadaczkę?
+           2)1]2#zwyrodnialcu? 
+           2)1]3#… 
+           2)2]1#nie, tylko zatkało nos od twojego smrodu
+           2)2]2#coś jeszcze, cwaniaku?
+ Pijak:    1)1]a ja chciałbym być bogaty, wyglądam ci na bogatego? 
+           1)2]tak jak u ciebie intelekt? 
+           2)1]1#a może pójdziesz w diabły?
+           2)1]2#głuchy jesteś, czy co?
+           2)1]3#idź w diabły, niemowo
+           2)2]1#poratuj więc i obdaruj groszami… 
+           2)2]2#weź idź w diabły 
+ Bohater:  1)1]1#nie bardzo
+           1)1]2#myślisz, że jesteś cwaniak?
+           2)2]1#…{odejście}
+ Pijak:    1)1]1#no właśnie, bystrzaku, idź w diabły {odejście}
+           1)1]2#a idź w diabły {odejście}
+                   
+            
 
 
 
