@@ -12,7 +12,7 @@ import ttg.game.physics.Collider;
  */
 class TestObject extends GameObject
 {
-	public var movement:Point;
+	public var velocity:Point;
 	var speed:Float = 5;
 	var width:Float;
 	var height:Float;
@@ -23,7 +23,7 @@ class TestObject extends GameObject
 		super(l, x, y);
 		width = 100;
 		height = 100;
-		movement = new Point();
+		velocity = new Point();
 		hitBox = new AABB(x - width / 2, y - height / 2, width, height);
 		l.addCollider(hitBox);
 	}
@@ -32,30 +32,30 @@ class TestObject extends GameObject
 	{
 		super.update();
 		if (Input.isKeyDown(37))
-			movement.x -= speed;
+			velocity.x -= speed;
 		
 		if (Input.isKeyDown(38))
-			movement.y -= speed;
+			velocity.y -= speed;
 		
 		if (Input.isKeyDown(39))
-			movement.x += speed;
+			velocity.x += speed;
 		
 		if (Input.isKeyDown(40))
-			movement.y += speed;
+			velocity.y += speed;
 		
 		hitBox.update(x - (width / 2), y - (height / 2), width, height);
 		for (col in level.colliders)
 		{
-			if (hitBox.checkCollision(col, movement))
+			if (hitBox.checkCollision(col, velocity))
 			{
-				hitBox.collide(col, movement);
+				hitBox.collide(col, velocity);
 			}
 		}
 		
-		x += movement.x;
-		y += movement.y;
+		x += velocity.x;
+		y += velocity.y;
 		
-		movement = new Point();
+		velocity = new Point();
 	}
 	
 	override public function render() 

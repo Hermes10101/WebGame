@@ -8,7 +8,7 @@ import openfl.geom.Point;
  */
 class Collider
 {
-	public function checkCollision(other:Collider, movement:Point):Bool { return false; }
-	public function collide(other:Collider, movement:Point) {}
+	public function checkCollision(other:Collider, velocity:Point):Bool { return false; }
+	public function collide(other:Collider, velocity:Point) {}
 	public function debugDraw(graphics:Graphics) {};
 }

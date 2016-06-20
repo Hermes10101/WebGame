@@ -45,12 +45,12 @@ class Level
 	
 	public function render()
 	{
-		debugSprite.graphics.clear();
 		bg.render();
 		for (obj in objects)
 		{
 			obj.render();
 		}
+		debugSprite.graphics.clear();
 		for (col in colliders)
 		{
 			col.debugDraw(debugSprite.graphics);

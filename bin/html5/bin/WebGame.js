@@ -47,7 +47,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "217", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
+	ApplicationMain.config = { build : "296", company : "TTGTeam", file : "WebGame", fps : 60, name : "WebGame", orientation : "", packageName : "ttg.game.WebGame", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 600, parameters : "{}", resizable : true, stencilBuffer : true, title : "WebGame", vsync : false, width : 800, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -35811,7 +35811,7 @@ var ttg_game_gameobject_TestObject = function(l,x,y) {
 	ttg_game_gameobject_GameObject.call(this,l,x,y);
 	this.width = 100;
 	this.height = 100;
-	this.movement = new openfl_geom_Point();
+	this.velocity = new openfl_geom_Point();
 	this.hitBox = new ttg_game_physics_AABB(x - this.width / 2,y - this.height / 2,this.width,this.height);
 	l.addCollider(this.hitBox);
 };
@@ -35821,21 +35821,21 @@ ttg_game_gameobject_TestObject.__super__ = ttg_game_gameobject_GameObject;
 ttg_game_gameobject_TestObject.prototype = $extend(ttg_game_gameobject_GameObject.prototype,{
 	update: function() {
 		ttg_game_gameobject_GameObject.prototype.update.call(this);
-		if(ttg_game_input_Input.isKeyDown(37)) this.movement.x -= this.speed;
-		if(ttg_game_input_Input.isKeyDown(38)) this.movement.y -= this.speed;
-		if(ttg_game_input_Input.isKeyDown(39)) this.movement.x += this.speed;
-		if(ttg_game_input_Input.isKeyDown(40)) this.movement.y += this.speed;
+		if(ttg_game_input_Input.isKeyDown(37)) this.velocity.x -= this.speed;
+		if(ttg_game_input_Input.isKeyDown(38)) this.velocity.y -= this.speed;
+		if(ttg_game_input_Input.isKeyDown(39)) this.velocity.x += this.speed;
+		if(ttg_game_input_Input.isKeyDown(40)) this.velocity.y += this.speed;
 		this.hitBox.update(this.x - this.width / 2,this.y - this.height / 2,this.width,this.height);
 		var _g = 0;
 		var _g1 = this.level.colliders;
 		while(_g < _g1.length) {
 			var col = _g1[_g];
 			++_g;
-			if(this.hitBox.checkCollision(col,this.movement)) this.hitBox.collide(col,this.movement);
+			if(this.hitBox.checkCollision(col,this.velocity)) this.hitBox.collide(col,this.velocity);
 		}
-		this.x += this.movement.x;
-		this.y += this.movement.y;
-		this.movement = new openfl_geom_Point();
+		this.x += this.velocity.x;
+		this.y += this.velocity.y;
+		this.velocity = new openfl_geom_Point();
 	}
 	,render: function() {
 		ttg_game_gameobject_GameObject.prototype.render.call(this);
@@ -35917,7 +35917,6 @@ ttg_game_level_Level.prototype = {
 		}
 	}
 	,render: function() {
-		this.debugSprite.get_graphics().clear();
 		this.bg.render();
 		var _g = 0;
 		var _g1 = this.objects;
@@ -35926,6 +35925,7 @@ ttg_game_level_Level.prototype = {
 			++_g;
 			obj.render();
 		}
+		this.debugSprite.get_graphics().clear();
 		var _g2 = 0;
 		var _g11 = this.colliders;
 		while(_g2 < _g11.length) {
@@ -36045,10 +36045,10 @@ var ttg_game_physics_Collider = function() { };
 $hxClasses["ttg.game.physics.Collider"] = ttg_game_physics_Collider;
 ttg_game_physics_Collider.__name__ = ["ttg","game","physics","Collider"];
 ttg_game_physics_Collider.prototype = {
-	checkCollision: function(other,movement) {
+	checkCollision: function(other,velocity) {
 		return false;
 	}
-	,collide: function(other,movement) {
+	,collide: function(other,velocity) {
 	}
 	,debugDraw: function(graphics) {
 	}
@@ -36067,31 +36067,68 @@ ttg_game_physics_AABB.prototype = $extend(ttg_game_physics_Collider.prototype,{
 		this.rect.width = width;
 		this.rect.height = height;
 	}
-	,checkCollision: function(other,movement) {
+	,checkCollision: function(other,velocity) {
 		if(other == this) return false;
-		if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) return new openfl_geom_Rectangle(this.rect.x + movement.x,this.rect.y + movement.y,this.rect.width,this.rect.height).intersects((js_Boot.__cast(other , ttg_game_physics_AABB)).rect);
-		if(js_Boot.__instanceof(other,ttg_game_physics_BorderCollider)) return (js_Boot.__cast(other , ttg_game_physics_BorderCollider)).checkCollision(this,movement);
+		if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) return new openfl_geom_Rectangle(this.rect.x + velocity.x,this.rect.y + velocity.y,this.rect.width,this.rect.height).intersects((js_Boot.__cast(other , ttg_game_physics_AABB)).rect);
+		if(js_Boot.__instanceof(other,ttg_game_physics_BorderCollider)) return (js_Boot.__cast(other , ttg_game_physics_BorderCollider)).checkCollision(this,velocity);
 		return false;
 	}
-	,collide: function(other,movement) {
+	,collide: function(other,velocity) {
 		if(other == this) return;
-		if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) this.AABBvsAABB(this.rect,(js_Boot.__cast(other , ttg_game_physics_AABB)).rect,movement);
-		if(js_Boot.__instanceof(other,ttg_game_physics_BorderCollider)) this.AABBvsBorder(this.rect,movement,js_Boot.__cast(other , ttg_game_physics_BorderCollider));
+		if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) this.AABBvsAABB(this.rect,(js_Boot.__cast(other , ttg_game_physics_AABB)).rect,velocity);
+		if(js_Boot.__instanceof(other,ttg_game_physics_BorderCollider)) this.AABBvsBorder(this.rect,velocity,js_Boot.__cast(other , ttg_game_physics_BorderCollider));
 	}
-	,AABBvsAABB: function(rect,otherRect,movement) {
-		var newX = 0;
-		var newY = 0;
-		if(rect.get_right() + movement.x > otherRect.x && !(rect.x + movement.x < otherRect.get_right())) newX = Math.min(rect.get_right(),otherRect.x) - Math.max(rect.get_right(),otherRect.x);
-		if(rect.x + movement.x < otherRect.get_right() && !(rect.get_right() + movement.x > otherRect.x)) newX = Math.max(rect.x,otherRect.get_right()) - Math.min(rect.x,otherRect.get_right());
-		if(rect.get_top() + movement.y < otherRect.get_top() && !(rect.y + movement.y < otherRect.get_top())) newY = Math.min(rect.get_top(),otherRect.y) - Math.max(rect.get_top(),otherRect.y);
-		if(rect.y + movement.y < otherRect.get_top() && !(rect.get_top() + movement.y < otherRect.get_top())) newY = Math.max(rect.y,otherRect.get_top()) - Math.min(rect.y,otherRect.get_top());
-		movement.x = newX;
-		movement.y = newY;
+	,AABBvsAABB: function(rect,otherRect,velocity) {
+		var xEntryDist;
+		var xExitDist;
+		var yEntryDist;
+		var yExitDist;
+		if(velocity.x > 0) {
+			xEntryDist = otherRect.x - rect.get_right();
+			xExitDist = otherRect.get_right() - rect.x;
+		} else {
+			xEntryDist = otherRect.get_right() - rect.x;
+			xExitDist = otherRect.x - rect.get_right();
+		}
+		if(velocity.y > 0) {
+			yEntryDist = otherRect.y - rect.get_bottom();
+			yExitDist = otherRect.get_bottom() - rect.y;
+		} else {
+			yEntryDist = otherRect.get_bottom() - rect.y;
+			yExitDist = otherRect.y - rect.get_bottom();
+		}
+		var xEntryTime;
+		var xExitTime;
+		var yEntryTime;
+		var yExitTime;
+		if(velocity.x != 0) {
+			xEntryTime = xEntryDist / velocity.x;
+			xExitTime = xExitDist / velocity.x;
+		} else {
+			xEntryTime = -99999999999;
+			xExitTime = 9999999999;
+		}
+		if(velocity.y != 0) {
+			yEntryTime = yEntryDist / velocity.y;
+			yExitTime = yExitDist / velocity.y;
+		} else {
+			yEntryTime = -99999999999;
+			yExitTime = 9999999999;
+		}
+		var entryTime = Math.max(xEntryTime,yEntryTime);
+		var exitTime = Math.min(xExitTime,yExitTime);
+		if(entryTime > exitTime || xEntryTime < 0 && yEntryTime < 0 || xEntryTime > 1 || yEntryTime > 1) return;
+		var normal = new openfl_geom_Point();
+		if(xEntryTime > yEntryTime) {
+			if(xEntryDist > 0) normal.x = -1; else normal.x = 1;
+		} else if(yEntryDist > 0) normal.y = -1; else normal.y = 1;
+		velocity.x *= entryTime;
+		velocity.y *= entryTime;
 	}
-	,AABBvsBorder: function(rect,movement,border) {
+	,AABBvsBorder: function(rect,velocity,border) {
 		if(!border.axis) {
-			if(!border.normal) movement.x = border.location - rect.x; else movement.x = rect.get_right() - border.location;
-		} else if(!border.normal) movement.y = border.location - rect.get_top(); else movement.y = border.location - rect.get_bottom();
+			if(!border.normal) velocity.x = border.location - rect.x; else velocity.x = border.location - rect.get_right();
+		} else if(!border.normal) velocity.y = border.location - rect.get_top(); else velocity.y = border.location - rect.get_bottom();
 	}
 	,debugDraw: function(graphics) {
 		graphics.lineStyle(1,16711680);
@@ -36108,28 +36145,28 @@ $hxClasses["ttg.game.physics.BorderCollider"] = ttg_game_physics_BorderCollider;
 ttg_game_physics_BorderCollider.__name__ = ["ttg","game","physics","BorderCollider"];
 ttg_game_physics_BorderCollider.__super__ = ttg_game_physics_Collider;
 ttg_game_physics_BorderCollider.prototype = $extend(ttg_game_physics_Collider.prototype,{
-	checkCollision: function(other,movement) {
+	checkCollision: function(other,velocity) {
 		if(other == this) return false;
 		if(!this.axis) {
 			if(!this.normal) {
 				var otherLeft = null;
-				if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherLeft = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.x + movement.x;
+				if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherLeft = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.x + velocity.x;
 				if(otherLeft == null) return false;
 				return otherLeft < this.location;
 			} else {
 				var otherRight = null;
-				if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherRight = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_right() + movement.x;
+				if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherRight = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_right() + velocity.x;
 				if(otherRight == null) return false;
 				return otherRight > this.location;
 			}
 		} else if(!this.normal) {
 			var otherTop = null;
-			if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherTop = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_top() + movement.y;
+			if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherTop = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_top() + velocity.y;
 			if(otherTop == null) return false;
 			return otherTop < this.location;
 		} else {
 			var otherBottom = null;
-			if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherBottom = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_bottom() + movement.y;
+			if(js_Boot.__instanceof(other,ttg_game_physics_AABB)) otherBottom = (js_Boot.__cast(other , ttg_game_physics_AABB)).rect.get_bottom() + velocity.y;
 			if(otherBottom == null) return false;
 			return otherBottom > this.location;
 		}

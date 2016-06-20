@@ -20,7 +20,7 @@ class BorderCollider extends Collider
 		location = l;
 	}
 	
-	override public function checkCollision(other:Collider, movement:Point):Bool 
+	override public function checkCollision(other:Collider, velocity:Point):Bool 
 	{
 		if (other == this)
 			return false;
@@ -32,7 +32,7 @@ class BorderCollider extends Collider
 				var otherLeft = null;
 				
 				if (Std.is(other, AABB))
-					otherLeft = cast(other, AABB).rect.x + movement.x;
+					otherLeft = cast(other, AABB).rect.x + velocity.x;
 				
 				if (otherLeft == null)
 					return false;
@@ -43,7 +43,7 @@ class BorderCollider extends Collider
 				var otherRight = null;
 				
 				if (Std.is(other, AABB))
-					otherRight = cast(other, AABB).rect.right + movement.x;
+					otherRight = cast(other, AABB).rect.right + velocity.x;
 				
 				if (otherRight == null)
 					return false;
@@ -57,7 +57,7 @@ class BorderCollider extends Collider
 				var otherTop = null;
 				
 				if (Std.is(other, AABB))
-					otherTop = cast(other, AABB).rect.top + movement.y;
+					otherTop = cast(other, AABB).rect.top + velocity.y;
 				
 				if (otherTop == null)
 					return false;
@@ -68,7 +68,7 @@ class BorderCollider extends Collider
 				var otherBottom = null;
 				
 				if (Std.is(other, AABB))
-					otherBottom = cast(other, AABB).rect.bottom + movement.y;
+					otherBottom = cast(other, AABB).rect.bottom + velocity.y;
 				
 				if (otherBottom == null)
 					return false;

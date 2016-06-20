@@ -24,7 +24,7 @@ class AABB extends Collider
 		rect.height = height;
 	}
 	
-	override function checkCollision(other:Collider, movement:Point)
+	override function checkCollision(other:Collider, velocity:Point)
 	{
 		if (other == this)
 		{
@@ -32,15 +32,15 @@ class AABB extends Collider
 		}
 		
 		if (Std.is(other, AABB))
-			return new Rectangle(rect.x + movement.x, rect.y + movement.y, rect.width, rect.height).intersects(cast(other, AABB).rect);
+			return new Rectangle(rect.x + velocity.x, rect.y + velocity.y, rect.width, rect.height).intersects(cast(other, AABB).rect);
 		
 		if (Std.is(other, BorderCollider))
-			return cast(other, BorderCollider).checkCollision(this, movement);
+			return cast(other, BorderCollider).checkCollision(this, velocity);
 			
 		return false;
 	}
 	
-	override function collide(other:Collider, movement:Point)
+	override function collide(other:Collider, velocity:Point)
 	{
 		if (other == this)
 		{
@@ -48,58 +48,107 @@ class AABB extends Collider
 		}
 		
 		if (Std.is(other, AABB))
-			AABBvsAABB(rect, cast(other, AABB).rect, movement);
+			AABBvsAABB(rect, cast(other, AABB).rect, velocity);
 		
 		if (Std.is(other, BorderCollider))
-			AABBvsBorder(rect, movement, cast(other, BorderCollider));
+			AABBvsBorder(rect, velocity, cast(other, BorderCollider));
 	}
 	
-	public function AABBvsAABB(rect:Rectangle, otherRect:Rectangle, movement:Point)
+	public function AABBvsAABB(rect:Rectangle, otherRect:Rectangle, velocity:Point)
 	{
-		var newX:Float = 0;
-		var newY:Float = 0;
+		var xEntryDist, xExitDist, yEntryDist, yExitDist;
 		
-		if (rect.right + movement.x > otherRect.x && !(rect.x + movement.x < otherRect.right))
+		if (velocity.x > 0)
 		{
-			newX = Math.min(rect.right, otherRect.x) - Math.max(rect.right, otherRect.x);
+			xEntryDist = otherRect.x - rect.right;
+			xExitDist = otherRect.right - rect.x;
+		} else
+		{
+			xEntryDist = otherRect.right - rect.x;
+			xExitDist = otherRect.x - rect.right;
 		}
-		if (rect.x + movement.x < otherRect.right && !(rect.right + movement.x > otherRect.x))
+		if (velocity.y > 0)
 		{
-			newX = Math.max(rect.x, otherRect.right) - Math.min(rect.x, otherRect.right);
+			yEntryDist = otherRect.y - rect.bottom;
+			yExitDist = otherRect.bottom - rect.y;
+		} else
+		{
+			yEntryDist = otherRect.bottom - rect.y;
+			yExitDist = otherRect.y - rect.bottom;
 		}
 		
-		if (rect.top + movement.y < otherRect.top && !(rect.y + movement.y < otherRect.top))
+		var xEntryTime, xExitTime, yEntryTime, yExitTime;
+		
+		if (velocity.x != 0)
 		{
-			newY = Math.min(rect.top, otherRect.y) - Math.max(rect.top, otherRect.y);
+			xEntryTime = xEntryDist / velocity.x;
+			xExitTime = xExitDist / velocity.x;
+		} else
+		{
+			xEntryTime = -99999999999;
+			xExitTime = 9999999999;
 		}
-		if (rect.y + movement.y < otherRect.top && !(rect.top + movement.y < otherRect.top))
+		if (velocity.y != 0)
 		{
-			newY = Math.max(rect.y, otherRect.top) - Math.min(rect.y, otherRect.top);
+			yEntryTime = yEntryDist / velocity.y;
+			yExitTime = yExitDist / velocity.y;
+		} else
+		{
+			yEntryTime = -99999999999;
+			yExitTime = 9999999999;
 		}
 		
-		movement.x = newX;
-		movement.y = newY;
+		var entryTime = Math.max(xEntryTime, yEntryTime);
+		var exitTime = Math.min(xExitTime, yExitTime);
+		
+		if (entryTime > exitTime || (xEntryTime < 0 && yEntryTime < 0) || xEntryTime > 1 || yEntryTime > 1)
+			return;
+		
+		var normal:Point = new Point();
+		
+		if (xEntryTime > yEntryTime)
+		{
+			if (xEntryDist > 0)
+			{
+				normal.x = -1;
+			} else
+			{
+				normal.x = 1;
+			}
+		} else
+		{
+			if (yEntryDist > 0)
+			{
+				normal.y = -1;
+			} else
+			{
+				normal.y = 1;
+			}
+		}
+		
+		velocity.x *= entryTime;
+		velocity.y *= entryTime;
 	}
 	
-	public function AABBvsBorder(rect:Rectangle, movement:Point, border:BorderCollider)
+	public function AABBvsBorder(rect:Rectangle, velocity:Point, border:BorderCollider)
 	{
 		if (!border.axis)
 		{
 			if (!border.normal)
 			{
-				movement.x = border.location - rect.x;
+				velocity.x = border.location - rect.x;
 			} else
 			{
-				movement.x = rect.right - border.location;
+				velocity.x = border.location - rect.right;
 			}
 		} else
 		{
 			if (!border.normal)
 			{
-				movement.y = border.location - rect.top;
+				velocity.y = border.location - rect.top;
 			} else
 			{
-				movement.y = border.location - rect.bottom;
+				velocity.y = border.location - rect.bottom;
 			}
 		}
 	}
