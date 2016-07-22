@@ -5,3 +5,10 @@ Pegi 16.
 Pikselowa grafika.
 Lokacje.
 Rumcajs.
+Tutaj mały pomysł na rozwiązanie problemu z komunikacją:
+do komunikacji moglibyśmy użyć Evolve
+(stwożyłoby się prywatne party i każdy kto miałby czas i chęci aby coś robić w githubie wchodziłby na Evolve)
+napiszcie czy się z tym zgadzacie czy nie, lub czy macie inny pomysł napiszcie tutaj
+Tadek-
+Patryk-
+Gerard-
