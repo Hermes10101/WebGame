@@ -167,8 +167,23 @@ Jeśli Bohater w tym dialogu otrzymuje zadanie, musi zebrać drewno. Informacji 
 Minstrel stwierdza że wyruszą następnego dnia z rana.
 (Podczas podróży w zależności od tego co gracz zrobił wcześniej może dowiedzieć się co bochater myśli o różnych rzeczach).
 koniec. wieczór miejsce akcji ruina domu obok stoi studnia.
-Minstrel rozpala ogień i mówi bochaterowi aby zabrał trochę wody ze studni. (samouczek dotyczący wody Minstrel daje bochaterowi wiadro).
-Gdy bochater do niego podejdzie on da mu surowe mięso i warzywa, każe bochaterowi podejść do ogniska i wszystko ugotować. (samouczek dotyczący gotowania).
+Minstrel rozpala ogień.
+Minstrel:1) Tutaj się zatrzymamy, weź to wiadro i je napełnij, przy studni.
+Minstrel:2)(jeśli Bohater nic nie zje rano) Tutaj się zatrzymamy widzę że jesteś osłabiony, masz tu tonik wzmacniający.(nazwa wymyślona na szybko, prawdopodobnie do zmiany).
+Bohater:1)1) Dobrze. (Samouczek co do interakcji z zbiornikami wody).
+Bohater:1)2) A może sam to zrobisz.
+Bohater:2) Dzięki.
+Minstrel:1)1) Teraz weź to surowe mięso i przyprawy które dostałem od karczmaża i przygotuj z tego posiłek.(samouczek co do przetwarzania jedzenia, gracz dowiaduje się o możliwości kupna przepisów).
+Minstrel:1)2) Słuchaj nie każe ci tego robić bo mi się nie chce, tylko po to żebyś sobie sam poradził. Nie będe cały czas z tobą, podróżować.
+Minstrel:2)1) Weź to wiadro i je napełnij, przy studni.
+Bohater:1)2) Niech ci będzie. (Samouczek co do interakcji z zbiornikami wody).
+Bohater:2)1) Może sam to zrobisz.
+Bohater:2)2) Dobrze. (Samouczek co do interakcji z zbiornikami wody).
+Minstrel:1)2) Teraz weź to surowe mięso i przyprawy które dostałem od karczmaża i przygotuj z tego posiłek.(samouczek co do przetwarzania jedzenia, gracz dowiaduje się o możliwości kupna przepisów).
+Minstrel:2)1) Słuchaj nie każe ci tego robić bo mi się nie chce, tylko po to żebyś sobie sam poradził. Nie będe cały czas z tobą, podróżować.
+Minstrel:2)2) Teraz weź to surowe mięso i przyprawy które dostałem od karczmaża i przygotuj z tego posiłek.(samouczek co do przetwarzania jedzenia, gracz dowiaduje się o możliwości kupna przepisów).
+Bohater:2)1) Niech ci będzie. (Samouczek co do interakcji z zbiornikami wody).
+Minstrel:2)1) Teraz weź to surowe mięso i przyprawy które dostałem od karczmaża i przygotuj z tego posiłek.(samouczek co do przetwarzania jedzenia, gracz dowiaduje się o możliwości kupna przepisów).
 Po tym dalsza część podróży.
 Miejsce akcji. Brama miasta.
 Strażnik: Nie moge nikogo wpóścić o tej porze do miasta musicie zaczekać do rana.
