@@ -166,6 +166,9 @@ Jeśli Bohater w tym dialogu otrzymuje zadanie, musi zebrać drewno. Informacji 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Minstrel stwierdza że wyruszą następnego dnia z rana.
 (Podczas podróży w zależności od tego co gracz zrobił wcześniej może dowiedzieć się co bochater myśli o różnych rzeczach).
+Jeśli zrobił 3 zadania od kowala (ruda). hmm... ludziom się zbytnio nie powodzi.
+Jeśli zrobił zadanie z jedzeniem u Kowala. Nie jest tu zbyt kolorowo, ludie nie mogą sobie pozwolić nawet wyjść po posiłek.
+Jeśli dostał monety od ludzi przy stole. Wciąż zadażają się pomocni ludzie. 
 koniec. wieczór miejsce akcji ruina domu obok stoi studnia.
 Minstrel rozpala ogień.
 Minstrel:1) Tutaj się zatrzymamy, weź to wiadro i je napełnij, przy studni.
@@ -185,7 +188,11 @@ Minstrel:2)2) Teraz weź to surowe mięso i przyprawy które dostałem od karczm
 Bohater:2)1) Niech ci będzie. (Samouczek co do interakcji z zbiornikami wody).
 Minstrel:2)1) Teraz weź to surowe mięso i przyprawy które dostałem od karczmaża i przygotuj z tego posiłek.(samouczek co do przetwarzania jedzenia, gracz dowiaduje się o możliwości kupna przepisów).
 Po tym dalsza część podróży.
-Miejsce akcji. Brama miasta.
+1. Minstrel zaczął mnie uczyć co i jak żeby przetrwać samemu, to może mi się przydać w przyszłości.
+2. Minstrel chce mi pomóc a ja robie coś takiego... następnym razem nie popełnie tego błędu
+3. Minstrel mi pomógł i nauczył mnie co nieco. Ciekawe czego jeszcze się od niego dowiem.
+koniec rozdziału 1
+
 Strażnik: Nie moge nikogo wpóścić o tej porze do miasta musicie zaczekać do rana.
 (W zależności od przebiegu dalszej rozmowy albo wchodzą do miasta (prekupstwo)albo muszą zostać przed bramą i bohater walczy z bandytami).
 koniec rozdiału pierwszego. to jest pierwszy zarys jeżeli się na to zgodzicie to doda się dialogi i rozszerzy to.
