@@ -192,10 +192,26 @@ Po tym dalsza część podróży.
 2. Minstrel chce mi pomóc a ja robie coś takiego... następnym razem nie popełnie tego błędu
 3. Minstrel mi pomógł i nauczył mnie co nieco. Ciekawe czego jeszcze się od niego dowiem.
 koniec rozdziału 1
+rozdział 2
+Bohater: 1) Witaj Strażniku.
+Bohater: 2) Otwieraj brame.
+Strażnik: 1) Witaj.
+Strażnik: 2) Poczekasz sobie do rana. (koniec rozmowy).
+Bohater: 1)1) Czy możesz otworzyć brame?
+Bohater: 1)2) Otwieraj brame.
+Strażnik: 1)1) Mam zakaz otwierania bramy w nocy. Chyba że dasz mi pieniądze aby ryzyko mi się opłacało.
+Strażnik: 1)2) Poczekasz sobie do rana. (koniec rozmowy).
+Bohater: 1)1)1) Ile to będzie kosztować?
+Bohater: 1)1)2) Zwariowałeś otwieraj.
+Strażnik: 1)1)1) 10 monet.
+Strażnik: 1)1)2) Poczekasz sobie do rana. (koniec rozmowy).
+Bohater: 1)1)1)1) Dobrze. (wchodzi, płaci).
+Bohater: 1)1)1)2) Niestety nie mam tyle. (jeśli nie ma).
+Bohater: 1)1)1)3) Zwariowałeś to za dużo po prostu otwieraj.
+Strażnik: 1)1)1)1) Na północ stąd jest gospoda w której możecie się zatrzymać. (koniec rozmowy).
+Strażnik: 1)1)1)2) Szkoda ale i tak cię nie wpuszcze. (koniec rozmowy).
+Strażnik: 1)1)1)3) Poczekasz sobie do rana. (koniec rozmowy).
 
-Strażnik: Nie moge nikogo wpóścić o tej porze do miasta musicie zaczekać do rana.
-(W zależności od przebiegu dalszej rozmowy albo wchodzą do miasta (prekupstwo)albo muszą zostać przed bramą i bohater walczy z bandytami).
-koniec rozdiału pierwszego. to jest pierwszy zarys jeżeli się na to zgodzicie to doda się dialogi i rozszerzy to.
 
 Minstrel będzie podróżował z bohaterem.
 Przeszłość bohatera:przewodnik powstania po wygranej bitwie zaginął i po 10 latach powrócił do ojczyzny z wymazaną pamięcią.
