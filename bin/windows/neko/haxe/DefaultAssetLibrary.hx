@@ -53,20 +53,50 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
 		#end
 		
 		#if flash
 		
-		path.set ("img/tlo.png", "img/tlo.png");
-		type.set ("img/tlo.png", AssetType.IMAGE);
+		path.set ("img/background/grass.png", "img/background/grass.png");
+		type.set ("img/background/grass.png", AssetType.IMAGE);
+		path.set ("img/background/road.png", "img/background/road.png");
+		type.set ("img/background/road.png", AssetType.IMAGE);
+		path.set ("img/background/tlo.png", "img/background/tlo.png");
+		type.set ("img/background/tlo.png", AssetType.IMAGE);
+		path.set ("img/characters/player.png", "img/characters/player.png");
+		type.set ("img/characters/player.png", AssetType.IMAGE);
+		path.set ("levels/1", "levels/1");
+		type.set ("levels/1", AssetType.TEXT);
+		path.set ("levels/Menu", "levels/Menu");
+		type.set ("levels/Menu", AssetType.TEXT);
 		
 		
 		#elseif html5
 		
 		var id;
-		id = "img/tlo.png";
+		id = "img/background/grass.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "img/background/road.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/background/tlo.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "img/characters/player.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "levels/1";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
+		id = "levels/Menu";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
 		
 		
 		var assetsPrefix = null;
@@ -84,6 +114,11 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		
 		
@@ -733,7 +768,17 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
 #elseif html5
+
+
+
+
+
 
 
 

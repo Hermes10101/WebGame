@@ -30,8 +30,28 @@ class ApplicationMain {
 		var types = [];
 		
 		
-		urls.push ("img/tlo.png");
+		urls.push ("img/background/grass.png");
 		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/background/road.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/background/tlo.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/characters/player.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("levels/1");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("levels/Menu");
+		types.push (lime.Assets.AssetType.TEXT);
 		
 		
 		
@@ -95,7 +115,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "296",
+			build: "1",
 			company: "TTGTeam",
 			file: "WebGame",
 			fps: 60,

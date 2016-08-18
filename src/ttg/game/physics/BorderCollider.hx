@@ -29,51 +29,51 @@ class BorderCollider extends Collider
 		{
 			if (!normal)
 			{
-				var otherLeft = null;
+				var otherLeft:Float = 0;
 				
 				if (Std.is(other, AABB))
+				{
 					otherLeft = cast(other, AABB).rect.x + velocity.x;
+					return otherLeft < location;
+				}
 				
-				if (otherLeft == null)
-					return false;
-				
-				return otherLeft < location;
+				return false;
 			} else
 			{
-				var otherRight = null;
+				var otherRight:Float = 0;
 				
 				if (Std.is(other, AABB))
+				{
 					otherRight = cast(other, AABB).rect.right + velocity.x;
+					return otherRight > location;
+				}
 				
-				if (otherRight == null)
-					return false;
-				
-				return otherRight > location;
+				return false;
 			}
 		} else
 		{
 			if (!normal)
 			{
-				var otherTop = null;
+				var otherTop:Float = 0;
 				
 				if (Std.is(other, AABB))
+				{
 					otherTop = cast(other, AABB).rect.top + velocity.y;
+					return otherTop < location;
+				}
 				
-				if (otherTop == null)
-					return false;
-				
-				return otherTop < location;
+				return false;
 			} else
 			{
-				var otherBottom = null;
+				var otherBottom:Float = 0;
 				
 				if (Std.is(other, AABB))
+				{
 					otherBottom = cast(other, AABB).rect.bottom + velocity.y;
+					return otherBottom > location;
+				}
 				
-				if (otherBottom == null)
-					return false;
-				
-				return otherBottom > location;
+				return false;
 			}
 		}
 		

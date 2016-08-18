@@ -4,7 +4,7 @@ import openfl.geom.Point;
 import ttg.game.input.Input;
 import ttg.game.level.Level;
 import ttg.game.physics.AABB;
-import ttg.game.physics.Collider;
+import ttg.game.input.KeyBindings;
 
 /**
  * ...
@@ -16,7 +16,7 @@ class TestObject extends GameObject
 	var speed:Float = 5;
 	var width:Float;
 	var height:Float;
-	var hitBox:AABB;
+	public var hitBox:AABB;
 
 	public function new(l:Level, x:Float, y:Float) 
 	{
@@ -31,16 +31,16 @@ class TestObject extends GameObject
 	override public function update() 
 	{
 		super.update();
-		if (Input.isKeyDown(37))
+		if (Input.isKeyDown(KeyBindings.LEFT))
 			velocity.x -= speed;
 		
-		if (Input.isKeyDown(38))
+		if (Input.isKeyDown(KeyBindings.UP))
 			velocity.y -= speed;
 		
-		if (Input.isKeyDown(39))
+		if (Input.isKeyDown(KeyBindings.RIGHT))
 			velocity.x += speed;
 		
-		if (Input.isKeyDown(40))
+		if (Input.isKeyDown(KeyBindings.DOWN))
 			velocity.y += speed;
 		
 		hitBox.update(x - (width / 2), y - (height / 2), width, height);

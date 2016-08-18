@@ -1,6 +1,7 @@
 package ttg.game.level;
 
 import flash.display.Sprite;
+import haxe.Unserializer;
 import haxe.ds.Vector;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
@@ -17,43 +18,58 @@ import ttg.game.Main;
  */
 class TileBackground extends Sprite
 {
-	private static var bgBitmap:BitmapData;
-	public static var bgTileSheet:Tilesheet;
+	public static var bgTileSheets:Map<String, Tilesheet> = new Map<String, Tilesheet>();
 	
-	var map:Array<Array<Int>>;
+	var map:Array<Array<String>>;
 	
 	public static function init()
 	{
-		bgBitmap = Assets.getBitmapData("img/tlo.png");
-		bgTileSheet = new Tilesheet(bgBitmap);
+		bgTileSheets.set("grass", createTilesheet("img/background/grass.png"));
+		bgTileSheets.set("road", createTilesheet("img/background/road.png"));
+		bgTileSheets.set("tlo", createTilesheet("img/background/grass.png"));
+	}
+	
+	public function new(path:String) 
+	{
+		super();
+		var unserializer:Unserializer = new Unserializer(Assets.getText(path));
 		
-		var sheetWidth:Int = cast(bgBitmap.width / 40, Int);
-		var sheetHeight:Int = cast(bgBitmap.height / 40, Int);
+		map = unserializer.unserialize();
+	}
+	
+	public static function createTilesheet(imgPath:String):Tilesheet
+	{
+		var img:BitmapData = Assets.getBitmapData(imgPath);
+		var sheet:Tilesheet = new Tilesheet(img);
+		
+		var sheetWidth:Int = cast(img.width / 40, Int);
+		var sheetHeight:Int = cast(img.width / 40, Int);
+		
 		for (i in 0...sheetWidth)
 		{
 			for (j in 0...sheetHeight)
 			{
-				bgTileSheet.addTileRect(new Rectangle(j * 40, i * 40, 40, 40));
+				sheet.addTileRect(new Rectangle(j * 40, i * 40, 40, 40));
 			}
 		}
+		
+		return sheet;
 	}
 	
-	public function new(m:Array<Array<Int>>) 
-	{
-		super();
-		map = m;
-	}
-	
-	private function createBackground(map:Array<Array<Int>>)
+	private function createBackground(map:Array<Array<String>>)
 	{
 		for (i in 0...map.length)
 		{
-			var row:Array<Int> = map[i];
+			var row:Array<String> = map[i];
 			for (j in 0...row.length)
 			{
-				bgTileSheet.drawTiles(graphics, [j * 40, i * 40, row[j]]);
+				var parts:Array<String> = row[j].split(".");
+				var id:Int = Std.parseInt(parts[1]);
+				
+				bgTileSheets.get(parts[0]).drawTiles(graphics, [j * 40, i * 40, id]);
 			}
 		}
+		graphics.endFill();
 	}
 	
 	public function render()

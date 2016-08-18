@@ -35,7 +35,7 @@ class AABB extends Collider
 			return new Rectangle(rect.x + velocity.x, rect.y + velocity.y, rect.width, rect.height).intersects(cast(other, AABB).rect);
 		
 		if (Std.is(other, BorderCollider))
-			return cast(other, BorderCollider).checkCollision(this, velocity);
+			return other.checkCollision(this, velocity);
 			
 		return false;
 	}
